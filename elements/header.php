@@ -22,7 +22,7 @@
               <li><a href="login.php">Login</a></li>
              </ul>
             <ul>
-              <li><a href="login_unternehmen.php">Unternehmenkonto</a></li>
+              <li><a href="unternehmenkonto.php">Unternehmenkonto</a></li>
             </ul>
            <ul>
               <li><a href="login_admin.php">Administrator</a></li>
