@@ -1,16 +1,32 @@
  
 <?php  require('elements/header.php')       ?>
-  <h1>Registrierenen</h1>
+       
+       
+<form action="" class="mb-4">
+       <div class="center"> 
+         <h1 style="color:chartreuse">  Account</h1>
+       <label > <p style="color:blueviolet" >  Your name:</p>
+           <input type="text" class="form-control" name="username" placeholder="Name angeben">
+           </label><br>
+           <label > <p style="color:blueviolet" >  Email:</p>
+           <input type="email" class="form-control" name="email" placeholder="Password angeben">
+           </label><br>
+           <label > <p style="color:blueviolet" >  Password:</p>
+           <input type="email" class="form-control" name="email" placeholder="Password angeben">
+           </label><br>
+           <label > <p style="color:blueviolet" >  Re-enter Password :</p>
+           <input type="email" class="form-control" name="email" placeholder="Password angeben">
+           </label><br>
+           <label >  <input type="submit" name="create" value="Submit"> </label>
+           </div> 
+ </form>
   
-    <input type="text" placeholder="Username">
-  </div>    
-<input type="text" placeholder="Email">
-</div>
-    <input type="password" placeholder="Password">
-  </div>
 
-  <input type="button" class="btn" value="Registieren">
-</div>
+
+
+
+
+
   
 
 <?php   require('elements/footer.php')        ?>

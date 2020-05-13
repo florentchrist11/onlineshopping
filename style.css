@@ -134,3 +134,11 @@ body
   cursor: pointer;
   margin: 12px 0;
 }
+.center{
+margin:auto;
+width:60%;
+border:19px solid #73AD21;
+padding:80px;
+margin-top: 2;
+float:center;
+}
