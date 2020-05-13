@@ -11,18 +11,18 @@
  <body class="p-4" >
      <div class="menu-bar">
      <ul>
-     <li ><a href="#"><i class="fa fa-home"></i>Angebot</a></li>
-     <li ><a href="#"><i class="fa fa-shopping-basket"></i>Warenkorb</a></li>
-     <li ><a href="#"><i class="fa fa-user"></i>Kundenkonto</a>
+     <li ><a href="index2.php"><i class="fa fa-home"></i>Offer</a></li>
+     <li ><a href="basket.php"><i class="fa fa-shopping-basket"></i>Basket</a></li>
+     <li ><a href="#"><i class="fa fa-user"></i>Customer</a>
      <div class="sub-menu">
             <ul>
-              <li ><a href="registrieren.php">Registrieren</a></li>
+              <li ><a href="registrieren.php">Register</a></li>
             </ul>
             <ul>
               <li><a href="login.php">Login</a></li>
              </ul>
             <ul>
-              <li><a href="unternehmenkonto.php">Unternehmenkonto</a></li>
+              <li><a href="unternehmenkonto.php">Selleraccount</a></li>
             </ul>
            <ul>
               <li><a href="login_admin.php">Administrator</a></li>
@@ -32,6 +32,6 @@
             </ul>
      </div>
     </li>
-     <li ><a href="#"><i class="fa fa-shopping-bag"></i>Bestellung</a></li>
+     <li ><a href="order.php"><i class="fa fa-shopping-bag"></i>Order</a></li>
      </ul>
     </div>

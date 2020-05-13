@@ -14,6 +14,7 @@
            <label > <p style="color:blueviolet" >  Password:</p>
            <input type="email" class="form-control" name="email" placeholder="Your Password ">
            </label><br>
+           <a href="changepassword.php">password forgotten?</a>
            <label >  <input type="submit" name="create" value="Submit"> </label>
            </div> 
  </form>
