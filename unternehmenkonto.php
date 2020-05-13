@@ -4,7 +4,7 @@
    
   <form action="" class="mb-4">
        <div class="center"> 
-       <h1>Login Seller </h1>
+       <h1 style="color:chartreuse"> Login Seller</h1>
        <label > <p style="color:blueviolet" >  E-Mail:</p>
            <input type="text" class="form-control" name="username" placeholder="Your E-Mail ">
            </label><br>
