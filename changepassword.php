@@ -6,7 +6,7 @@
 
 <form action="" class="mb-4">
        <div class="center"> 
-         <h1 style="color:chartreuse">  Change your password </h1>
+         <h1 style="color:chartreuse">  reset password </h1>
            <label > <p style="color:blueviolet" >  Email:</p>
            <input type="email" class="form-control" name="Loginemail" placeholder="Enter your E-Mail">
            </label><br>
