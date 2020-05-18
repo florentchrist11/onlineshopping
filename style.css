@@ -20,6 +20,11 @@ body
 
     background: rgb(0, 100,0);
     text-align: center;
+    margin-top: 3 px;
+    padding: 0 ,15 ;
+    overflow: hidden;
+    
+    
 }
 
 .menu-bar  ul 
@@ -27,23 +32,28 @@ body
     display: inline-flex;
     list-style:none;
     color:#fff;
+    cursor: -webkit-grab; 
+    cursor: grab;
 }
 .menu-bar  ul  li
 {
     width:120 px ;
     margin: 20px;
+  
 }
 .menu-bar  ul  li a 
 {
  text-decoration: none;
  color:#fff;
+;
 
 }
 .active , .menu-bar  ul  li :hover
 {
  background: #2bab0d ; 
  border-radius:4px;
- cursor:pointer;
+ cursor: -webkit-grab; 
+ cursor: grab
 }
 .menu-bar .fa
 {
@@ -141,4 +151,66 @@ border:19px solid #73AD21;
 padding:80px;
 margin-top: 2;
 float:center;
+
+}
+.rand{
+  margin:auto;
+  width:80%;
+  border:19px solid #73AD21;
+  padding:80px;
+  margin-top: 2;
+  float:center;
+}
+.navbar {
+  overflow: hidden;
+  background-color:#73AD21;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 0 px;
+  padding: 5px ,5px, 5px, 5px;
+  width: 45%;
+  top: 5%;
+  left:2%;
+}
+
+.navbar a {
+  float: center;
+  font-size: 22px;
+  color: white;
+  text-align: center;
+  padding: 20px 20px 20px 20px;
+  margin: 1px 1px 1px 1px;
+  text-decoration: none;
+  cursor: -webkit-grab; 
+  cursor: grab;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: rgb(123, 187, 110);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  width: 50%;
+  left: 0;
+  box-shadow: 0px 8px 10px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.container{
+  margin:auto;
+  width:50%;
+  border:5px solid rgb(215, 241, 178);
+  padding: 200px , 200px, 200px, 200px;
+  margin: 1px 1px 1px 20px;
+  float:center;
+}
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color:  rgb(0, 100,0);
+  color: white;
+  text-align: center;
 }
