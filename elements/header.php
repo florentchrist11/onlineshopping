@@ -6,6 +6,7 @@
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
      <link rel="stylesheet" href="style.css">
      <link ref="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
      <title>Verkaufsbörse</title>
  </head>
  <body class="p-4" >
@@ -24,7 +25,7 @@
             <ul>
               <li><a href="unternehmenkonto.php">Selleraccount</a></li>
             </ul>
-           <ul>
+            <ul>
               <li><a href="login_admin.php">Administrator</a></li>
             </ul>
             <ul>

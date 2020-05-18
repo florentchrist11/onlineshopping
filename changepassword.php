@@ -1,9 +1,5 @@
 <?php   require 'elements/header.php'        ?>
 
-
-
-
-
 <form action="" class="mb-4">
        <div class="center"> 
          <h1 style="color:chartreuse">  Change your password </h1>
@@ -20,15 +16,6 @@
            </div> 
  </form>
   
-
-
-
-
-
-
-
-
-
 
 
 <?php     require 'elements/footer.php'                 ?>
