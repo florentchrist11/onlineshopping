@@ -12,7 +12,7 @@
  <body class="p-4" >
      <div class="menu-bar">
      <ul>
-     <li ><a href="index2.php"><i class="fa fa-home"></i>Offer</a></li>
+     <li ><a href="Offer.php"><i class="fa fa-home"></i>Offer</a></li>
      <li ><a href="basket.php"><i class="fa fa-shopping-basket"></i>Basket</a></li>
      <li ><a href="#"><i class="fa fa-user"></i>Customer</a>
      <div class="sub-menu">

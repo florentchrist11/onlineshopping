@@ -2,22 +2,4 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <?php   require('elements/footer.php')          ?>
