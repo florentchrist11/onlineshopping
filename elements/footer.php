@@ -1,5 +1,7 @@
 </body>
 <footer class="footer">
- <p> © copyright 2020 </p>
+  <p > 
+      © 2020 Copyright:
+ </p>
 </footer>
 </html>
