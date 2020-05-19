@@ -21,22 +21,18 @@
            </label><br>
            <label > 
            <p style="color:blueviolet" >preis</p>
-           <input type="text" name="preis">
+           <input type="preis" name="preis">
            </label><p> Bitte nur ganzzahlige Beträge eingeben </p><br>
             
-              <form action="" method = "POST" encrtype="multipart/form-data">
-              <i class="fa fa-camera"></i><Input type="file"/> </Input> <br>
-              <p><Input type="submit" name="upload" value="Upload Image"></p>
+              <form action="" method = "" >
+              <i class="fa fa-camera"> </i> <Input type="file"/> <br>
+              <label> <Input type="submit" name="upload" value="Upload Image"> </label>
               </form>
  
           </div>
         </div>
 
-        <?php
-   if(isset($_POST['upload'])){
-       echo " goal!!!!!!!!!!!!  ";
-   }
-     ?>
+    
 
 <?php   require('elements/footer.php')   ?>
 

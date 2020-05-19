@@ -5,7 +5,7 @@
        <form action="" class="mb-4">
               <div class="center"> 
                 <h1 style="color:chartreuse">  Account</h1>
-              <label > <p style="color:blueviolet" >  Your name:</p>
+                 <label > <p style="color:blueviolet" >  Your name:</p>
                   <input type="text" class="form-control" name="username" placeholder="Name angeben">
                   </label><br>
                   <label > <p style="color:blueviolet" >  Email:</p>
