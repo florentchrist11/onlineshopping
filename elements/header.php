@@ -33,6 +33,6 @@
             </ul>
      </div>
     </li>
-     <li ><a href="order.php"><i class="fa fa-shopping-bag"></i>Order</a></li>
+     <li ><a href="order.php"> <i class="fa fa-shopping-bag"></i>Order</a></li>
      </ul>
     </div>
