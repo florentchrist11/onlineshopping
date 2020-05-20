@@ -11,10 +11,14 @@
                   <input type="text" class="form-control" name="username" placeholder=" Your Name ">
                   <label style="color:blueviolet">  Email:   </label>
                   <input type="email" class="form-control" name="email" placeholder=" Your E-Mail">
+                  <label style="color:blueviolet"> Your Street:   </label>
+                  <input type="text" class="form-control" name="street" placeholder="Your Street ">
+                  <label style="color:blueviolet"> Your Post Code:   </label>
+                  <input type="text" class="form-control" name="postcode" placeholder="Your Post Code ">
+                  <label style="color:blueviolet"> Your City:   </label>
+                  <input type="text" class="form-control" name="city" placeholder="Your City ">
                   <label style="color:blueviolet"> Your Password:   </label>
                   <input type="password" class="form-control" name="passwort" placeholder="Your Password ">
-                  <label style="color:blueviolet"> Your Street:   </label>
-                  <input type="street" class="form-control" name="street" placeholder="Your Street ">
                   <label style="color:blueviolet"> Confirm your Password:   </label>
                   <input type="password" class="form-control" name="passwort" placeholder="Your Password ">
                   <button style="color:blueviolet" >submit</button>
