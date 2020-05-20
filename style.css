@@ -20,8 +20,8 @@ body
 
     background: rgb(0, 100,0);
     text-align: center;
-    margin-top: 3 px;
-    padding: 0 ,15 ;
+    margin-top: 3px;
+    padding: 0,15 ;
     overflow: hidden;
     
     
@@ -37,7 +37,7 @@ body
 }
 .menu-bar  ul  li
 {
-    width:120 px ;
+    width:120px ;
     margin: 20px;
   
 }
@@ -51,7 +51,7 @@ body
 .active , .menu-bar  ul  li :hover
 {
  background: #2bab0d ; 
- border-radius:4px;
+ border-radius:6px;
  cursor: -webkit-grab; 
  cursor: grab
 }
