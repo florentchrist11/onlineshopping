@@ -11,26 +11,20 @@
              <h1>upload pictures </h1>
               <p>you can load your picture hier!! </p>
 
-           <p style="color:blueviolet" >Title of the product</p>
-           <label > 
-           <input type="text" name="usrname">
-           </label><br>
-
- 
-           <p style="color:blueviolet" > Description </p>
-           <label >
+              <form action="" class="mb-4">
+           <label  style="color:blueviolet"> Title of the product  </label><br>
+           <input type="text" name="usrname"><br>
+           <label style="color:blueviolet" > Description   </label><br>
            <textarea rows="4" cols="40" name="comment" form="usrform">
-           </textarea>
-           </label><br>
-
-           <p style="color:blueviolet" >preis</p>
-           <label > <input type="preis" name="preis">
-           </label>
+           </textarea><br>
+           <label style="color:blueviolet" > preis  </label><br>
+               <input type="preis" name="preis">
+          
            <p> Bitte nur ganzzahlige Beträge eingeben </p><br>
             
-              <form action="" method = "" >
+             
               <i class="fa fa-camera"> </i> <Input type="file"/> <br>
-              <label> <Input type="submit" name="upload" value="Upload Image"> </label>
+              <Input type="submit" name="upload" value="Upload Image"> 
               </form>
  
           </div>

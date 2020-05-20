@@ -3,22 +3,14 @@
  
                
 <form action="" class="mb-4">
+    
        <div class="center"> 
            <h1 style="color:chartreuse">  Login </h1>
-        
-           <p style="color:blueviolet" >  Email:</p>
-           <label > 
-           <input type="email" class="form-control" name="Loginemail" placeholder="Enter your E-Mail">
-           </label><br>
-
-           <p style="color:blueviolet" >  Password:</p>
-           <label >
-           <input type="password" class="form-control" name="Loginpassword" placeholder="Enter your Password ">
-           </label><br>
-           
+           <label style="color:blueviolet">  Email:   </label>
+                  <input type="email" class="form-control" name="email" placeholder=" Your E-Mail">
+                  <label style="color:blueviolet"> Your Password:   </label>
+                  <input type="password" class="form-control" name="passwort" placeholder="Your Password ">
            <label> <input type="submit" name="create" value="Sign in"> <label > 
-           
-          
            <a href="changepassword.php">password forgotten?</a>
             
            </div> 

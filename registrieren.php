@@ -6,30 +6,20 @@
               <div class="centerReg"> 
                   <h1 style="color:chartreuse">  Account</h1>
 
-                  <p style="color:blueviolet" >  Your name:</p>
-                 <label > 
-                  <input type="text" class="form-control" name="username" placeholder="Name angeben">
-                  </label><br>
-
-                  <p style="color:blueviolet" >  Email:</p>
-                  <label > 
-                  <input type="email" class="form-control" name="email" placeholder="Password angeben">
-                  </label><br>
-
-                  <p style="color:blueviolet" >  Password:</p>
-                  <label >
-                  <input type="password" class="form-control" name="passwort" placeholder="Password angeben">
-                  </label><br>
-
-                  <p style="color:blueviolet" >  Re-enter Password :</p>
-                  <label > 
-                  <input type="password" class="form-control" name="email" placeholder="Password angeben">
-                  </label><br>
-
                   
-                  <label >  <input type="submit" name="create" value="Submit"> </label>
+                 <label style="color:blueviolet"> Your name:   </label>
+                  <input type="text" class="form-control" name="username" placeholder=" Your Name ">
+                  <label style="color:blueviolet">  Email:   </label>
+                  <input type="email" class="form-control" name="email" placeholder=" Your E-Mail">
+                  <label style="color:blueviolet"> Your Password:   </label>
+                  <input type="password" class="form-control" name="passwort" placeholder="Your Password ">
+                  <label style="color:blueviolet"> Your Street:   </label>
+                  <input type="street" class="form-control" name="street" placeholder="Your Street ">
+                  <label style="color:blueviolet"> Confirm your Password:   </label>
+                  <input type="password" class="form-control" name="passwort" placeholder="Your Password ">
+                  <button style="color:blueviolet" >submit</button>
                   </div> 
-        </form>
+            </form>
          
        
        
