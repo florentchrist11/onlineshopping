@@ -3,7 +3,7 @@
        
        
        <form action="" class="mb-4">
-              <div class="center"> 
+              <div class="centerReg"> 
                   <h1 style="color:chartreuse">  Account</h1>
 
                   <p style="color:blueviolet" >  Your name:</p>
