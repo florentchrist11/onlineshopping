@@ -9,6 +9,7 @@
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
      <title>Verkaufsbörse</title>
  </head>
+
  <body class="p-4" >
      <div class="menu-bar">
      <ul>
@@ -36,3 +37,5 @@
      <li ><a href="order.php"> <i class="fa fa-shopping-bag"></i>Order</a></li>
      </ul>
     </div>
+
+   

@@ -206,12 +206,9 @@ float:center;
   float:center;
 }
 .footer {
-<<<<<<< HEAD
-=======
   position: fixed ;
   left: 0;
   bottom: 0;
->>>>>>> 8a8a5d610f7a5f1e6e169bf49f8ce539380ced00
   width: 100%;
   height: 5%;
   display:flex;
