@@ -18,7 +18,6 @@ if(isset($_POST['username'],$_POST['email'],$_POST['street'], $_POST['postcode']
  $data = new CheckData($_POST['username'],$_POST['email'],$_POST['street'],$_POST['postcode'] , $_POST['city'], 
        $_POST['password'], $_POST['confirmation']);
 
-       var_dump( $data);
       
 if($data->is_Valider()){
        $success = true ;
@@ -30,9 +29,7 @@ if($data->is_Valider()){
          $errors = $data->getError();
          $error = true ;
 
-         echo"<pre>";
-        var_dump(   $errors);
-         echo"</pre>";
+       
         } 
        }
      
@@ -49,7 +46,7 @@ if($data->is_Valider()){
     <div class="alert alert-success"role="alert"> 
         Valide
       <?=  header('Location: Offer.php') ?>;
-        <?= $_POST[''] = null  ?>
+        <?= $_POST[] = null  ?>
         
     </div>
     <?php endif ?>
@@ -113,4 +110,4 @@ if($data->is_Valider()){
        
   
        
-       <?php          ?>
+       <?php  require('elements/footer.php')        ?>
