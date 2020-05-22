@@ -225,3 +225,11 @@ body {
     bottom: 0;
     z-index: 1;
 }
+
+.form-control.is-invalid{
+    background-color:violet
+}
+.invalid-feedback{
+    background-color: violet;
+    width:65% ; 
+}
