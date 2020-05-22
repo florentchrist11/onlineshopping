@@ -1,6 +1,9 @@
  <?php    require('elements/header.php')                        ?>
   
- 
+ <?php /*
+@florent fokou 
+
+*/ ?>
                
 <form action="" class="mb-4">
     
@@ -12,6 +15,7 @@
                   <input type="password" class="form-control" name="passwort" placeholder="Your Password ">
            <label> <input type="submit" name="create" value="Sign in"> <label > 
            <a href="changepassword.php">password forgotten?</a>
+           
             
            </div> 
  </form>
