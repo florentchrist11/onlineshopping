@@ -227,9 +227,9 @@ body {
 }
 
 .form-control.is-invalid{
-    background-color:violet
+    background-color:red
 }
 .invalid-feedback{
-    background-color: violet;
+    background-color: red;
     width:65% ; 
 }
