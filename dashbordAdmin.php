@@ -1,4 +1,22 @@
-<?php   require('elements/header.php')          ?>
+<?php  
+
+
+$username="admin";
+$password ="admin";
+
+session_start();
+
+
+
+
+
+require('elements/header.php')     
+
+
+
+
+
+?>
 
 
 

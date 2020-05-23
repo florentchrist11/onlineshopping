@@ -52,15 +52,15 @@ public function getError():array
 {
 $error['email'] = "(!)E-Mail invalid" ;
  }
- if( $this->password !=  $this->confirmation ){
-$error['confirmation'] = "(!) you password muss be equal";
+ if( $this->password !=  $this->confirmation || isset($error['password']) ){
+$error['confirmation'] = "(!) you password muss be equal and valid";
 }
  if(  $this->postCode <= 0){
  
 $error['postCode'] = "(!)Your Postcode must be the number" ;
 
  }
- if(empty($this->city)|| strlen($this->city) < self::LIMIT_CITY){
+ if( strlen($this->city) < self::LIMIT_CITY || !isset($this->city)){
     $error['city'] = "(!) you must have the valid city" ;
 }
 

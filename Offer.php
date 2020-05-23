@@ -1,4 +1,11 @@
-<?php require_once 'elements/header.php'; ?>
+<?php
+session_start();
+
+require_once 'elements/header.php';
+ 
+
+
+?>
 
 
       
