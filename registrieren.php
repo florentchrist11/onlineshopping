@@ -45,7 +45,7 @@ if($data->is_Valider()){
     <div class="alert alert-success"role="alert"> 
         Valide
     <?php   
-       
+        
  require('mysqliteconnection.php');
 
  $host = "localhost";
@@ -75,7 +75,7 @@ if ($mysql->query( $sqlTable) === TRUE) {
   } else {
     echo "Error creating table: " . $mysql->error;
   }
-
+    
   $stmt = $mysql->prepare("SELECT * FROM account WHERE username = :user"); //Username überprüfen
       $stmt->bindParam(":user", $_POST["username"]);
       $stmt->execute();
@@ -106,12 +106,12 @@ if ($mysql->query( $sqlTable) === TRUE) {
       } else {
         echo "Der Username ist bereits vergeben";
       }
-
+   
 
  } catch (PDOException $e){
      echo "SQL Error: ".$e->getMessage();
  }
-  
+
 
    ?>
 
