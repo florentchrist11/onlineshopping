@@ -1,10 +1,5 @@
 <?php
 
-/*
-@florent fokou 
-
-*/
-
 class CheckData{
 
 private $name ;

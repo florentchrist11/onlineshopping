@@ -3,10 +3,6 @@
 
 require('src/CheckData.php');
 
-/*
-@florent fokou 
-
-*/
 
 $errors[] = null ;
 $error = null ;
@@ -15,6 +11,7 @@ $success = null ;
 if(isset($_POST['username'],$_POST['email'],$_POST['street'], $_POST['postcode'] , $_POST['city'], $_POST['password'] 
 , $_POST['confirmation'])){
 
+   
  $data = new CheckData($_POST['username'],$_POST['email'],$_POST['street'],$_POST['postcode'] , $_POST['city'], 
        $_POST['password'], $_POST['confirmation']);
 
@@ -161,14 +158,14 @@ if ($mysql->query( $sqlTable) === TRUE) {
 </div>  
  <div class="form-group">         
  <label style="color:blueviolet"> Your Password:   </label>
-                  <input style="width:65%" value=" <?= isset($_POST['password'])? htmlentities($_POST['password']): '' ?>" type="password"  class="form-control  <?= isset($errors['password'])? 'is-invalid' : ''    ?>" name="password" placeholder="Your Password ">
+                  <input style="width:65%"  type="password"  class="form-control  <?= isset($errors['password'])? 'is-invalid' : ''    ?>" name="password" placeholder="Your Password ">
                   <?php if(isset($errors['password'])): ?>      
        <div class="invalid-feedback">  <?= $errors['password'] ?>  </div>           
     <?php endif  ?>
                </div>
                   <div class="form-group">
                   <label style="color:blueviolet"> Confirm your Password:   </label>
-                  <input style="width:65%" value=" <?= isset($_POST['confirmation'])? htmlentities($_POST['confirmation']): '' ?>"type="password"  class="form-control <?= isset($errors['confirmation'])? 'is-invalid' : ''    ?>" name="confirmation" placeholder="confirmed Your Password ">
+                  <input style="width:65%" type="password"  class="form-control <?= isset($errors['confirmation'])? 'is-invalid' : ''    ?>" name="confirmation" placeholder="confirmed Your Password ">
                   <?php if(isset($errors['confirmation'])): ?>      
        <div class="invalid-feedback">  <?= $errors['confirmation'] ?>  </div>           
     <?php endif  ?>
