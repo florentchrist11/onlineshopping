@@ -15,17 +15,17 @@ const LIMIT_CITY = 3 ;
 const LIMIT_STREET = 3 ;
 
 
-public function __construct(string $username , string $email , string $street  , string $postCode, string $city ,
- string $password , string $confirmation )
+public function __construct(string $username , ? string $email = null , ? string $street = null  , ? string $postCode = null,? string $city = null ,
+ string $password , ? string $confirmation = null  )
 {
 
     $this->username = $username ;
     $this->email = $email ;
-    $this->street = $street;
-    $this->postCode = (int)$postCode;
-    $this->city = $city ;
+    $this->street = $street ? : null;
+    $this->postCode = (int)$postCode  ? : null;
+    $this->city = $city  ? : null ;
     $this->password = $password;
-    $this->confirmation = $confirmation ;
+    $this->confirmation = $confirmation  ? : null ;
     $this->uppercase = preg_match('@[A-Z]@', $password);
     $this->lowercase = preg_match('@[a-z]@', $password);
     $this->number  = preg_match('@[0-9]@', $password);

@@ -4,8 +4,44 @@
 @florent fokou 
 
 */ ?>
-               
-<form action="" class="mb-4">
+  <?php 
+require('src/CheckData.php');
+
+
+$errors[] = null ;
+$error = null ;
+$success = null ;
+
+if(isset($_POST['email'], $_POST['passwort'])){
+
+   
+ $data = new CheckData( "" ,  $_POST['email'], "", "" , $_POST['passwort'] , "");
+ echo "<pre>";
+ var_dump($data);
+ echo "</pre>";
+      
+if($data->is_Valider()){
+       $success = true ;
+     
+       
+        }else{
+      
+         $errors = $data->getError();
+         $error = true ;
+
+       
+        } 
+       }
+     
+?>    
+       
+
+
+
+
+
+
+<form action="" class="mb-4" method="POST">
     
        <div class="center"> 
            <h1 style="color:chartreuse">  Login </h1>
