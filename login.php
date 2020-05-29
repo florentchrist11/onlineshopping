@@ -41,14 +41,14 @@ if($data->is_Valider()){
 
 
 
-<form action="" class="mb-4" method="POST">
+<form action="" class="mb-4 " method="POST">
     
        <div class="center"> 
            <h1 style="color:chartreuse">  Login </h1>
-           <label style="color:blueviolet">  Email:   </label>
-                  <input type="email" class="form-control" name="email" placeholder=" Your E-Mail">
-                  <label style="color:blueviolet"> Your Password:   </label>
-                  <input type="password" class="form-control" name="passwort" placeholder="Your Password ">
+           <label>  Email:   
+                  <input type="email" class="form-control" name="email" placeholder=" Your E-Mail"></label><br>
+                  <label> Your Password:   
+                  <input type="password" class="form-control" name="passwort" placeholder="Your Password "></label><br>
            <label> <input type="submit" name="create" value="Sign in"> <label > 
            <a href="changepassword.php">password forgotten?</a>
            
