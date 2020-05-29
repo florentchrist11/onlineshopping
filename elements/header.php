@@ -1,10 +1,7 @@
 <!DOCTYPE html>
  <html lang="en">
  <head>
-   <?php /*
-@florent fokou 
-
-*/ ?>
+  
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -17,7 +14,7 @@
  <body class="p-4" >
      <div class="menu-bar">
      <ul>
-     <li ><a href="Offer.php"><i class="fa fa-home"></i>Offer</a></li>
+     <li ><a href="index.php"><i class="fa fa-home"></i>Offer</a></li>
      <li ><a href="basket.php"><i class="fa fa-shopping-basket"></i>Basket</a></li>
      <li ><a href="#"><i class="fa fa-user"></i>Customer</a>
      <div class="sub-menu">

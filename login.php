@@ -1,9 +1,6 @@
  <?php    require('elements/header.php')                        ?>
   
- <?php /*
-@florent fokou 
 
-*/ ?>
   <?php 
 require('src/CheckData.php');
 
@@ -44,12 +41,12 @@ if($data->is_Valider()){
 <form action="" class="mb-4 " method="POST">
     
        <div class="center"> 
-           <h1 style="color:chartreuse">  Login </h1>
+           <h1> Login </h1>
            <label>  Email:   
                   <input type="email" class="form-control" name="email" placeholder=" Your E-Mail"></label><br>
                   <label> Your Password:   
                   <input type="password" class="form-control" name="passwort" placeholder="Your Password "></label><br>
-           <label> <input type="submit" name="create" value="Sign in"> <label > 
+                  <button>submit</button>
            <a href="changepassword.php">password forgotten?</a>
            
             

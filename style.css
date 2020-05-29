@@ -233,3 +233,10 @@ body {
     background-color: red;
     width:65% ; 
 }
+h1 {
+    text-shadow: 0 0 black;
+    color: #aedf0b;
+}
+label {
+    color:blueviolet;
+}
