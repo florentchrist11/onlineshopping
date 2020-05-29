@@ -1,5 +1,5 @@
 <?php    require('elements/header.php')  ;         
-
+    /* Florent Fokou */   
 $succes = null ;
 $error= null;
 $count = 0 ;
@@ -7,15 +7,19 @@ $count = 0 ;
 
 if(isset($_POST['username'], $_POST['password'])){
      
-       $count +=  1 ;
-     var_dump($count);  
+     if($_POST['username']== "Admin"&& $_POST['password']== 'Admin'){
+      
+      $error = 'False User';
+     header("Location: dashbordAdmin.php"); 
+     }else{
+      header("Location: index.php"); 
+
+     }
 
 }
 
 
 ?>
-  
-   
                
   <form action="login_admin.php"  class="mb-4" method="POST">
           <div class="center"> 
@@ -26,8 +30,6 @@ if(isset($_POST['username'], $_POST['password'])){
                   <label> Password:   
                   <input type="password" class="form-control" name="password" placeholder="Your Password "></label><br>
              <input type="submit" name="create" value="Sign in"> 
-            <a href="bloguser.php">password forgotten?</a>
-            
           </div>
    </form>
     

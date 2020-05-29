@@ -1,7 +1,7 @@
 <!DOCTYPE html>
  <html lang="en">
  <head>
-  
+     <?php /* Florent Fokou */   ?>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -34,6 +34,7 @@
               <li><a href="#">Logout</a></li>
             </ul>
      </div>
+     
     </li>
      <li ><a href="order.php"> <i class="fa fa-shopping-bag"></i>Order</a></li>
      </ul>

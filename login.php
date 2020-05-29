@@ -12,15 +12,13 @@ $success = null ;
 if(isset($_POST['email'], $_POST['passwort'])){
 
    
- $data = new CheckData( "" ,  $_POST['email'], "", "" , $_POST['passwort'] , "");
+ $data = new CheckData( "" ,  $_POST['email'], "", "" , "" ,  $_POST['passwort'] );
  echo "<pre>";
- var_dump($data);
+ var_dump($_POST['email']);
  echo "</pre>";
       
 if($data->is_Valider()){
        $success = true ;
-     
-       
         }else{
       
          $errors = $data->getError();
@@ -34,7 +32,12 @@ if($data->is_Valider()){
        
 
 
-
+                 
+       <?php if(!$error):  ?>
+    <div class="alert alert-danger" role="alert">
+        Invalide
+    </div>
+    <?php endif ?>
 
 
 
@@ -42,11 +45,17 @@ if($data->is_Valider()){
     
        <div class="center"> 
            <h1> Login </h1>
-           <label>  Email:   
-                  <input type="email" class="form-control" name="email" placeholder=" Your E-Mail"></label><br>
-                  <label> Your Password:   
-                  <input type="password" class="form-control" name="passwort" placeholder="Your Password "></label><br>
-                  <button>submit</button>
+           <label>  Email: </label>  
+                  <input  style="width:65%" type="email" class="form-control" name="email" placeholder=" Your E-Mail">
+                  <?php if(isset($errors['email'])): ?>      
+       <div class="invalid-feedback">  <?= $errors['email'] ?> </div>           
+    <?php endif  ?>
+                  <label> Your Password: </label>  
+                <input  style="width:65%" type="password" class="form-control" name="passwort" placeholder="Your Password ">
+                <?php if(isset($errors['password'])): ?>      
+       <div class="invalid-feedback">  <?= $errors['password'] ?></div>           
+    <?php endif  ?>
+                <button>submit</button>
            <a href="changepassword.php">password forgotten?</a>
            
             
