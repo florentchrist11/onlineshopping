@@ -12,10 +12,10 @@
                 <strong><i class="fa fa-plus"></i> Add New Product</strong>
             </div>
             <div class="card-body">
-                <form action="add.php" method="post">
+                <form action="" method="post">
                         <div class="form-group col-md-6">
                             <label for="name" class="col-form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+                            <input type="text" class="form-control" id="name" name="username" placeholder="Name" required>
                         </div>
                     </div>
                     <div class="form-row">
@@ -29,12 +29,12 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="image" class="col-form-label">Image</label>
-                            <input type="text" class="form-control" name="image" id="image" placeholder="Image URL">
+                            <input type="file" class="form-control" name="Myimage" id="image" placeholder="Image URL">
                         </div>
                     </div>
                     <div class="form-group">
                     <label for="image" class="col-form-label">description</label>
-                        <textarea name="description" id="" rows="5" class="form-control" placeholder="beschreibung"></textarea>
+                        <textarea name="Idescription" id="" rows="5" class="form-control" placeholder="beschreibung"></textarea>
                     </div>
                     <button type="submit" class="btn btn-success"><i class="fa fa-check-circle"></i> Hinzufügen</button>
                 </form>
@@ -43,52 +43,53 @@
 
 
 <?Php 
-$bildexist = null ;
 
-   if (isset($_POST['name'],$_POST['price'],$_POST['qty'], $_POST['image'] , $_POST['description'])){
+require('mysqliteconnection.php');
 
-    $data = new CheckData($_POST['name'],$_POST['price'],$_POST['qty'], $_POST['image'] , $_POST['description']);
-
-        if($data->is_Valider()){
-           $bildexist = true ;
-    
-           }else{
-
-           echo"Kein Bild gefunden";
-    
-        } 
-  }
-
-if ($bildexist){
-    $stmt= $ConnectionsName->prepare("DELETE * FROM TableName WHERE UserName = $_POST["name"]");
-    $stmt->execute();
-    $count = $stmt->rowCount()-1;
-}
-
-?>  
-
+    $host = "localhost";
+    $name = "shop";
+    $user = "root";
+    $passwort = "";
+    $table = "Produkt";
+    try{
+        $mysql = new PDO("mysql:host=$host;dbname=$name", $user, $passwort);
+        $mysql->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
         
+   $sqlTable = "CREATE TABLE IF NOT EXISTS  $table  (
+    
+       id INT  AUTO_INCREMENT,
+       username VARCHAR(20),
+       price VARCHAR(20),
+       qty VARCHAR(50),
+       Myimage VARCHAR(50),
+       Idescription VARCHAR(50),
+       CONSTRAINT id PRIMARY KEY (id)
+       )";
+         $mysql->exec($sqlTable);
+     
+     if(isset($_POST['username'],$_POST['price'],$_POST['qty'], $_POST['Myimage'] , $_POST['Idescription'])){
+               
+               $stmt = $mysql->prepare("INSERT INTO Produkt (username, price, qty,Myimage,Idescription) 
+               VALUES (:username,  :price, :qty,:Myimage,:Idescription)");
+               $stmt->bindParam(":username", $_POST["username"]);
+               $stmt->bindParam(":price", $_POST["price"]);
+               $stmt->bindParam(":qty", $_POST["qty"]);
+               $stmt->bindParam(":Myimage", $_POST["Myimage"]);
+               $stmt->bindParam(":Idescription", $_POST["Idescription"]);
+               $stmt->execute();
+               echo "Dein Produkt wurde angelegt";
 
-
-
-
+           } else {
+             echo "Produkt existiert schon";
+           }
+     
+    } catch (PDOException $e){
+        echo "SQL Error: ".$e->getMessage();
+    }
+   
+   
+      ?>
+     
+  
 <?php   require('elements/footer.php')   ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
