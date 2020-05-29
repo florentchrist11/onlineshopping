@@ -33,7 +33,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                    <label for="image" class="col-form-label">discription</label>
+                    <label for="image" class="col-form-label">description</label>
                         <textarea name="description" id="" rows="5" class="form-control" placeholder="beschreibung"></textarea>
                     </div>
                     <button type="submit" class="btn btn-success"><i class="fa fa-check-circle"></i> Hinzufügen</button>
@@ -42,7 +42,30 @@
         </div>
 
 
+<?Php 
+$bildexist = null ;
 
+   if (isset($_POST['name'],$_POST['price'],$_POST['qty'], $_POST['image'] , $_POST['description'])){
+
+    $data = new CheckData($_POST['name'],$_POST['price'],$_POST['qty'], $_POST['image'] , $_POST['description']);
+
+        if($data->is_Valider()){
+           $bildexist = true ;
+    
+           }else{
+
+           echo"Kein Bild gefunden";
+    
+        } 
+  }
+
+if ($bildexist){
+    $stmt= $ConnectionsName->prepare("DELETE * FROM TableName WHERE UserName = $_POST["name"]");
+    $stmt->execute();
+    $count = $stmt->rowCount()-1;
+}
+
+?>  
 
         
 
