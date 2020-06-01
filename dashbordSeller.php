@@ -14,26 +14,26 @@
             <div class="card-body">
                 <form action="" method="post">
                         <div class="form-group col-md-6">
-                            <label for="name" class="col-form-label">Name</label>
+                            <label for="name" class="col-form-label">Name </label>
                             <input type="text" class="form-control" id="name" name="username" placeholder="Name" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <label for="price" class="col-form-label">Preis</label>
+                            <label for="price" class="col-form-label">Preis </label>
                             <input type="number" class="form-control" id="price" name="price" placeholder="Price" required>
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="qty" class="col-form-label">Stückzahl</label>
+                            <label for="qty" class="col-form-label">Stückzahl </label>
                             <input type="number" class="form-control" name="qty" id="qty" placeholder="stückzahl" required>
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="image" class="col-form-label">Image</label>
+                            <label for="image" class="col-form-label">Image </label>
                             <input type="file" class="form-control" name="Myimage" id="image" placeholder="Image URL">
                         </div>
                     </div>
                     <div class="form-group">
-                    <label for="image" class="col-form-label">description</label>
+                    <label for="image" class="col-form-label">description  </label>
                         <textarea name="Idescription" id="" rows="5" class="form-control" placeholder="beschreibung"></textarea>
                     </div>
                     <button type="submit" class="btn btn-success"><i class="fa fa-check-circle"></i> Hinzufügen</button>

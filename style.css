@@ -11,49 +11,52 @@ body {
     font-family: sans-serif;
 }
 
-.menu-bar {
+header {
+    width: 100%;
+    height: auto;
     background: rgb(0, 100, 0);
     text-align: center;
     margin-top: 1px;
     padding: 15px;
     overflow: hidden;
+    align-content: space-between;
 }
 
-.menu-bar ul {
-    display: inline-flex;
+header ul {
     list-style: none;
+    width: 50%;
     color: #fff;
-    cursor: -webkit-grab;
+    margin: auto;
+    cursor: pointer;
     cursor: grab;
+    display: flex;
 }
 
-.menu-bar ul li {
+header ul li {
     width: 120px;
     margin: 10px;
     
 }
 
-.menu-bar ul li a {
+header ul li a {
     text-decoration: none;
-    color: #fff;
     float: left;
     font-size: 16px;
     color: white;
     text-align: center;
     padding: 14px 16px 10px 12px;
-    text-decoration: none;
+    display: block;
     
 }
 
 .active,
-.menu-bar ul li :hover {
+header ul li :hover {
     background: #2bab0d;
     border-radius: 4px;
-    cursor: -webkit-grab;
-    cursor: grab
+    cursor: pointer;
 }
 
-.menu-bar .fa {
+header .fa {
     margin-right: 8px;
 }
 
@@ -61,18 +64,22 @@ body {
     display: none;
 }
 
-.menu-bar ul li:hover .sub-menu {
+header ul li:hover .sub-menu {
     display: block;
     position: absolute;
     background: rgb(0, 100, 0);
+    top: 65px;
+    -webkit-box-shadow: 2px 10px 23px -9px rgba(110,107,110,1);
+    -moz-box-shadow: 2px 10px 23px -9px rgba(110,107,110,1);
+    box-shadow: 2px 10px 23px -9px rgba(110,107,110,1);
 }
 
-.menu-bar ul li:hover .sub-menu ul {
+header  ul li:hover .sub-menu ul {
     display: block;
     margin: 10px;
 }
 
-.menu-bar ul li :hover .sub-menu ul li {
+header  ul li :hover .sub-menu ul li {
     width: 150px;
     padding: 10px;
     border-bottom: 1px dotted #fff;
@@ -80,11 +87,10 @@ body {
     text-align: left;
 }
 
-.menu-bar ul li :hover .sub-menu ul li:last-child {
+header ul li :hover .sub-menu ul li:last-child {
     border-bottom: none;
 }
-
-.menu-bar ul li :hover .sub-menu ul li a:hover {
+header  ul li :hover .sub-menu ul li a:hover {
     color: #fff;
 }
 
@@ -235,8 +241,34 @@ body {
 }
 h1 {
     text-shadow: 0 0 black;
-    color: #aedf0b;
+    color: #000000;
 }
 label {
     color:blueviolet;
+}
+@media only screen and ( max-width: 530px ) {
+    /*shows elements in a column*/
+    header ul{
+      flex-direction: column;
+    }
+    
+    /* deletes margin on top or bottom of the a tag*/
+    header ul li{
+      margin: 0;
+    }
+   /* makes sure that the a tag will take the entire screen*/
+    header ul li a{
+      display: block;
+    }
+            
+    header ul li:hover .sub-menu {
+        display: block;
+        position: absolute;
+        background: rgb(0, 100, 0);
+        top: 150px;
+        -webkit-box-shadow: 2px 10px 23px -9px rgba(110,107,110,1);
+        -moz-box-shadow: 2px 10px 23px -9px rgba(110,107,110,1);
+        box-shadow: 2px 10px 23px -9px rgba(110,107,110,1);
+    }
+  
 }
