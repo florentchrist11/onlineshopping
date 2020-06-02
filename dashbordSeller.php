@@ -1,5 +1,30 @@
 
-<?php   require('elements/header.php')          ?>
+<?php   require('elements/header.php')  ;
+require('src/CheckProduct.php');
+$errors[] = null ;
+$error = null ;
+$success = null ;
+
+if(isset($_POST['name'],$_POST['price'],$_POST['stk'], $_POST['image'] , $_POST['description'] )){
+
+   
+ $data = new CheckProduct($_POST['name'],$_POST['price'],$_POST['stk'],$_POST['image'],$_POST['description']);
+
+      
+if($data->is_Valider()){
+       $success = true ;
+     
+       
+        }else{
+      
+         $errors = $data->getError();
+         $error = true ;
+
+       
+        } 
+       }
+
+?>
 
         <div class="rand"> 
            <div class="navbar">
