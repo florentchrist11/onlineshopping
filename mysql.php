@@ -1,5 +1,5 @@
 <?php
-   /* Florent Fokou */   
+
 $host = "localhost";
 $name = "shop";
 $user = "root";

@@ -35,7 +35,7 @@
                     <div class="form-group">
                     <label for="image" class="col-form-label">description  </label>
                         <textarea name="Idescription" id="" rows="5" class="form-control" placeholder="beschreibung"></textarea>
-                    </div>
+                    </div> 
                     <button type="submit" class="btn btn-success"><i class="fa fa-check-circle"></i> Hinzufügen</button>
                 </form>
             </div>

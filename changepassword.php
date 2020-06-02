@@ -1,6 +1,6 @@
 
 <?php   require 'elements/header.php'     
-     /* Florent Fokou */   
+ 
 
 ?>
 

@@ -1,5 +1,5 @@
 <?php
-   /* Florent Fokou */   
+      
 class CheckData{
 
 private $name ;

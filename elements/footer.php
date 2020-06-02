@@ -1,7 +1,4 @@
 
-  
- 
-
 </body>
 <footer class="footer">
   <p > 

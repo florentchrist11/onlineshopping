@@ -1,5 +1,5 @@
 <?php    require('elements/header.php')  ;         
-    /* Florent Fokou */   
+      
 $succes = null ;
 $error= null;
 $count = 0 ;

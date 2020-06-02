@@ -1,5 +1,5 @@
-<?php
-   /* Justin Bathke */   
+<?php 
+
 class CheckProduct{
 
 private $name ;
@@ -35,7 +35,7 @@ public function getError():array
   } 
   if(strlen( $this->price) < self ::LIMIT_PRICE){
 
-    $error['Stk'] = "(!)You must take atleast 1 $ to sell your Product";
+    $error['price'] = "(!)You must take atleast 1 $ to sell your Product";
   } 
 
 return $error ;
