@@ -154,7 +154,7 @@ if ($mysql->query( $sqlTable) === TRUE) {
                      </div>
                      <?php endif ?>
        <form action=""  method="POST" class="mb-4" > 
-  <legend text-align: center  > <h1  >  Account</h1>   </legend>  
+  <legend text-align: center  > <h1>  Account</h1>   </legend>  
   <div class="form-group" >      
  <label> Your name: </label>  
  <input  value=" <?= isset($_POST['username'])?

@@ -45,17 +45,17 @@ if($data->is_Valider()){
     
        <div class="center"> 
            <h1> Login </h1>
-           <label>  Email: </label>  
-                  <input  style="width:65%" type="email" class="form-control" name="email" placeholder=" Your E-Mail">
+           <label for="email">  Email: </label>  
+                  <input  style="width:65%" type="email" id ="email" class="form-control" name="email" placeholder=" Your E-Mail">
                   <?php if(isset($errors['email'])): ?>      
        <div class="invalid-feedback">  <?= $errors['email'] ?> </div>           
     <?php endif  ?>
-                  <label> Your Password: </label>  
-                <input  style="width:65%" type="password" class="form-control" name="passwort" placeholder="Your Password ">
+                <label for="password"> Your Password: </label> 
+                <input  style="width:65%" id ="password" type="password" class="form-control" name="passwort" placeholder="Your Password ">
                 <?php if(isset($errors['password'])): ?>      
        <div class="invalid-feedback">  <?= $errors['password'] ?></div>           
     <?php endif  ?>
-                <button>submit</button>
+                <br> <button>submit</button>
            <a href="changepassword.php">password forgotten?</a>
            
             

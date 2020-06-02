@@ -8,8 +8,8 @@
        <div class="center"> 
            <h1>  reset password </h1>
            
-           <label > Email adresse:  
-           <input type="email" class="form-control" name="Loginemail" placeholder="Enter your E-Mail"> </label><br>
+           <label for ="email"> Email adresse:  </label><br>
+           <input type="email" class="form-control" id=="email" name="Loginemail" placeholder="Enter your E-Mail"> 
            <button >submit</button>
 
         </div> 
