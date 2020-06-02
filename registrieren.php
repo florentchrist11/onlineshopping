@@ -156,23 +156,33 @@ if ($mysql->query( $sqlTable) === TRUE) {
        <form action=""  method="POST" class="mb-4" > 
   <legend text-align: center  > <h1>  Account</h1>   </legend>  
   <div class="form-group" >      
+<<<<<<< HEAD
  <label> Your name: </label>  
  <input  value=" <?= isset($_POST['username'])?
   htmlentities($_POST['username']): '' ?>" 
  style="width:65%" type="text"  name="username" 
 class="form-control <?= isset($errors['username'])? 'is-invalid' : ''    ?>" 
  placeholder=" Your Name " required/>
+=======
+ <label for="name"> Your name: </label>  
+  <input  value=" <?= isset($_POST['username'])? htmlentities($_POST['username']): '' ?>" style="width:65%" type="text" id="name" name="username"  class="form-control <?= isset($errors['username'])? 'is-invalid' : ''    ?>"  placeholder=" Your Name " >
+>>>>>>> 95e809496c49c21556b73f87d11a9ad321f0241e
      <?php if(isset($errors['username'])): ?>      
        <div class="invalid-feedback">  <?= $errors['username'] ?> </div>           
     <?php endif  ?>
   </div>
   <div class="form-group">
+<<<<<<< HEAD
     <label>  Email:   </label>
     <input  value=" <?= isset($_POST['email'])? 
     htmlentities($_POST['email']): '' ?>" 
     style="width:65%" type="email" 
     class="form-control  <?= isset($errors['email'])? 'is-invalid' : ''    ?> "
      name="email" placeholder=" Your E-Mail" required/>
+=======
+    <label for="email">  Email:   </label>
+    <input  value=" <?= isset($_POST['email'])? htmlentities($_POST['email']): '' ?>" style="width:65%" type="email" id="email" class="form-control  <?= isset($errors['email'])? 'is-invalid' : ''    ?> " name="email" placeholder=" Your E-Mail">
+>>>>>>> 95e809496c49c21556b73f87d11a9ad321f0241e
     <?php if(isset($errors['email'])): ?>      
        <div class="invalid-feedback">  <?= $errors['email'] ?> </div>           
     <?php endif  ?>
@@ -180,51 +190,79 @@ class="form-control <?= isset($errors['username'])? 'is-invalid' : ''    ?>"
    
 
    <div class="form-group">
+<<<<<<< HEAD
    <label> Your Street:  </label> 
   <input style="width:65%" value=" <?= isset($_POST['street'])?
    htmlentities($_POST['street']): '' ?>" type="text" 
     class="form-control  <?= isset($errors['street'])? 'is-invalid' : ''    ?> " name="street" placeholder="Your Street " required/>
+=======
+   <label for="street"> Your Street:  </label> 
+  <input style="width:65%" value=" <?= isset($_POST['street'])? htmlentities($_POST['street']): '' ?>" type="text" id="street" class="form-control  <?= isset($errors['street'])? 'is-invalid' : ''    ?> " name="street" placeholder="Your Street ">
+>>>>>>> 95e809496c49c21556b73f87d11a9ad321f0241e
   <?php if(isset($errors['street'])): ?>      
        <div class="invalid-feedback">  <?= $errors['street'] ?> </div>           
     <?php endif  ?>
    </div>
    <div class="form-group">
+<<<<<<< HEAD
 <label> Your Post Code: </label>  
 <input style="width:65%" value=" <?= isset($_POST['postcode'])? 
 htmlentities($_POST['postcode']): '' ?>"  id="invalid" type="text" 
  class="form-control   <?= isset($errors['postCode'])? 'is-invalid' : ''    ?> "
   name="postcode" placeholder="Your Post Code " required/>
+=======
+<label for="invalid" > Your Post Code: </label>  
+<input style="width:65%" value=" <?= isset($_POST['postcode'])? htmlentities($_POST['postcode']): '' ?>"  id="invalid" type="text"  class="form-control   <?= isset($errors['postCode'])? 'is-invalid' : ''    ?> " name="postcode" placeholder="Your Post Code "  >
+>>>>>>> 95e809496c49c21556b73f87d11a9ad321f0241e
 <?php if(isset($errors['postCode'])): ?>      
        <div class="invalid-feedback">  <?= $errors['postCode'] ?></div>           
     <?php endif  ?>
 </div>
 <div class="form-group">
+<<<<<<< HEAD
 <label> Your City: </label>  
  <input style="width:65%" value=" <?= isset($_POST['city'])? 
  htmlentities($_POST['city']): '' ?>" type="text" 
   class="form-control  <?= isset($errors['city'])? 'is-invalid' : ''    ?>"
    name="city" placeholder="Your City "required/>
+=======
+<label for="city"> Your City: </label>  
+ <input style="width:65%" value=" <?= isset($_POST['city'])? htmlentities($_POST['city']): '' ?>" id ="city" type="text"  class="form-control  <?= isset($errors['city'])? 'is-invalid' : ''    ?>" name="city" placeholder="Your City ">
+>>>>>>> 95e809496c49c21556b73f87d11a9ad321f0241e
  <?php if(isset($errors['city'])): ?>      
        <div class="invalid-feedback">  <?= $errors['city'] ?> </div>           
     <?php endif  ?>
 </div>  
  <div class="form-group">         
+<<<<<<< HEAD
  <label> Your Password:</label>
                   <input style="width:65%"  type="password" 
                    class="form-control  <?= isset($errors['password'])? 
                    'is-invalid' : ''    ?>"
                     name="password" placeholder="Your Password "required/>
+=======
+ <label for="password"> Your Password:</label>
+                  <input style="width:65%"  type="password"  class="form-control  <?= isset($errors['password'])? 'is-invalid' : ''    ?>" id="password" name="password" placeholder="Your Password ">
+>>>>>>> 95e809496c49c21556b73f87d11a9ad321f0241e
                   <?php if(isset($errors['password'])): ?>      
        <div class="invalid-feedback">  <?= $errors['password'] ?></div>           
     <?php endif  ?>
                </div>
                   <div class="form-group">
+<<<<<<< HEAD
                   <label> Confirm your Password:</label> 
                   <input style="width:65%" type="password" 
            class="form-control <?= isset($errors['confirmation'])? 
           'is-invalid' : ''    ?>" 
            name="confirmation" placeholder="confirmed Your Password "required/>
      
+=======
+                  <label for="confirm"> Confirm your Password:</label> 
+                  <input style="width:65%" type="password"  id ="confirm" class="form-control <?= isset($errors['confirmation'])? 'is-invalid' : ''    ?>" name="confirmation" placeholder="confirmed Your Password ">
+                  <?php if(isset($errors['confirmation'])): ?>      
+       <div class="invalid-feedback">  <?= $errors['confirmation'] ?>  </div>          
+    <?php endif  ?>
+>>>>>>> 95e809496c49c21556b73f87d11a9ad321f0241e
                </div>
  <button >submit</button>
 </form>
