@@ -13,14 +13,9 @@ body {
     font-family: sans-serif;
 }
 
-<<<<<<< HEAD
-.menu-bar {
-    /* Florent Fokou   */
-=======
 header {
     width: 100%;
     height: auto;
->>>>>>> 95e809496c49c21556b73f87d11a9ad321f0241e
     background: rgb(0, 100, 0);
     text-align: center;
     margin-top: 1px;
@@ -29,13 +24,7 @@ header {
     align-content: space-between;
 }
 
-<<<<<<< HEAD
-.menu-bar ul {
-    /* Florent Fokou   */
-    display: inline-flex;
-=======
 header ul {
->>>>>>> 95e809496c49c21556b73f87d11a9ad321f0241e
     list-style: none;
     width: 50%;
     color: #fff;
@@ -45,20 +34,6 @@ header ul {
     display: flex;
 }
 
-<<<<<<< HEAD
-.menu-bar ul li {
-    /* Florent Fokou   */
-    width: 130px;
-    margin-top: 15px;
-    margin-left: 150px;
-    margin-bottom: 15px;
-    margin-right: 15px;
-    
-}
-
-.menu-bar ul li a {
-    /* Florent Fokou   */
-=======
 header ul li {
     width: 120px;
     margin: 10px;
@@ -66,33 +41,17 @@ header ul li {
 }
 
 header ul li a {
->>>>>>> 95e809496c49c21556b73f87d11a9ad321f0241e
     text-decoration: none;
     float: left;
     font-size: 16px;
     color: white;
     text-align: center;
     padding: 14px 16px 10px 12px;
-<<<<<<< HEAD
-=======
     display: block;
->>>>>>> 95e809496c49c21556b73f87d11a9ad321f0241e
     
 }
 
 .active,
-<<<<<<< HEAD
-.menu-bar ul li :hover {
-    /* Florent Fokou   */
-    background: #2bab0d;
-    border-radius: 10px;
-    cursor: -webkit-grab;
-    cursor: grab
-}
-
-.menu-bar .fa {
-    /* Florent Fokou   */
-=======
 header ul li :hover {
     background: #2bab0d;
     border-radius: 4px;
@@ -100,7 +59,6 @@ header ul li :hover {
 }
 
 header .fa {
->>>>>>> 95e809496c49c21556b73f87d11a9ad321f0241e
     margin-right: 8px;
 }
 
@@ -109,12 +67,7 @@ header .fa {
     display: none;
 }
 
-<<<<<<< HEAD
-.menu-bar ul li:hover .sub-menu {
-    /* Florent Fokou   */
-=======
 header ul li:hover .sub-menu {
->>>>>>> 95e809496c49c21556b73f87d11a9ad321f0241e
     display: block;
     position: absolute;
     padding-top:50px ;
@@ -127,23 +80,13 @@ header ul li:hover .sub-menu {
     box-shadow: 2px 10px 23px -9px rgba(110,107,110,1);
 }
 
-<<<<<<< HEAD
-.menu-bar ul li:hover .sub-menu ul {
-    /* Florent Fokou   */
-=======
 header  ul li:hover .sub-menu ul {
->>>>>>> 95e809496c49c21556b73f87d11a9ad321f0241e
     display: block;
     margin: 1px;
    
 }
 
-<<<<<<< HEAD
-.menu-bar ul li :hover .sub-menu ul li {
-    /* Florent Fokou   */
-=======
 header  ul li :hover .sub-menu ul li {
->>>>>>> 95e809496c49c21556b73f87d11a9ad321f0241e
     width: 150px;
     padding: 10px;
     border-bottom: 1px dotted #fff;
@@ -151,20 +94,10 @@ header  ul li :hover .sub-menu ul li {
     text-align: left;
 }
 
-<<<<<<< HEAD
-.menu-bar ul li :hover .sub-menu ul li:last-child {
-    /* Florent Fokou   */
-    border-bottom: none;
-}
-
-.menu-bar ul li :hover .sub-menu ul li a:hover {
-    /* Florent Fokou   */
-=======
 header ul li :hover .sub-menu ul li:last-child {
     border-bottom: none;
 }
 header  ul li :hover .sub-menu ul li a:hover {
->>>>>>> 95e809496c49c21556b73f87d11a9ad321f0241e
     color: #fff;
 }
 
