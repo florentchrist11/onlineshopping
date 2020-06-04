@@ -28,7 +28,7 @@
         SET   pwd = ? ");
         $stmt->execute([  $password]);
         $sussess = true ;
-     //   header("location: login.php");
+       header("location: login.php");
    
        }else{
        $error = true ;

@@ -8,10 +8,13 @@
    $email = $_SESSION['email'];
    $pass = $_SESSION['password'];
    $_SESSION['emailReset'] =  $_SESSION['email'];
+   $token =   $_SESSION['token'];
    var_dump(  $email);
-    var_dump(  $pass);
+   var_dump(  $pass);
+   var_dump(  $token );
+    $result2 = null ;
   
-   if(isset($_POST['email'], $_POST['passwort'])){
+   if(isset($_POST['email'], $_POST['passwort'], $_POST['sellerID'])){
         
    require_once('mysqliteconnection.php');
 
@@ -30,6 +33,7 @@
           id INT  AUTO_INCREMENT,
           email VARCHAR(20),
           pwd VARCHAR(50),
+          token VARCHAR(50) NOT NULL,
           CONSTRAINT id PRIMARY KEY (id)
           )";
             $mysql->exec($sqlTable);
@@ -39,15 +43,19 @@
         } else {
           echo "Error creating table: " . $mysql->error;
         }
+  
+ $password = password_hash($_POST["passwort"], PASSWORD_BCRYPT);
+ $stmt = $mysql->prepare("INSERT INTO sigin 
+ SET  email = ?  , pwd = ? , token = ? ");
+ $stmt->execute([ $_POST["email"] , $password], $_POST["sellerID"]);
+   die();
+ if($token){
+ header("location: dashbordSeller.php");    
 
-       if($email == $_POST['email'] && $pass == $_POST['passwort'] ){
-              $password = password_hash($_POST["passwort"], PASSWORD_BCRYPT);
-              $stmt = $mysql->prepare("INSERT INTO sigin 
-              SET  email = ?  , pwd = ? ");
-              $stmt->execute([ $_POST["email"] , $password]);
-             header("location: index.php");
-
+           
+       
        }
+    
 
         $password = password_hash($_POST["passwort"], PASSWORD_BCRYPT);
         $stmt = $mysql->prepare('SELECT pwd FROM sigin WHERE email = ?'); 
@@ -55,7 +63,7 @@
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
      
        if( password_verify (   $password ,   $result["pwd"] )){
-              header("location: index.php");
+             header("location: index.php");
 
   }else{
        $error = true ;
@@ -81,6 +89,8 @@
                   <input  style="width:65%" type="email" id ="email" class="form-control" name="email" placeholder=" Your E-Mail">
                   <label for="password"> Your Password: </label> 
                   <input  style="width:65%" id ="password" type="password" class="form-control" name="passwort" placeholder="Your Password ">   
+                  <label>  SellerID: </label><br>
+                  <input style="width:65%" type="text" class="form-control" name="sellerID" placeholder="only for seller ">
                   <br> <button>submit</button>
                   <a href="changepassword.php">password forgotten?</a> 
                   </div> 

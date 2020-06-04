@@ -50,7 +50,7 @@ if($data->is_Valider()){
  $table = "account";
  try{
      $mysql = new PDO("mysql:host=$host;dbname=$name", $user, $passwort);
-   //  $mysql->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+     $mysql->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
      $mysql->setAttribute( PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ );
      
 $sqlTable = "CREATE TABLE IF NOT EXISTS  $table  (
@@ -71,35 +71,40 @@ if ($mysql->query( $sqlTable) === TRUE) {
   } else {
     echo "Error creating table: " . $mysql->error;
   }
+
+    
+  $stmt = $mysql->prepare('SELECT email FROM account WHERE email = ?'); 
+  $stmt->execute([ $_POST["email"]]);
+  $result2 = $stmt->fetchObject();
+  var_dump($result2);
+        if($result2){
+          $check2 = true ;
+          die();
+      
+        }
+
+
+
+
+
     
   if(empty($errors['username'])){
-  $stmt = $mysql->prepare('SELECT * FROM account WHERE username = ?'); //Username überprüfen
-   //   $stmt->bindParam(":user", $_POST["username"]);
+  $stmt = $mysql->prepare('SELECT * FROM account WHERE username = ?'); 
       $stmt->execute([ $_POST["username"]]);
       $result1 = $stmt->fetchObject();
-      var_dump($result1);
       if($result1){
         $check1 = true ;
-        die("  There is the User with dies Name ");
+       
       }
   }
-  
   if(empty($errors['email'])){
 
 
-
-    $stmt2 = $mysql->prepare('SELECT id FROM account WHERE email = ?'); 
-        $stmt2->execute([ $_POST["email"]]);
-        $result2 = $stmt2->fetchObject();
-        if($result2){
-          $check2 = true ;
-        die(  "There is the User with dies E-Mail" );
-        }
+    $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
+   
         
        
     }
-
-
   if(  !$check1 &&  !$check2  ){
      session_start();
     $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
@@ -112,8 +117,8 @@ if ($mysql->query( $sqlTable) === TRUE) {
     $_SESSION['password'] = $_POST["password"] ; 
    $user_ID = $mysql->lastInsertID();
    echo "Your Account hat been successfully created";
-   header("location: login.php");
-   exit();
+  // header("location: login.php");
+  // exit();
   }else {
       if($check1 ){
         echo "This user already exists";
@@ -122,13 +127,9 @@ if ($mysql->query( $sqlTable) === TRUE) {
         echo "This E-Mail already exists"; 
       }
   }
- 
-
  } catch (PDOException $e){
-  //   echo "SQL Error: ".$e->getMessage();
+
  }
-
-
    ?>
         
    <?php endif ?>
@@ -157,7 +158,6 @@ if ($mysql->query( $sqlTable) === TRUE) {
     <?php endif  ?>
   </div>
    
-
    <div class="form-group">
    <label for="street"> Your Street:  </label> 
   <input style="width:65%" value=" <?= isset($_POST['street'])? htmlentities($_POST['street']): '' ?>" type="text" id="street" class="form-control  <?= isset($errors['street'])? 'is-invalid' : ''    ?> " name="street" placeholder="Your Street ">
