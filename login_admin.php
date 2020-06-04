@@ -34,12 +34,7 @@ if(isset($_POST['username'], $_POST['password'])){
    </form>
     
     
-  
-  
-  
-  
-  
-  
+
   
   
   <?php    require('elements/footer.php')        ?>
@@ -47,4 +42,4 @@ if(isset($_POST['username'], $_POST['password'])){
   
         
   
-   </form>
+   
