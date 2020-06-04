@@ -88,8 +88,7 @@ if ($mysql->query( $sqlTable) === TRUE) {
 
 
 
-    $stmt2 = $mysql->prepare('SELECT id FROM account WHERE email = ?'); //Username überprüfen
-     //   $stmt->bindParam(":user", $_POST["username"]);
+    $stmt2 = $mysql->prepare('SELECT id FROM account WHERE email = ?'); 
         $stmt2->execute([ $_POST["email"]]);
         $result2 = $stmt2->fetchObject();
         if($result2){
@@ -109,27 +108,9 @@ if ($mysql->query( $sqlTable) === TRUE) {
     city = ? , pwd = ? ");
     $stmt->execute([ $_POST["username"],$_POST["email"],$_POST["street"],
     $_POST["postcode"] ,  $_POST["city"],  $password]);
-
     $_SESSION['email'] = $_POST["email"] ;
     $_SESSION['password'] = $_POST["password"] ; 
-  
-
-
- //   
- //  street,postcode,city,pwd,confirmation_token) 
- //  VALUES (:username,  :email, :street,:postcode,:city,:pwd,:confirmation_token)");
-  // $stmt->bindParam(":username", $_POST["username"]);
-  // $stmt->bindParam(":email", $_POST["email"]);
-  // $stmt->bindParam(":street", $_POST["street"]);
-  // $stmt->bindParam(":postcode", $_POST["postcode"]);
-  // $stmt->bindParam(":city", $_POST["city"]);
-  // $hash = password_hash($_POST["password"], PASSWORD_BCRYPT);
-  // $stmt->bindParam(":pwd", $hash);
-  // $stmt->bindParam(":confirmation_token", $token);
-  // $stmt->execute();
    $user_ID = $mysql->lastInsertID();
-    //mail($_POST['email'], 'Confirmation of your account',"In Order to Validate your account pleace click on this link\n\nhttp://localhost/webprogrammierung/onlineshopping/confirme.php?id= $user_ID&token=$token");
-
    echo "Your Account hat been successfully created";
    header("location: login.php");
    exit();

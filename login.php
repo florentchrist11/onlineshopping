@@ -2,21 +2,18 @@
  
   <?php 
     $error = null ;
+    $check = false ;
    session_start();
   
    $email = $_SESSION['email'];
-   $password = $_SESSION['password'];
+   $pass = $_SESSION['password'];
    $_SESSION['emailReset'] =  $_SESSION['email'];
-
-
-require('src/CheckData.php');
-
-
-if(isset($_POST['email'], $_POST['passwort'])){
-
-   if($email == $_POST['email'] && $password == $_POST['passwort'] ){
+   var_dump(  $email);
+    var_dump(  $pass);
+  
+   if(isset($_POST['email'], $_POST['passwort'])){
         
-       require_once('mysqliteconnection.php');
+   require_once('mysqliteconnection.php');
 
        $host = "localhost";
        $name = "shop";
@@ -42,30 +39,34 @@ if(isset($_POST['email'], $_POST['passwort'])){
         } else {
           echo "Error creating table: " . $mysql->error;
         }
-          
-          $password = password_hash($_POST["passwort"], PASSWORD_BCRYPT);
-          $stmt = $mysql->prepare("INSERT INTO sigin 
-          SET  email = ?  , pwd = ? ");
-          $stmt->execute([ $_POST["email"] , $password]);
-      
-         exit();
-       
-       
-      
-       } catch (PDOException $e){
-           echo "SQL Error: ".$e->getMessage();
+
+       if($email == $_POST['email'] && $pass == $_POST['passwort'] ){
+              $password = password_hash($_POST["passwort"], PASSWORD_BCRYPT);
+              $stmt = $mysql->prepare("INSERT INTO sigin 
+              SET  email = ?  , pwd = ? ");
+              $stmt->execute([ $_POST["email"] , $password]);
+             header("location: index.php");
+
        }
 
-
-       header("location: index.php");
-
-       
-   }else{
-      $error = true ;
-   }
- 
-}
+        $password = password_hash($_POST["passwort"], PASSWORD_BCRYPT);
+        $stmt = $mysql->prepare('SELECT pwd FROM sigin WHERE email = ?'); 
+        $stmt->execute([ $_POST["email"]]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
      
+       if( password_verify (   $password ,   $result["pwd"] )){
+              header("location: index.php");
+
+  }else{
+       $error = true ;
+     
+}
+
+  } catch (PDOException $e){
+           echo "SQL Error: ".$e->getMessage();
+       }
+ }
+   
 ?>   
  <?php    require('elements/header.php')           ?> 
        <div class="center">      
@@ -78,25 +79,12 @@ if(isset($_POST['email'], $_POST['passwort'])){
            <h1> Login </h1>
            <label for="email">  Email: </label>  
                   <input  style="width:65%" type="email" id ="email" class="form-control" name="email" placeholder=" Your E-Mail">
-                               
-  
-                <label for="password"> Your Password: </label> 
-                <input  style="width:65%" id ="password" type="password" class="form-control" name="passwort" placeholder="Your Password ">
-                     
-                <br> <button>submit</button>
-           <a href="changepassword.php">password forgotten?</a>
-           
-            
-           </div> 
- </form>
-  
-  
-
-
-
-
-
-
+                  <label for="password"> Your Password: </label> 
+                  <input  style="width:65%" id ="password" type="password" class="form-control" name="passwort" placeholder="Your Password ">   
+                  <br> <button>submit</button>
+                  <a href="changepassword.php">password forgotten?</a> 
+                  </div> 
+                 </form>
 
 
 <?php    require('elements/footer.php')        ?>
