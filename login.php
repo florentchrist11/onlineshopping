@@ -9,13 +9,19 @@
    $pass = $_SESSION['password'];
    $_SESSION['emailReset'] =  $_SESSION['email'];
    $token =   $_SESSION['token'];
+   $username = $_SESSION['username'];
    var_dump(  $email);
    var_dump(  $pass);
    var_dump(  $token );
+   var_dump(  $username );
+
     $result2 = null ;
-  
-   if(isset($_POST['email'], $_POST['passwort'], $_POST['sellerID'])){
-        
+    $result1 = null ;
+    $test = false ;
+    $check1 = false ;
+    $checktoken  = false ;
+   if(isset($_POST['username'], $_POST['passwort'], $_POST['sellerID'])){
+
    require_once('mysqliteconnection.php');
 
        $host = "localhost";
@@ -28,47 +34,25 @@
            $mysql->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
            $mysql->setAttribute( PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ );
            
-      $sqlTable = "CREATE TABLE IF NOT EXISTS  $table  (
-       
-          id INT  AUTO_INCREMENT,
-          email VARCHAR(20),
-          pwd VARCHAR(50),
-          token VARCHAR(50) NOT NULL,
-          CONSTRAINT id PRIMARY KEY (id)
-          )";
-            $mysql->exec($sqlTable);
-          
-      if ($mysql->query( $sqlTable) === TRUE) {
-          echo "Table   created successfully";
-        } else {
-          echo "Error creating table: " . $mysql->error;
-        }
-  
- $password = password_hash($_POST["passwort"], PASSWORD_BCRYPT);
- $stmt = $mysql->prepare("INSERT INTO sigin 
- SET  email = ?  , pwd = ? , token = ? ");
- $stmt->execute([ $_POST["email"] , $password], $_POST["sellerID"]);
-   die();
- if($token){
- header("location: dashbordSeller.php");    
 
+  
+       $stmt = $mysql->prepare('SELECT * FROM account WHERE username = ?'); 
+           $stmt->execute([ $_POST["username"]]);
+           $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
+
+           $password = password_hash($_POST["passwort"], PASSWORD_BCRYPT);
+           var_dump( $password );
+           var_dump( $result1["pwd"]);
            
        
-       }
-    
-
-        $password = password_hash($_POST["passwort"], PASSWORD_BCRYPT);
-        $stmt = $mysql->prepare('SELECT pwd FROM sigin WHERE email = ?'); 
-        $stmt->execute([ $_POST["email"]]);
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-     
-       if( password_verify (   $password ,   $result["pwd"] )){
-             header("location: index.php");
-
-  }else{
-       $error = true ;
+              if(!empty( $result1['token'])){
+              header("location: dashbordSeller.php");
+              }else{
+                     header("location: index.php");   
+  
      
 }
+
 
   } catch (PDOException $e){
            echo "SQL Error: ".$e->getMessage();
@@ -85,12 +69,12 @@
 <?php  endif ?>
 <form action="" class="mb-4 " method="POST">
            <h1> Login </h1>
-           <label for="email">  Email: </label>  
-                  <input  style="width:65%" type="email" id ="email" class="form-control" name="email" placeholder=" Your E-Mail">
-                  <label for="password"> Your Password: </label> 
-                  <input  style="width:65%" id ="password" type="password" class="form-control" name="passwort" placeholder="Your Password ">   
+           <label for="username">  username: </label>  
+                  <input  style="width:65%" type="text" class="form-control" name="username" placeholder=" username">
                   <label>  SellerID: </label><br>
                   <input style="width:65%" type="text" class="form-control" name="sellerID" placeholder="only for seller ">
+                  <label for="password"> Your Password: </label> 
+                  <input  style="width:65%" id ="password" type="password" class="form-control" name="passwort" placeholder=" Password ">   
                   <br> <button>submit</button>
                   <a href="changepassword.php">password forgotten?</a> 
                   </div> 

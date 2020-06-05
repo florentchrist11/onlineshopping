@@ -14,17 +14,17 @@
     $name = "shop";
     $user = "root";
     $passwort = "";
-    $table = "sigin";
+  
     try{
         $mysql = new PDO("mysql:host=$host;dbname=$name", $user, $passwort);
         $mysql->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
         $mysql->setAttribute( PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ );
-        $stmt = $mysql->prepare('SELECT email FROM sigin WHERE email = ?'); 
+        $stmt = $mysql->prepare('SELECT email FROM account WHERE email = ?'); 
         $stmt->execute([ $_POST['email']]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if( isset($result) && ($_POST['passwort']==$_POST['confirmation'])){
         $password = password_hash($_POST["passwort"], PASSWORD_BCRYPT);  
-        $stmt = $mysql->prepare(" UPDATE sigin 
+        $stmt = $mysql->prepare(" UPDATE account
         SET   pwd = ? ");
         $stmt->execute([  $password]);
         $sussess = true ;

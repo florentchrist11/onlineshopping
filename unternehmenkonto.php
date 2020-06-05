@@ -7,55 +7,33 @@ $result1 = null ;
 $result2 = null ;
 $check1 = false ;
 
-if(isset($_POST['email'] , $_POST['sellerID'], $_POST['password'])){
-
- 
-       
-  
-             
+if(isset($_POST['username'] , $_POST['sellerID'], $_POST['password'])){
+    
  require_once('mysqliteconnection.php');
 
  $host = "localhost";
  $name = "shop";
  $user = "root";
  $passwort = "";
- $table = "customer";
  try{
      $mysql = new PDO("mysql:host=$host;dbname=$name", $user, $passwort);
      $mysql->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
      $mysql->setAttribute( PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ );
-     
-$sqlTable = "CREATE TABLE IF NOT EXISTS  $table  (
- 
-    id INT  AUTO_INCREMENT,
-    email VARCHAR(20),
-    pwd VARCHAR(50),
-    token VARCHAR(50) NOT NULL,
-    CONSTRAINT id PRIMARY KEY (id)
-    )";
-      $mysql->exec($sqlTable);
     
-if ($mysql->query( $sqlTable) === TRUE) {
-    echo "Table   created successfully";
-  } else {
-    echo "Error creating table: " . $mysql->error;
-  }
-    
-  $stmt = $mysql->prepare('SELECT email FROM customer WHERE email = ?'); 
+  $stmt = $mysql->prepare('SELECT username FROM account WHERE username = ?'); 
   
-      $stmt->execute([ $_POST["email"]]);
+      $stmt->execute([ $_POST["username"]]);
       $result1 = $stmt->fetchObject();
-      var_dump($result1);
       if($result1){
-             die();
+            
       }else{
      session_start();
     $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
 
-    $stmt = $mysql->prepare("INSERT INTO customer
-    SET  email = ? , pwd = ? , token = ? ");
-    $stmt->execute([ $_POST["email"],  $password , $_POST['sellerID'] ]);
-    $_SESSION['email'] = $_POST["email"] ;
+    $stmt = $mysql->prepare("INSERT INTO account
+    SET  username = ? , pwd = ? , token = ? ");
+    $stmt->execute([ $_POST["username"],  $password , $_POST['sellerID'] ]);
+    $_SESSION['username'] = $_POST["username"] ;
     $_SESSION['password'] = $_POST["password"] ; 
     $_SESSION['token'] =  $_POST['sellerID']  ; 
 
@@ -79,8 +57,8 @@ if ($mysql->query( $sqlTable) === TRUE) {
   <form action="" class="mb-4" method="POST">
        <div class="center"> 
        <h1> Create Your Selleraccount</h1>
-           <label>  Email:  </label><br> 
-           <input type="email" class="form-control" name="email" placeholder="Enter your E-Mail">
+           <label>  Username:  </label><br> 
+           <input type="username" class="form-control" name="username" placeholder="username">
            <label>  SellerID: </label><br>
            <input type="text" class="form-control" name="sellerID" placeholder="Enter your ID ">
            <label>  Password: </label><br>

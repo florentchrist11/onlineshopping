@@ -2,7 +2,7 @@
 <?php      
      
 
- require('elements/header.php');
+require('elements/header.php');
 require('src/CheckData.php');
 
 
@@ -11,8 +11,8 @@ $error = null ;
 $success = null ;
 $result1 = null ;
 $result2 = null ;
-$check1 = null ;
-$check2 = null ;
+$check1 = false ;
+$test = false ;
 
 if(isset($_POST['username'],$_POST['email'],$_POST['street'], $_POST['postcode'] , $_POST['city'], $_POST['password'] 
 , $_POST['confirmation'])){
@@ -61,6 +61,8 @@ $sqlTable = "CREATE TABLE IF NOT EXISTS  $table  (
     street VARCHAR(50),
     postcode INT,
     city VARCHAR(50),
+    token VARCHAR(50),
+    sellerID VARCHAR(50),
     pwd VARCHAR(50),
     CONSTRAINT id PRIMARY KEY (id)
     )";
@@ -71,41 +73,18 @@ if ($mysql->query( $sqlTable) === TRUE) {
   } else {
     echo "Error creating table: " . $mysql->error;
   }
+     ?>
 
-    
-  $stmt = $mysql->prepare('SELECT email FROM account WHERE email = ?'); 
-  $stmt->execute([ $_POST["email"]]);
-  $result2 = $stmt->fetchObject();
-  var_dump($result2);
-        if($result2){
-          $check2 = true ;
-          die();
-      
-        }
+     
+     <?php
 
-
-
-
-
-    
-  if(empty($errors['username'])){
   $stmt = $mysql->prepare('SELECT * FROM account WHERE username = ?'); 
       $stmt->execute([ $_POST["username"]]);
       $result1 = $stmt->fetchObject();
       if($result1){
         $check1 = true ;
        
-      }
-  }
-  if(empty($errors['email'])){
-
-
-    $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
-   
-        
-       
-    }
-  if(  !$check1 &&  !$check2  ){
+      }else{
      session_start();
     $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
     $stmt = $mysql->prepare("INSERT INTO account 
@@ -113,19 +92,13 @@ if ($mysql->query( $sqlTable) === TRUE) {
     city = ? , pwd = ? ");
     $stmt->execute([ $_POST["username"],$_POST["email"],$_POST["street"],
     $_POST["postcode"] ,  $_POST["city"],  $password]);
-    $_SESSION['email'] = $_POST["email"] ;
+    $_SESSION['username'] = $_POST["username"] ;
     $_SESSION['password'] = $_POST["password"] ; 
    $user_ID = $mysql->lastInsertID();
    echo "Your Account hat been successfully created";
-  // header("location: login.php");
-  // exit();
-  }else {
-      if($check1 ){
-        echo "This user already exists";
-      }
-      if($check2 ){
-        echo "This E-Mail already exists"; 
-      }
+   header("location: login.php");
+  exit();
+  
   }
  } catch (PDOException $e){
 
