@@ -1,13 +1,23 @@
  
+<<<<<<< HEAD
 <?php  require('elements/header.php')  ; 
      
+=======
+<?php      
+>>>>>>> 258eb4c6c6dbb1bc5827abdaccae6d52d4ba6246
      
+
+require('elements/header.php');
 require('src/CheckData.php');
 
 
 $errors[] = null ;
 $error = null ;
 $success = null ;
+$result1 = null ;
+$result2 = null ;
+$check1 = false ;
+$test = false ;
 
 if(isset($_POST['username'],$_POST['email'],$_POST['street'], $_POST['postcode'] , $_POST['city'], $_POST['password'] 
 , $_POST['confirmation'])){
@@ -19,7 +29,7 @@ if(isset($_POST['username'],$_POST['email'],$_POST['street'], $_POST['postcode']
       
 if($data->is_Valider()){
        $success = true ;
-     
+      
        
         }else{
       
@@ -31,20 +41,12 @@ if($data->is_Valider()){
        }
      
 ?>
-       
- <div class="centerReg"> 
-                  
- <?php if($error):  ?>
-    <div class="alert alert-danger" role="alert">
-        Invalide
-    </div>
-    <?php endif ?>
+ 
     <?php if($success):  ?>
-    <div class="alert alert-success"role="alert"> 
-        Valide
+    
     <?php   
         
- require('mysqliteconnection.php');
+ require_once('mysqliteconnection.php');
 
  $host = "localhost";
  $name = "shop";
@@ -54,6 +56,7 @@ if($data->is_Valider()){
  try{
      $mysql = new PDO("mysql:host=$host;dbname=$name", $user, $passwort);
      $mysql->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+     $mysql->setAttribute( PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ );
      
 $sqlTable = "CREATE TABLE IF NOT EXISTS  $table  (
  
@@ -63,6 +66,8 @@ $sqlTable = "CREATE TABLE IF NOT EXISTS  $table  (
     street VARCHAR(50),
     postcode INT,
     city VARCHAR(50),
+    token VARCHAR(50),
+    sellerID VARCHAR(50),
     pwd VARCHAR(50),
     CONSTRAINT id PRIMARY KEY (id)
     )";
@@ -73,54 +78,47 @@ if ($mysql->query( $sqlTable) === TRUE) {
   } else {
     echo "Error creating table: " . $mysql->error;
   }
-    
-  $stmt = $mysql->prepare("SELECT * FROM account WHERE username = :user"); //Username überprüfen
-      $stmt->bindParam(":user", $_POST["username"]);
-      $stmt->execute();
-      $count = $stmt->rowCount();
-      var_dump($count);
-      if($count == 0){
-        //Username ist frei
-        $stmt = $mysql->prepare("SELECT * FROM account WHERE email = :email"); //Email überprüfen
-        $stmt->bindParam(":email", $_POST["email"]);
-        
-        $stmt->execute();
+     ?>
 
-        $count = $stmt->rowCount();
-        var_dump(  $count);
-        if($count == 0){
-            //User anlegen
-            $stmt = $mysql->prepare("INSERT INTO account (username, email, street,postcode,city,pwd) 
-            VALUES (:username,  :email, :street,:postcode,:city,:pwd)");
-            $stmt->bindParam(":username", $_POST["username"]);
-            $stmt->bindParam(":email", $_POST["email"]);
-            $stmt->bindParam(":street", $_POST["street"]);
-            $stmt->bindParam(":postcode", $_POST["postcode"]);
-            $stmt->bindParam(":city", $_POST["city"]);
-            $hash = password_hash($_POST["password"], PASSWORD_BCRYPT);
-            $stmt->bindParam(":pwd", $hash);
-            $stmt->execute();
-            echo "Dein Account wurde angelegt";
-         
-        } else {
-          echo "Email bereits vergeben";
-        }
-      } else {
-        echo "Der Username ist bereits vergeben";
-      }
-   
+     
+     <?php
 
+  $stmt = $mysql->prepare('SELECT * FROM account WHERE username = ?'); 
+      $stmt->execute([ $_POST["username"]]);
+      $result1 = $stmt->fetchObject();
+      if($result1){
+        $check1 = true ;
+       
+      }else{
+     session_start();
+    $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
+    $stmt = $mysql->prepare("INSERT INTO account 
+    SET username = ? , email = ? , street = ?, postcode = ?,
+    city = ? , pwd = ? ");
+    $stmt->execute([ $_POST["username"],$_POST["email"],$_POST["street"],
+    $_POST["postcode"] ,  $_POST["city"],  $password]);
+    $_SESSION['username'] = $_POST["username"] ;
+    $_SESSION['password'] = $_POST["password"] ; 
+   $user_ID = $mysql->lastInsertID();
+   echo "Your Account hat been successfully created";
+   header("location: login.php");
+  exit();
+  
+  }
  } catch (PDOException $e){
-     echo "SQL Error: ".$e->getMessage();
+
  }
-
-
    ?>
-
- 
         
-    </div>
-    <?php endif ?>
+   <?php endif ?>
+     
+ <div class="centerReg"> 
+                  
+                  <?php if($error):  ?>
+                     <div class="alert alert-danger" role="alert">
+                         Invalide
+                     </div>
+                     <?php endif ?>
        <form action=""  method="POST" class="mb-4" > 
   <legend text-align: center  > <h1>  Account</h1>   </legend>  
   <div class="form-group" >      
@@ -138,7 +136,6 @@ if ($mysql->query( $sqlTable) === TRUE) {
     <?php endif  ?>
   </div>
    
-
    <div class="form-group">
    <label for="street"> Your Street:  </label> 
   <input style="width:65%" value=" <?= isset($_POST['street'])? htmlentities($_POST['street']): '' ?>" type="text" id="street" class="form-control  <?= isset($errors['street'])? 'is-invalid' : ''    ?> " name="street" placeholder="Your Street ">
@@ -177,7 +174,6 @@ if ($mysql->query( $sqlTable) === TRUE) {
  <button >submit</button>
 </form>
  </div> 
-       
-  
+               
        
        <?php  require('elements/footer.php')        ?>

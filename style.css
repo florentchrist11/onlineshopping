@@ -1,11 +1,13 @@
 * {
+    /* Florent Fokou   */
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
 body {
-    background-image: url();
+    /* Florent Fokou   */
+    background-color: #f4f4f4;
     background-size: cover;
     background-position: center;
     font-family: sans-serif;
@@ -62,12 +64,16 @@ header .fa {
 }
 
 .sub-menu {
+    /* Florent Fokou   */
     display: none;
 }
 
 header ul li:hover .sub-menu {
     display: block;
     position: absolute;
+    padding-top:50px ;
+    margin-right: 23% ;
+    
     background: rgb(0, 100, 0);
     top: 65px;
     -webkit-box-shadow: 2px 10px 23px -9px rgba(110,107,110,1);
@@ -77,7 +83,8 @@ header ul li:hover .sub-menu {
 
 header  ul li:hover .sub-menu ul {
     display: block;
-    margin: 10px;
+    margin: 1px;
+   
 }
 
 header  ul li :hover .sub-menu ul li {
@@ -96,6 +103,7 @@ header  ul li :hover .sub-menu ul li a:hover {
 }
 
 .login-box {
+    /* Florent Fokou   */
     width: 280px;
     position: absolute;
     top: 50%;
@@ -105,6 +113,7 @@ header  ul li :hover .sub-menu ul li a:hover {
 }
 
 .login-box h1 {
+    /* Florent Fokou   */
     float: left;
     font-size: 40px;
     border-bottom: 6px solid #4caf50;
@@ -113,6 +122,7 @@ header  ul li :hover .sub-menu ul li a:hover {
 }
 
 .textbox {
+    /* Florent Fokou   */
     width: 100%;
     overflow: hidden;
     font-size: 20px;
@@ -122,12 +132,14 @@ header  ul li :hover .sub-menu ul li a:hover {
 }
 
 .textbox i {
+    /* Florent Fokou   */
     width: 26px;
     float: left;
     text-align: center;
 }
 
 .textbox input {
+    /* Florent Fokou   */
     border: none;
     outline: none;
     background: none;
@@ -139,6 +151,7 @@ header  ul li :hover .sub-menu ul li a:hover {
 }
 
 .btn {
+    /* Florent Fokou   */
     width: 100%;
     background: none;
     border: 2px solid #4caf50;
@@ -150,6 +163,7 @@ header  ul li :hover .sub-menu ul li a:hover {
 }
 
 .center {
+    /* Florent Fokou   */
     margin: auto;
     width: 60%;
     border: 19px solid #73AD21;
@@ -165,6 +179,7 @@ header  ul li :hover .sub-menu ul li a:hover {
 }
 
 .rand {
+    /* Florent Fokou   */
     margin: auto;
     width: 80%;
     border: 19px solid #73AD21;
@@ -173,6 +188,7 @@ header  ul li :hover .sub-menu ul li a:hover {
 }
 
 .navbar {
+    /* Florent Fokou   */
     overflow: hidden;
     background-color: #73AD21;
     font-family: Arial, Helvetica, sans-serif;
@@ -184,6 +200,7 @@ header  ul li :hover .sub-menu ul li a:hover {
 }
 
 .navbar a {
+    /* Florent Fokou   */
     font-size: 22px;
     color: white;
     text-align: center;
@@ -196,10 +213,12 @@ header  ul li :hover .sub-menu ul li a:hover {
 
 .navbar a:hover,
 .dropdown:hover .dropbtn {
+    /* Florent Fokou   */
     background-color: rgb(123, 187, 110);
 }
 
 .dropdown-content {
+    /* Florent Fokou   */
     display: none;
     position: absolute;
     background-color: #f9f9f9;
@@ -234,9 +253,11 @@ header  ul li :hover .sub-menu ul li a:hover {
 }
 
 .form-control.is-invalid{
+    /* Florent Fokou   */
     background-color:red
 }
 .invalid-feedback{
+    /* Florent Fokou   */
     background-color: red;
     width:65% ; 
 }

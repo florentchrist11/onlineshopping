@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
       
+=======
+ 
+>>>>>>> 258eb4c6c6dbb1bc5827abdaccae6d52d4ba6246
 class CheckData{
 
 private $name ;
@@ -35,11 +39,11 @@ public function __construct(string $username , ? string $email = null , ? string
 public function getError():array
 {
   $error = [];
-  if(strlen( $this->username) < self ::LIMIT_NAME){
+  if( empty( $this->username) ||strlen( $this->username) < self ::LIMIT_NAME){
 
     $error['username'] = "(!)your name muss have at least three characters";
   } 
-  if(!$this->uppercase || !$this->lowercase || !$this->number || strlen($this->password) < 8 ){
+  if(empty($this->password)||  !$this->uppercase || !$this->lowercase || !$this->number || strlen($this->password) < 8 ){
 
  $error['password'] = "(!)contains at least one letter one number and more than 8 Character " ; 
 } 
@@ -47,7 +51,7 @@ public function getError():array
 {
 $error['email'] = "(!)E-Mail invalid" ;
  }
- if( $this->password !=  $this->confirmation || isset($error['password']) ){
+ if(empty( $this->confirmation) || $this->password !=  $this->confirmation || isset($error['password']) ){
 $error['confirmation'] = "(!) you password muss be equal and valid";
 }
  if(  $this->postCode <= 0){
@@ -55,7 +59,7 @@ $error['confirmation'] = "(!) you password muss be equal and valid";
 $error['postCode'] = "(!)Your Postcode must be the number" ;
 
  }
- if( strlen($this->city) < self::LIMIT_CITY || !isset($this->city)){
+ if(empty($this->city)|| strlen($this->city) < self::LIMIT_CITY || !isset($this->city)){
     $error['city'] = "(!) you must have the valid city" ;
 }
 
