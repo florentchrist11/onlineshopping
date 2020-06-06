@@ -9,7 +9,7 @@
            <h1>  reset password </h1>
            
            <label for ="email"> Email adresse:  </label><br>
-           <input type="email" class="form-control" id=="email" name="Loginemail" placeholder="Enter your E-Mail"> 
+           <input type="email" class="form-control" id="email" name="Loginemail" placeholder="Enter your E-Mail"><br> 
            <button >submit</button>
 
         </div> 

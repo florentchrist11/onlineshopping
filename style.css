@@ -30,6 +30,7 @@ header ul {
     cursor: pointer;
     cursor: grab;
     display: flex;
+   
 }
 
 header ul li {
