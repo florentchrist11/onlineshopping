@@ -1,5 +1,8 @@
+<?php 
+ 
+require('elements/header.php')  ;
 
-<?php   require('elements/header.php')  ;
+
 require('src/CheckProduct.php');
 $errors[] = null ;
 $error = null ;
@@ -24,9 +27,112 @@ if($data->is_Valider()){
         } 
        }
 
-?>
 
-        <div class="rand"> 
+
+
+if(isset($_FILES['Myimage']) AND $_FILES['Myimage']['error'] == 0){
+   $test = $_FILES['Myimage'];
+   echo "<pre>";
+   var_dump( $test);
+   echo "</pre>";
+
+ $target_dir = "uploads/";
+$target_file = $target_dir . basename($_FILES["Myimage"]["name"]);
+$uploadOk = 1;
+$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+// Check if image file is a actual image or fake image
+if(isset($_POST["Myimage"])) {
+  $check = getimagesize($_FILES["Myimage"]["tmp_name"]);
+  if($check !== false) {
+    echo "File is an image - " . $check["mime"] . ".";
+    $uploadOk = 1;
+  } else {
+    echo "File is not an image.";
+    $uploadOk = 0;
+  }
+}
+
+// Check if file already exists
+if (file_exists($target_file)) {
+  echo "Sorry, file already exists.";
+  $uploadOk = 0;
+}
+
+// Check file size
+if ($_FILES["Myimage"]["size"] > 500000) {
+  echo "Sorry, your file is too large.";
+  $uploadOk = 0;
+}
+
+// Allow certain file formats
+if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+&& $imageFileType != "gif" ) {
+  echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+  $uploadOk = 0;
+}
+
+// Check if $uploadOk is set to 0 by an error
+if ($uploadOk == 0) {
+  echo "Sorry, your file was not uploaded.";
+// if everything is ok, try to upload file
+} else {
+  if (move_uploaded_file($_FILES["Myimage"]["tmp_name"], $target_file)) {
+    $dts = "uploads/". basename( $_FILES["Myimage"]["name"])   ;
+    var_dump($dts );
+
+    echo "The file ". basename( $_FILES["Myimage"]["name"]). " has been uploaded.";
+   
+  
+   
+require('mysqliteconnection.php');
+
+$host = "localhost";
+$name = "shop";
+$user = "root";
+$passwort = "";
+$table = "Produkt";
+try{
+    $mysql = new PDO("mysql:host=$host;dbname=$name", $user, $passwort);
+    $mysql->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+    $mysql->setAttribute( PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ );
+$sqlTable = "CREATE TABLE IF NOT EXISTS  $table  (
+
+   id INT  AUTO_INCREMENT,
+   username VARCHAR(20),
+   price VARCHAR(20),
+   qty VARCHAR(50),
+   Myimage VARCHAR(50),
+   Idescription VARCHAR(50),
+   CONSTRAINT id PRIMARY KEY (id)
+   )";
+     $mysql->exec($sqlTable);
+          
+           $stmt = $mysql->prepare("INSERT INTO Produkt
+           SET username = ? , price = ? , qty = ?, Myimage = ?,
+           Idescription = ? ");
+           $stmt->execute([ $_POST["username"],$_POST["price"],$_POST["qty"],
+           $dts ,  $_POST["Idescription"]]);
+           echo "Dein Produkt wurde angelegt";
+ 
+} catch (PDOException $e){
+    echo "SQL Error: ".$e->getMessage();
+}
+
+
+  
+ 
+ 
+  } else {
+    echo "Sorry, there was an error uploading your file.";
+  }
+}
+
+
+}
+
+?>
+<div class="rand"> 
            <div class="navbar">
            <a class="glyphicon glyphicon-user"  href="Profil.php"> Profil</a> 
            <a class="fa fa-bell" style="font-size:24px"> Delete </a>
@@ -37,9 +143,9 @@ if($data->is_Valider()){
                 <strong><i class="fa fa-plus"></i> Add New Product</strong>
             </div>
             <div class="card-body">
-                <form action="" method="post">
+                <form action="" method="POST" enctype="multipart/form-data" >
                         <div class="form-group col-md-6">
-                            <label for="name" class="col-form-label">Name </label>
+                            <label for="username" class="col-form-label">Name </label>
                             <input type="text" class="form-control" id="name" name="username" placeholder="Name" required>
                         </div>
                     </div>
@@ -53,68 +159,15 @@ if($data->is_Valider()){
                             <input type="number" class="form-control" name="qty" id="qty" placeholder="stückzahl" required>
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="image" class="col-form-label">Image </label>
-                            <input type="file" class="form-control" name="Myimage" id="image" placeholder="Image URL">
+                            <label for="Myimage" class="col-form-label">Image </label>
+                            <input type="file" class="form-control" name="Myimage" id="image"  placeholder="Image URL">
                         </div>
                     </div>
                     <div class="form-group">
-                    <label for="image" class="col-form-label">description  </label>
+                    <label for="Idescription" class="col-form-label">description  </label>
                         <textarea name="Idescription" id="" rows="5" class="form-control" placeholder="beschreibung"></textarea>
                     </div>
                     <button type="submit" class="btn btn-success"><i class="fa fa-check-circle"></i> Hinzufügen</button>
                 </form>
             </div>
         </div>
-
-
-<?Php 
-
-require('mysqliteconnection.php');
-
-    $host = "localhost";
-    $name = "shop";
-    $user = "root";
-    $passwort = "";
-    $table = "Produkt";
-    try{
-        $mysql = new PDO("mysql:host=$host;dbname=$name", $user, $passwort);
-        $mysql->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-        
-   $sqlTable = "CREATE TABLE IF NOT EXISTS  $table  (
-    
-       id INT  AUTO_INCREMENT,
-       username VARCHAR(20),
-       price VARCHAR(20),
-       qty VARCHAR(50),
-       Myimage VARCHAR(50),
-       Idescription VARCHAR(50),
-       CONSTRAINT id PRIMARY KEY (id)
-       )";
-         $mysql->exec($sqlTable);
-     
-     if(isset($_POST['username'],$_POST['price'],$_POST['qty'], $_POST['Myimage'] , $_POST['Idescription'])){
-               
-               $stmt = $mysql->prepare("INSERT INTO Produkt (username, price, qty,Myimage,Idescription) 
-               VALUES (:username,  :price, :qty,:Myimage,:Idescription)");
-               $stmt->bindParam(":username", $_POST["username"]);
-               $stmt->bindParam(":price", $_POST["price"]);
-               $stmt->bindParam(":qty", $_POST["qty"]);
-               $stmt->bindParam(":Myimage", $_POST["Myimage"]);
-               $stmt->bindParam(":Idescription", $_POST["Idescription"]);
-               $stmt->execute();
-               echo "Dein Produkt wurde angelegt";
-
-           } else {
-             echo "Produkt existiert schon";
-           }
-     
-    } catch (PDOException $e){
-        echo "SQL Error: ".$e->getMessage();
-    }
-   
-   
-      ?>
-     
-  
-<?php   require('elements/footer.php')   ?>
-
