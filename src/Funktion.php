@@ -8,6 +8,11 @@ $template = "09673421835ehjhsghsjfsfvvymJLAJDKDBNYXGY";
 
    return substr( str_shuffle(str_repeat($template , $length)),0,$length);
 
+}
+
+function component($productname , $productprice, $description){
+  
+
 
 
 
