@@ -1,5 +1,5 @@
-<?php
-   /* Justin Bathke */   
+<?php 
+
 class CheckProduct{
 
 private $name ;
@@ -8,35 +8,28 @@ private $stk;
 private $image ;
 private $description ;
 const LIMIT_NAME = 3 ;
-const LIMIT_STK = 1 ;
-const LIMIT_PRICE = 1 ;
 
-public function __construct(string $name , ? string $price , ? string $stk , ? string $image,? string $description )
+public function __construct(string $username , ? string $price , ? string $qty , ? string $Idescription )
 {
 
-    $this->name = $name ;
+    $this->name = $username ;
     $this->price = (int)$price ;
-    $this->stk = $stk ;
-    $this->image = $image;
-    $this->description = $description;
+    $this->stk = $qty ;
+    $this->description = $Idescription;
    
 }
 
 public function getError():array
 {
-  $error = [];
-  if(strlen( $this->name) < self ::LIMIT_NAME){
+  $error = []; 
+  if( $this->stk <= 0 ){
 
-    $error['Name'] = "(!)your Product Name muss have at least three characters";
+    $error['qty'] = "(!)You must have atleast 1 Pice of the Product to sell";
   } 
-  if(strlen( $this->stk) < self ::LIMIT_STK){
+  if($this->price <= 0 ){
 
-    $error['Stk'] = "(!)You must have atleast 1 Pice of the Product to sell";
-  } 
-  if(strlen( $this->price) < self ::LIMIT_PRICE){
-
-    $error['Stk'] = "(!)You must take atleast 1 $ to sell your Product";
-  } 
+    $error['price'] = "(!)You must take atleast 1 $ to sell your Product";
+  }
 
 return $error ;
 
@@ -53,11 +46,5 @@ public function is_Valider():bool
  }
 
 }
-
-
-
-
-
-
 
 ?>

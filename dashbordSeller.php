@@ -8,10 +8,11 @@ $errors[] = null ;
 $error = null ;
 $success = null ;
 
-if(isset($_POST['name'],$_POST['price'],$_POST['stk'], $_POST['image'] , $_POST['description'] )){
+if(isset($_POST['signup'])){
 
    
- $data = new CheckProduct($_POST['name'],$_POST['price'],$_POST['stk'],$_POST['image'],$_POST['description']);
+ $data = new CheckProduct($_POST['username'],$_POST['qty'],$_POST['price'],$_POST['Idescription']);
+
 
       
 if($data->is_Valider()){
@@ -26,10 +27,10 @@ if($data->is_Valider()){
        
         } 
        }
+ ?>
+       <?php if($success):  ?>
 
-
-
-
+        <?php
 if(isset($_FILES['Myimage']) AND $_FILES['Myimage']['error'] == 0){
    $test = $_FILES['Myimage'];
    echo "<pre>";
@@ -130,9 +131,17 @@ $sqlTable = "CREATE TABLE IF NOT EXISTS  $table  (
 
 
 }
-
 ?>
+        
+   <?php endif ?>
+
+
 <div class="rand"> 
+                     <?php if($error):  ?>
+                     <div class="alert alert-danger" role="alert">
+                         Invalide
+                     </div>
+                     <?php endif ?>
            <div class="navbar">
            <a class="glyphicon glyphicon-user"  href="Profil.php"> Profil</a> 
            <a class="fa fa-bell" style="font-size:24px"> Delete </a>
@@ -152,12 +161,21 @@ $sqlTable = "CREATE TABLE IF NOT EXISTS  $table  (
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="price" class="col-form-label">Preis </label>
-                            <input type="number" class="form-control" id="price" name="price" placeholder="Price" required>
+                            <input  value=" <?= isset($_POST['price'])? htmlentities($_POST['price']): '' ?>" style="width:65%" type="number" id="price" name="price"  class="form-control <?= isset($errors['price'])? 'is-invalid' : ''    ?>" placeholder="In Euro" >
+
+                            <?php if(isset($errors['price'])): ?>      
+                           <div class="invalidText">  <?= $errors['price'] ?> </div>           
+                           <?php endif  ?>
+                        
+                        
                         </div>
                         <div class="form-group col-md-4">
                             <label for="qty" class="col-form-label">Stückzahl </label>
-                            <input type="number" class="form-control" name="qty" id="qty" placeholder="stückzahl" required>
-                        </div>
+                            <input  value=" <?= isset($_POST['qty'])? htmlentities($_POST['qty']): '' ?>" style="width:65%" type="number" id="qty" name="qty"  class="form-control <?= isset($errors['qty'])? 'is-invalid' : ''    ?>" placeholder="quantity" >
+
+                           <?php if(isset($errors['qty'])): ?>      
+                           <div class="invalidText">  <?= $errors['qty'] ?> </div>           
+                           <?php endif  ?>                        </div>
                         <div class="form-group col-md-4">
                             <label for="Myimage" class="col-form-label">Image </label>
                             <input type="file" class="form-control" name="Myimage" id="image"  placeholder="Image URL">
@@ -165,9 +183,10 @@ $sqlTable = "CREATE TABLE IF NOT EXISTS  $table  (
                     </div>
                     <div class="form-group">
                     <label for="Idescription" class="col-form-label">description  </label>
-                        <textarea name="Idescription" id="" rows="5" class="form-control" placeholder="beschreibung"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-success"><i class="fa fa-check-circle"></i> Hinzufügen</button>
+                        <textarea name="Idescription" id="" rows="5" class="form-control" placeholder="description"></textarea>
+                    </div> 
+                    <button type="submit" name="signup" class="btn btn-success"><i class="fa fa-check-circle"></i> Hinzufügen</button>
                 </form>
             </div>
         </div>
+
