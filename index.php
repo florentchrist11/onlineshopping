@@ -1,6 +1,7 @@
 <?php
     $result = null ;
     $result1 = null ;
+    
 
 require_once 'elements/header.php';
 
@@ -37,7 +38,9 @@ $stmt = $mysql->prepare('SELECT * FROM Produkt ');
  </form>
  <div class="centerReg">
       
- <?php  foreach ($result as $value):  ?>
+ <?php  foreach ($result as $k  => $value):  ?>
+     <?php   var_dump( $k )   ;    
+         ?>
    <?php if(isset($_POST['add'])){
     var_dump( $_POST['product_id'] )  ;
    }           ?>
@@ -67,6 +70,7 @@ $stmt = $mysql->prepare('SELECT * FROM Produkt ');
      </div>
        </form>
        </div>
+       <?php   $k++        ?>
        <div class="col-md-3 col-sm-6 my-3 my-md-0">
        <form action="" method="POST">
        <div class="card shadow">
