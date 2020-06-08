@@ -229,6 +229,7 @@ header  ul li :hover .sub-menu ul li a:hover {
 }
 
 .container {
+    /*Anne*/ 
     margin: auto;
     width: 50%;
     border: 5px solid rgb(215, 241, 178);
@@ -237,6 +238,7 @@ header  ul li :hover .sub-menu ul li a:hover {
 }
 
 .footer {
+    /*Anne*/ 
     width: 100%;
     height: 5%;
     display: flex;
@@ -268,8 +270,13 @@ h1 {
 label {
     color:blueviolet;
 }
+.invalidText{
+    /*Anne*/ 
+    text-shadow: 0 0 rgb(226, 15, 15);
+    color: #e91e1e;
+}
 @media only screen and ( max-width: 530px ) {
-    /*shows elements in a column*/
+    /*Anne*/ 
     header ul{
       flex-direction: column;
     }

@@ -1,10 +1,5 @@
 
-<<<<<<< HEAD
-<?php   require 'elements/header.php'     
- 
-=======
 <?php   require 'elements/header.php'  ; 
->>>>>>> 258eb4c6c6dbb1bc5827abdaccae6d52d4ba6246
 
  $error = null ;  
  $sussess = null ;  
@@ -15,15 +10,6 @@
          
     require_once('mysqliteconnection.php');
 
-<<<<<<< HEAD
-<form action="" class="mb-4">
-       <div class="center"> 
-           <h1>  reset password </h1>
-           
-           <label for ="email"> Email adresse:  </label><br>
-           <input type="email" class="form-control" id="email" name="Loginemail" placeholder="Enter your E-Mail"><br> 
-           <button >submit</button>
-=======
     $host = "localhost";
     $name = "shop";
     $user = "root";
@@ -48,7 +34,6 @@
        $error = true ;
      
       }
->>>>>>> 258eb4c6c6dbb1bc5827abdaccae6d52d4ba6246
 
      } catch (PDOException $e){
         echo "SQL Error: ".$e->getMessage();

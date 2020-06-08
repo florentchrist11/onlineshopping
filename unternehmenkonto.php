@@ -1,8 +1,6 @@
 <?php  require 'elements/header.php'  ;
 
 
-<<<<<<< HEAD
-=======
 $error = null ;
 $success = null ;
 $result1 = null ;
@@ -42,7 +40,6 @@ if(isset($_POST['username'] , $_POST['sellerID'], $_POST['password'])){
    //$user_ID = $mysql->lastInsertID();
    header("location: login.php");
    echo "Your Account hat been successfully created";
->>>>>>> 258eb4c6c6dbb1bc5827abdaccae6d52d4ba6246
    
  
   }
@@ -57,7 +54,7 @@ if(isset($_POST['username'] , $_POST['sellerID'], $_POST['password'])){
         
 
 
-  <form action="" class="mb-4" method="POST">
+  <form action="dashbordSeller.php" class="mb-4" method="POST">
        <div class="center"> 
        <h1> Create Your Selleraccount</h1>
            <label>  Username:  </label><br> 

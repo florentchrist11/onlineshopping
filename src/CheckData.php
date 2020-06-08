@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD
-      
-=======
  
->>>>>>> 258eb4c6c6dbb1bc5827abdaccae6d52d4ba6246
 class CheckData{
 
 private $name ;
