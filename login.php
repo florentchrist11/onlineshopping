@@ -1,25 +1,15 @@
 
  
   <?php 
-    $error = null ;
+   
+   $error = null ;
     $check = false ;
-   session_start();
-  
-   $email = $_SESSION['email'];
-   $pass = $_SESSION['password'];
-   $_SESSION['emailReset'] =  $_SESSION['email'];
-   $token =   $_SESSION['token'];
-   $username = $_SESSION['username'];
-   var_dump(  $email);
-   var_dump(  $pass);
-   var_dump(  $token );
-   var_dump(  $username );
-
-    $result2 = null ;
     $result1 = null ;
     $test = false ;
     $check1 = false ;
-    $checktoken  = false ;
+    $error = null ;
+    
+  
    if(isset($_POST['username'], $_POST['passwort'], $_POST['sellerID'])){
 
    require_once('mysqliteconnection.php');
@@ -39,26 +29,30 @@
        $stmt = $mysql->prepare('SELECT * FROM account WHERE username = ?'); 
            $stmt->execute([ $_POST["username"]]);
            $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
-
-           $password = password_hash($_POST["passwort"], PASSWORD_BCRYPT);
-           var_dump( $password );
-           var_dump( $result1["pwd"]);
+            
+           if( $result1 ){
+            session_start();
+            $_SESSION['username'] = $_POST["username"] ;
            
-       
               if(!empty( $result1['token'])){
+                $_SESSION['sellerID'] = $_POST["sellerID"] ;
               header("location: dashbordSeller.php");
               }else{
                      header("location: index.php");   
   
      
 }
+           }else{
 
+            header("location: login.php");   
+           }
 
   } catch (PDOException $e){
            echo "SQL Error: ".$e->getMessage();
        }
  }
    
+
 ?>   
  <?php    require('elements/header.php')           ?> 
        <div class="center">      
