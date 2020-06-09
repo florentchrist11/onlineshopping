@@ -1,3 +1,4 @@
+<!--Anne Lecdou-->
 <?php  
 include('mysqliteconnection.php');
 require('elements/header.php')     
@@ -19,43 +20,51 @@ require('elements/header.php')
     </div>
     <div id ="div1">
           <h3> List of user  </h3> </div>
-   <?php 
+   
+          <?php 
 
-       $host = "localhost";
-       $name = "shop";
-       $user = "root";
-       $passwort = "";
-       try{
-           $mysql = new PDO("mysql:host=$host;dbname=$name", $user, $passwort);
-           $mysql->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-           $mysql->setAttribute( PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ );
-           
-
-  
-       $stmt = $mysql->prepare('SELECT * FROM account'); 
-      
-     
-     if(!empty($stmt)){
-         echo'<table id="user"> 
-         <thead>
-         <tr> 
-         <th>Username</th>
-         <th>E-mails</th>
-         <th>Aktion</th>
-         </tr>
-         </thead>
-         </table>';
-     }else{
-         
-     }
-    } catch (PDOException $e){
-        echo "SQL Error: ".$e->getMessage();
-    }
-
-     ?>
-
+$host = "localhost";
+$name = "shop";
+$user = "root";
+$passwort = "";
+try{
+    $mysql = new PDO("mysql:host=$host;dbname=$name", $user, $passwort);
+    $mysql->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+    $mysql->setAttribute( PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC );
     
- </div>
-</body>
+    $stmt = $mysql->prepare('SELECT * FROM account '); 
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+      
+}catch (PDOException $e){
+        //  echo "SQL Error: ".$e->getMessage();
+ }
+ ?>
+ 
+ <?php
+     if(!empty($result)){ ?>
 
-<?php   require('elements/footer.php')          ?>
+         <table id ="user"> 
+           <thead>
+            <tr>
+              <th> Username </th>
+              <th> E-mails </th>
+              <th> Aktion </th>
+            </tr>
+            </thead>
+            <tbody>
+<?php            
+         foreach ($result as $account){  ?>
+             <tr> 
+               <td> <?= $account['username'] ?> </td>
+                <td> <?= $account['email'] ?> </td>
+                <td> <button id="button">Button <i class="fa fa-edit"></i></button></td>
+             </tr> 
+         <?php }    ?>
+         </tbody>
+         </table>
+         <?php }   ?>
+</div>
+</body>
+    
+<?php   require('elements/footer.php')  ?> 

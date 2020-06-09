@@ -21,7 +21,7 @@ if(isset($_POST['username'], $_POST['password'])){
 
 ?>
                
-  <form action="login_admin.php"  class="mb-4" method="POST">
+  <form action=""  class="mb-4" method="POST">
           <div class="center"> 
              <h1> Login Admin </h1>
             
