@@ -68,12 +68,14 @@ $stmt = $mysql->prepare('SELECT * FROM Produkt ');
        </form>
        </div>
        </div>
-      
-       
+       </div><br><br>
  
   <?php  endforeach    ?>
 
   
+
+  <?php    require('elements/footer.php')        ?>
+
 
 
 
