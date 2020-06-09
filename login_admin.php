@@ -1,4 +1,4 @@
-<?php    require('elements/header.php')  ;         
+<?php          
       
 $succes = null ;
 $error= null;
@@ -17,8 +17,7 @@ if(isset($_POST['username'], $_POST['password'])){
      }
 
 }
-
-
+include ('elements/header.html')  ;      
 ?>
                
   <form action=""  class="mb-4" method="POST">
