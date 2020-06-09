@@ -468,6 +468,7 @@ ul#menu {
 }
 
 #div {
+    /*Anne*/
     width: 200px;
     height: 100px;
     background-color: rgb(214, 226, 209);
@@ -476,17 +477,20 @@ ul#menu {
 }
 
 #div1 {
+    /*Anne*/
     width: 1000px;
     height: 50px;
     background-color: rgb(214, 226, 209);
 }
 
 h1 {
+    /*Anne*/
     text-shadow: 0 0 black;
     color: #000000;
 }
 
 h3 {
+    /*Anne*/
     text-shadow: 0 0 black;
     text-align: center;
     color: #000000;
@@ -494,6 +498,7 @@ h3 {
 }
 
 #user th {
+    /*Anne*/
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
@@ -501,6 +506,7 @@ h3 {
 }
 
 #user {
+    /*Anne*/
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
@@ -508,11 +514,13 @@ h3 {
 
 #user td,
 #user th {
+    /*Anne*/
     border: 1px solid #ddd;
     padding: 5px;
 }
 
 label {
+    /*Anne*/
     color: blueviolet;
 }
 
