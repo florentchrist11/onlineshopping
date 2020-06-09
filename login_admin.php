@@ -7,12 +7,12 @@ $count = 0 ;
 
 if(isset($_POST['username'], $_POST['password'])){
      
-     if($_POST['username']== "Admin"&& $_POST['password']== 'Admin'){
+     if(!($_POST['username']== "Admin"&& $_POST['password']== 'Admin')){
       
       $error = 'False User';
-     header("Location: dashbordAdmin.php"); 
+     header("Location: index.php"); 
      }else{
-      header("Location: index.php"); 
+      header("Location: dashbordAdmin.php"); 
 
      }
 

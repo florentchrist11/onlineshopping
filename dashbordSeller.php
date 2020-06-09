@@ -1,5 +1,4 @@
 <?php 
- 
 require('elements/header.php')  ;
 
 
@@ -31,6 +30,7 @@ if($data->is_Valider()){
        <?php if($success):  ?>
 
         <?php
+
 if(isset($_FILES['Myimage']) AND $_FILES['Myimage']['error'] == 0){
    $test = $_FILES['Myimage'];
    echo "<pre>";
