@@ -10,7 +10,8 @@ $success = null ;
 if(isset($_POST['signup'])){
 
    
- $data = new CheckProduct($_POST['username'],$_POST['qty'],$_POST['price'],$_POST['Idescription']);
+ $data = new CheckProduct($_POST['username'],$_POST['qty']
+ ,$_POST['price'],$_POST['Idescription']);
 
 
       
@@ -33,10 +34,7 @@ if($data->is_Valider()){
 
 if(isset($_FILES['Myimage']) AND $_FILES['Myimage']['error'] == 0){
    $test = $_FILES['Myimage'];
-   echo "<pre>";
-   var_dump( $test);
-   echo "</pre>";
-
+ 
  $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["Myimage"]["name"]);
 $uploadOk = 1;
