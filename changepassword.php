@@ -3,9 +3,7 @@
 
  $error = null ;  
  $sussess = null ;  
- session_start();
- $email =  $_SESSION['emailReset'];
-   // var_dump(  $email);
+ 
   if(isset($_POST['email'], $_POST['passwort'])){
          
     require_once('mysqliteconnection.php');
@@ -19,8 +17,8 @@
         $mysql = new PDO("mysql:host=$host;dbname=$name", $user, $passwort);
         $mysql->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
         $mysql->setAttribute( PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ );
-        $stmt = $mysql->prepare('SELECT email FROM account WHERE email = ?'); 
-        $stmt->execute([ $_POST['email']]);
+        $stmt = $mysql->prepare('SELECT username FROM account WHERE username = ?'); 
+        $stmt->execute([ $_POST['username']]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if( isset($result) && ($_POST['passwort']==$_POST['confirmation'])){
         $password = password_hash($_POST["passwort"], PASSWORD_BCRYPT);  

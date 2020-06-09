@@ -56,14 +56,14 @@ if($data->is_Valider()){
 $sqlTable = "CREATE TABLE IF NOT EXISTS  $table  (
  
     id INT  AUTO_INCREMENT,
-    username VARCHAR(20),
-    email VARCHAR(20),
+    username VARCHAR(20) UNIQUE ,
+    email VARCHAR(20) UNIQUE ,
     street VARCHAR(50),
     postcode INT,
     city VARCHAR(50),
     token VARCHAR(50),
-    sellerID VARCHAR(50),
-    pwd VARCHAR(50),
+    sellerID VARCHAR(50) UNIQUE,
+    pwd VARCHAR(50) UNIQUE,
     CONSTRAINT id PRIMARY KEY (id)
     )";
       $mysql->exec($sqlTable);
@@ -85,15 +85,14 @@ if ($mysql->query( $sqlTable) === TRUE) {
         $check1 = true ;
        
       }else{
-     session_start();
+     
     $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
     $stmt = $mysql->prepare("INSERT INTO account 
     SET username = ? , email = ? , street = ?, postcode = ?,
     city = ? , pwd = ? ");
     $stmt->execute([ $_POST["username"],$_POST["email"],$_POST["street"],
     $_POST["postcode"] ,  $_POST["city"],  $password]);
-    $_SESSION['username'] = $_POST["username"] ;
-    $_SESSION['password'] = $_POST["password"] ; 
+  
    $user_ID = $mysql->lastInsertID();
    echo "Your Account hat been successfully created";
    header("location: login.php");
@@ -114,7 +113,7 @@ if ($mysql->query( $sqlTable) === TRUE) {
                          Invalide
                      </div>
                      <?php endif ?>
-       <form action=""  method="POST" class="mb-4" > 
+       <form action=""  method="POST" class="well coll-md-6" > 
   <legend text-align: center  > <h1>  Account</h1>   </legend>  
   <div class="form-group" >      
  <label for="name"> Your name: </label>  

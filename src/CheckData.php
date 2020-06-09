@@ -15,7 +15,8 @@ const LIMIT_CITY = 3 ;
 const LIMIT_STREET = 3 ;
 
 
-public function __construct(string $username , ? string $email = null , ? string $street = null  , ? string $postCode = null,? string $city = null ,
+public function __construct(string $username , ? string $email = null , 
+? string $street = null  , ? string $postCode = null,? string $city = null ,
  string $password , ? string $confirmation = null  )
 {
 
@@ -35,11 +36,12 @@ public function __construct(string $username , ? string $email = null , ? string
 public function getError():array
 {
   $error = [];
-  if( empty( $this->username) ||strlen( $this->username) < self ::LIMIT_NAME){
-
+  if( empty( $this->username)|| trim( $this->username == "") ||strlen( $this->username) < self ::LIMIT_NAME){
+   
     $error['username'] = "(!)your name muss have at least three characters";
   } 
-  if(empty($this->password)||  !$this->uppercase || !$this->lowercase || !$this->number || strlen($this->password) < 8 ){
+  
+  if(empty($this->password)||  trim(  $this->username == "")||  !$this->uppercase || !$this->lowercase || !$this->number || strlen($this->password) < 8 ){
 
  $error['password'] = "(!)contains at least one letter one number and more than 8 Character " ; 
 } 
@@ -52,14 +54,14 @@ $error['confirmation'] = "(!) you password muss be equal and valid";
 }
  if(  $this->postCode <= 0){
  
-$error['postCode'] = "(!)Your Postcode must be the number" ;
+$error['postCode'] = "(!)Your Postcode must be the positiv number" ;
 
  }
- if(empty($this->city)|| strlen($this->city) < self::LIMIT_CITY || !isset($this->city)){
+ if(empty($this->city)|| trim(  $this->city == "")||  strlen($this->city) < self::LIMIT_CITY || !isset($this->city)){
     $error['city'] = "(!) you must have the valid city" ;
 }
 
-if(empty($this->street)|| strlen($this->street) < self::LIMIT_STREET ){
+if(empty($this->street)|| trim(  $this->street == "")|| strlen($this->street) < self::LIMIT_STREET ){
   $error['street'] = "(!) you must have the valid street" ;
 }
 

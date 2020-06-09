@@ -24,26 +24,23 @@ $stmt = $mysql->prepare('SELECT * FROM Produkt ');
     
   
 } catch (PDOException $e){
-     echo "SQL Error: ".$e->getMessage();
+   //  echo "SQL Error: ".$e->getMessage();
  }
 
 ?>
 
-       <h1>Angebote</h1>
-       <form action="" class="mb-4">
-       <label for="Search"> Search product  >  </label><br>
+     
+       <form action="" class=" col-md-offset-3">
+       <label for="search"> Search product   </label><br>
        <input type ="text" id ="Search" placeholder="Search..">
-       <button type="search" name="sb">Suchen </button> 
-       <input type="text" name="product_id" value="<?= $value['id'] ?>" >       
+       <button type="search" name="search">Suchen </button> 
+           
  </form>
  <div class="centerReg">
       
  <?php  foreach ($result as $k  => $value):  ?>
-     <?php   var_dump( $k )   ;    
-         ?>
-   <?php if(isset($_POST['add'])){
-    var_dump( $_POST['product_id'] )  ;
-   }           ?>
+   
+  
  <div class="row text-center py-5">
        <div class="col-md-3 col-sm-6 my-3 my-md-0">
        <form action="" method="POST">
@@ -64,7 +61,7 @@ $stmt = $mysql->prepare('SELECT * FROM Produkt ');
                   <small><S class="text-secondary">$50</S></small> 
                   <strong class="price"><?= $value['price'] ?></strong> 
                   <button type="submit" class="btn btn-warning my-3" name="add"> Add to Card  </button>
-                  <input type="text" name="product_id" value="<?= $value['id'] ?>" >
+                  <input type="hidden" name="product_id" value="<?= $value['id'] ?>" >
                </div> 
      
      </div>
@@ -90,7 +87,7 @@ $stmt = $mysql->prepare('SELECT * FROM Produkt ');
                   <small><S class="text-secondary">$50</S></small> 
                   <strong class="price"><?= $value['price'] ?></strong> 
                   <button type="submit" class="btn btn-warning my-3" name="add"> Add to Card  </button>
-                  <input type="text" name="product_id" value="<?= $value['id'] ?>" >
+                  <input type="hidden" name="product_id" value="<?= $value['id'] ?>" >
                   
                </div> 
      
@@ -116,7 +113,7 @@ $stmt = $mysql->prepare('SELECT * FROM Produkt ');
                   <small><S class="text-secondary">$50</S></small> 
                   <strong class="price"><?= $value['price'] ?></strong> 
                   <button type="submit" class="btn btn-warning my-3" name="add"> Add to Card  </button>
-                  <input type="text" name="product_id" value="<?= $value['id'] ?>" >
+                  <input type="hidden" name="product_id" value="<?= $value['id'] ?>" >
                </div> 
      
      </div>
@@ -142,7 +139,7 @@ $stmt = $mysql->prepare('SELECT * FROM Produkt ');
                   <small><S class="text-secondary">$50</S></small> 
                   <strong class="price"><?= $value['price'] ?></strong><br> 
                   <button type="submit" class="btn btn-warning my-3" name="add"> Add to Card  </button>
-                  <input type="text" name="product_id" value="<?= $value['id'] ?>" >
+                  <input type="hidden" name="product_id" value="<?= $value['id'] ?>" >
                </div>
      
      </div>
