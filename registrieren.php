@@ -1,15 +1,15 @@
- 
 <?php      
      
 
-require('elements/header.php');
+
 require('src/CheckData.php');
+require('DAOuser.php');
 
+$password = null ;
 
-$errors[] = null ;
 $error = null ;
 $success = null ;
-$result1 = null ;
+$result1[] = null ;
 $result2 = null ;
 $check1 = false ;
 $test = false ;
@@ -42,75 +42,62 @@ if($data->is_Valider()){
     <?php   
         
  require_once('mysqliteconnection.php');
+ require_once('CreateTableUser.php');
 
- $host = "localhost";
- $name = "shop";
- $user = "root";
- $passwort = "";
- $table = "account";
- try{
-     $mysql = new PDO("mysql:host=$host;dbname=$name", $user, $passwort);
-     $mysql->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-     $mysql->setAttribute( PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ );
-     
-$sqlTable = "CREATE TABLE IF NOT EXISTS  $table  (
+$table = "account";
+$field = 'username';
+$value = $_POST['username'];
+  
+  $result2 = new DAOuser();
  
-    id INT  AUTO_INCREMENT,
-    username VARCHAR(20) UNIQUE ,
-    email VARCHAR(20) UNIQUE ,
-    street VARCHAR(50),
-    postcode INT,
-    city VARCHAR(50),
-    token VARCHAR(50),
-    sellerID VARCHAR(50) UNIQUE,
-    pwd VARCHAR(50) UNIQUE,
-    CONSTRAINT id PRIMARY KEY (id)
-    )";
-      $mysql->exec($sqlTable);
-    
-if ($mysql->query( $sqlTable) === TRUE) {
-    echo "Table   created successfully";
-  } else {
-    echo "Error creating table: " . $mysql->error;
-  }
-     ?>
-
-     
-     <?php
-
-  $stmt = $mysql->prepare('SELECT * FROM account WHERE username = ?'); 
-      $stmt->execute([ $_POST["username"]]);
-      $result1 = $stmt->fetchObject();
+  $result1 = $result2 ->isUse($table, $field, $value);
+      
       if($result1){
-        $check1 = true ;
-       
-      }else{
-     
-    $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
-    $stmt = $mysql->prepare("INSERT INTO account 
-    SET username = ? , email = ? , street = ?, postcode = ?,
-    city = ? , pwd = ? ");
-    $stmt->execute([ $_POST["username"],$_POST["email"],$_POST["street"],
-    $_POST["postcode"] ,  $_POST["city"],  $password]);
-  
-   $user_ID = $mysql->lastInsertID();
-   echo "Your Account hat been successfully created";
-   header("location: login.php");
-  exit();
-  
-  }
- } catch (PDOException $e){
+         $error = true ;
 
- }
+         header("location: registrieren.php");
+
+         
+         
+      }else{
+ 
+          $table = "account";
+          $data = array(
+               "username" => $_POST['username']  ,
+               "email"    => $_POST['username']  ,
+               "street"   => $_POST['street'],
+               "postcode" => $_POST['postcode'],
+                "city"    => $_POST['city'], 
+                "pwd"    =>  password_hash($_POST["password"], PASSWORD_BCRYPT)
+              
+          );
+          
+          $result2-> insertTableEntry($table, $data );
+         
+          header("location: login.php");
+          exit;
+
+  }
+ 
    ?>
         
    <?php endif ?>
+
+
+
+
+
+
+
+
+
+   <?php  require('elements/header.php'); ?>
      
  <div class="centerReg"> 
                   
                   <?php if($error):  ?>
                      <div class="alert alert-danger" role="alert">
-                         Invalide
+                     This Name is allready exit
                      </div>
                      <?php endif ?>
        <form action=""  method="POST" class="well coll-md-6" > 

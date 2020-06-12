@@ -3,40 +3,55 @@
 
  $error = null ;  
  $sussess = null ;  
- 
+ $result2 = null ;
+ $result1 = null ;
+
   if(isset($_POST['email'], $_POST['passwort'])){
          
     require_once('mysqliteconnection.php');
 
-    $host = "localhost";
-    $name = "shop";
-    $user = "root";
-    $passwort = "";
+   
   
-    try{
-        $mysql = new PDO("mysql:host=$host;dbname=$name", $user, $passwort);
-        $mysql->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-        $mysql->setAttribute( PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ );
-        $stmt = $mysql->prepare('SELECT username FROM account WHERE username = ?'); 
-        $stmt->execute([ $_POST['username']]);
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if( isset($result) && ($_POST['passwort']==$_POST['confirmation'])){
+            
+        require_once('mysqliteconnection.php');
+        require_once('CreateTableUser.php');
+         
+      $table = "account";
+      $field = 'username';
+      $value = $_POST['username'];
+  
+  $result2 = new DAOuser();
+ 
+  $result1 = $result2 ->isUse($table, $field, $value);
+
+        if( isset($result1) && ($_POST['passwort']==$_POST['confirmation'])){
         $password = password_hash($_POST["passwort"], PASSWORD_BCRYPT);  
-        $stmt = $mysql->prepare(" UPDATE account
-        SET   pwd = ? ");
-        $stmt->execute([  $password]);
-        $sussess = true ;
+      
+/*---------------------------------------------------------------
+ * Example :
+ *---------------------------------------------------------------
+ * $table = "account";
+ * $data = array(
+ *      "last_name" => "KAMGA",
+ *      "first_name" => "Stéphane"
+ * );
+ * $clause = array(
+ *      "id" => 2
+ * );
+ * $operator = array();
+ *---------------------------------------------------------------
+ * $result = updateTableEntry($table, $data, $clause, $operator);
+ *---------------------------------------------------------------
+ */
        header("location: login.php");
    
        }else{
        $error = true ;
      
+       }
       }
+    
 
-     } catch (PDOException $e){
-        echo "SQL Error: ".$e->getMessage();
-     }
-   }
 
 ?>
     <div class="center"> 

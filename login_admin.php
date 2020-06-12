@@ -7,7 +7,7 @@ $count = 0 ;
 
 if(isset($_POST['username'], $_POST['password'])){
      
-     if(($_POST['username']== "Admin" && $_POST['password']== 'Admin')){
+     if(!($_POST['username']== "Admin" && $_POST['password']== 'Admin')){
       
       $error = 'False User';
      header("Location: index.php"); 
@@ -19,7 +19,8 @@ if(isset($_POST['username'], $_POST['password'])){
 }
 include ('elements/header.php')  ;      
 ?>
-               
+   
+<br><br><br>
   <form action="login_admin.php"  class="mb-4" method="POST">
           <div class="center"> 
              <h1> Login Admin </h1>

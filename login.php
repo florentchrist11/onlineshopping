@@ -1,60 +1,65 @@
 
  
   <?php 
-   
-   $error = null ;
+   require('DAOuser.php');
+
+    $error = null ;
     $check = false ;
     $result1 = null ;
     $test = false ;
     $check1 = false ;
     $error = null ;
+    $result2 = null ;
+    $result3 = null ;
     
   
    if(isset($_POST['username'], $_POST['passwort'], $_POST['sellerID'])){
-
-   require_once('mysqliteconnection.php');
-
-       $host = "localhost";
-       $name = "shop";
-       $user = "root";
-       $passwort = "";
-       $table = "sigin";
-       try{
-           $mysql = new PDO("mysql:host=$host;dbname=$name", $user, $passwort);
-           $mysql->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-           $mysql->setAttribute( PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ );
-           
-
+         
+    require_once('mysqliteconnection.php');
+    require_once('CreateTableUser.php');
+   
+   
+   
+$table = "account";
+$field = 'username';
+$value = $_POST['username'];
   
-       $stmt = $mysql->prepare('SELECT * FROM account WHERE username = ?'); 
-           $stmt->execute([ $_POST["username"]]);
-           $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
-            
+  $result2 = new DAOuser();
+ 
+  $result1 = $result2 ->isUse($table, $field, $value);
+
+    
            if( $result1 ){
+            
             session_start();
-            $_SESSION['username'] = $_POST["username"] ;
-           
-              if(!empty( $result1['token'])){
-                $_SESSION['sellerID'] = $_POST["sellerID"] ;
+         //   $_SESSION['username'] = $_POST["username"] ;
+           $table = "account";
+           $field = 'token';
+           $value = $_POST['username'];
+      
+  $result3 = $result2 ->isUse($table, $field, $value);
+            if($result3){
+           //   $_SESSION['sellerID'] = $_POST["sellerID"] ;
               header("location: dashbordSeller.php");
-              }else{
-                     header("location: index.php");   
-  
+ 
+                        }
+        
+                   }
      
-}
-           }else{
 
-            header("location: login.php");   
-           }
+             else{
 
-  } catch (PDOException $e){
-           echo "SQL Error: ".$e->getMessage();
-       }
- }
+            header("location: index.php");   
+          
+          
+                }
+          }
+ 
    
 
 ?>   
  <?php    require('elements/header.php')           ?> 
+ <br><br><br><br>
        <div class="center">      
  <?php  if($error):  ?>
       
@@ -71,8 +76,9 @@
                   <input  style="width:65%" id ="password" type="password" class="form-control" name="passwort" placeholder=" Password ">   
                   <br> <button>submit</button>
                   <a href="changepassword.php">password forgotten?</a> 
-                  </div> 
+                 
                  </form>
+                 </div> 
 
 
 <?php    require('elements/footer.php')        ?>

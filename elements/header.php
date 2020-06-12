@@ -91,7 +91,7 @@
                         <li><a href="login.php">Login</a></li>
                         <li><a href="unternehmenkonto.php">Selleraccount</a></li>
                         <li><a href="login_admin.php">Administrator</a></li>
-                        <li><a href="#">Logout</a></li>
+                        <li><a href="logout.php">Logout</a></li>
                     </ul>
 
                 </li>

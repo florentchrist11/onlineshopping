@@ -37,10 +37,10 @@ $stmt = $mysql->prepare('SELECT * FROM Produkt ');
            
  </form><br><br>
 
-      
+   <?php   if($result) :            ?>   
  <?php  foreach ($result as $k  => $value):  ?>
    
-   <div class=" col-md-offset-3">
+   <div class="well-sm col-md-offset-3">
  <div class="row text-center py-5"  >
        <div class="col-md-3 col-sm-6 my-3 my-md-0">
        <form action="" method="POST">
@@ -68,10 +68,10 @@ $stmt = $mysql->prepare('SELECT * FROM Produkt ');
        </form>
        </div>
        </div>
-       </div><br><br>
+       </div><br><br
  
   <?php  endforeach    ?>
-
+  <?php    endif             ?>
   
 
   <?php    require('elements/footer.php')        ?>

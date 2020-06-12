@@ -1,5 +1,5 @@
-<?php  require 'elements/header.php'  ;
-
+<?php 
+require('DAOuser.php');
 
 $error = null ;
 $success = null ;
@@ -8,54 +8,48 @@ $result2 = null ;
 $check1 = false ;
 
 if(isset($_POST['username'] , $_POST['sellerID'], $_POST['password'])){
-    
+         
  require_once('mysqliteconnection.php');
-
- $host = "localhost";
- $name = "shop";
- $user = "root";
- $passwort = "";
- try{
-     $mysql = new PDO("mysql:host=$host;dbname=$name", $user, $passwort);
-     $mysql->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-     $mysql->setAttribute( PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ );
-    
-  $stmt = $mysql->prepare('SELECT username FROM account WHERE username = ?'); 
-  
-      $stmt->execute([ $_POST["username"]]);
-      $result1 = $stmt->fetchObject();
-      if($result1){
-            
-      }else{
-     session_start();
-    $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
-
-    $stmt = $mysql->prepare("INSERT INTO account
-    SET  username = ? , pwd = ? , token = ? ");
-    $stmt->execute([ $_POST["username"],  $password , $_POST['sellerID'] ]);
-    $_SESSION['username'] = $_POST["username"] ;
-    $_SESSION['password'] = $_POST["password"] ; 
-    $_SESSION['token'] =  $_POST['sellerID']  ; 
-
-   //$user_ID = $mysql->lastInsertID();
-   header("location: login.php");
-   echo "Your Account hat been successfully created";
-   
+ require_once('CreateTableUser.php');
  
-  }
+   
+$table = "account";
+$field = 'username';
+$value = $_POST['username'];
+  
+  $result2 = new DAOuser();
+ 
+  $result1 = $result2 ->isUse($table, $field, $value);
 
+    if($result1){
+       $error = true ;
+       
+    }else{
 
- } catch (PDOException $e){
-  //   echo "SQL Error: ".$e->getMessage();
- }
+        $table = "account";
+        $data = array(
+             "username" => $_POST['username']  ,
+              "pwd"    =>  password_hash($_POST["password"], PASSWORD_BCRYPT),
+              "token"    => $_POST['sellerID']  
+            
+        );
+        
+        $result2-> insertTableEntry($table, $data );
+       
+        header("location: login.php");
+
+}
+
 
 }
    ?>
-        
 
+   <?php require_once 'elements/header.php'   ?>
+        
+<br><br><br><br>
 
   <form action="" class="mb-4" method="POST">
-       <div class="center"> 
+       <div class="centerReg"> 
        <h1> Create Your Selleraccount</h1>
            <label>  Username:  </label><br> 
            <input type="username" class="form-control" name="username" placeholder="username">
