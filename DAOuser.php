@@ -143,6 +143,7 @@ require_once(dirname(__FILE__) . "/PDOType.php");
 
     function isUse($table, $field, $value)
     {
+       
         $db = $this->getPDO();
 
         $q = $db->prepare("SELECT id FROM $table WHERE $field = ?");
