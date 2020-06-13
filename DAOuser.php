@@ -37,29 +37,16 @@ require_once(dirname(__FILE__) . "/PDOType.php");
    return    $stmt  ;
 
   }
-/*
-    public function getProduct($statement) {
 
+    public function getAllProduct($table) {
+        $statement = " SELECT * FROM $table" ;
         $stmt = $this->getPDO()->query($statement);
-        $datas = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     return   $datas ;
 
     }
 
-    public function checkUser($table  , $attributes = [] ){
-        $statement = "SELECT username FROM  $table WHERE username : ? ";
-        $stmt = $this->getPDO()->prepare($statement);
-
-        $stmt->execute( $attributes);
-
-        $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return    $datas ;
-    }
-
-    */
-    
     
     function insertTableEntry($table, $data = [])
     {
