@@ -1,5 +1,5 @@
 
-<?php   require_once 'elements/header.php'  ; 
+<?php     
 require('DAOuser.php');
 
  $error = null ;  
@@ -61,6 +61,7 @@ require('DAOuser.php');
 
 
 ?>
+<?php   require_once 'elements/header.php'           ?>
     <div class="center"> 
 <?php   if($error):      ?>
   <div class="alert alert-danger"> Invalid </div>
