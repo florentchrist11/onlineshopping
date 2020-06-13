@@ -20,9 +20,9 @@
    
    
    
-$table = "account";
-$field = 'username';
-$value = $_POST['username'];
+   $table = "account";
+   $field = 'username';
+   $value = $_POST['username'];
   
   $result2 = new DAOuser();
  
@@ -32,14 +32,14 @@ $value = $_POST['username'];
            if( $result1 ){
             
             session_start();
-         //   $_SESSION['username'] = $_POST["username"] ;
+           $_SESSION['username'] = $_POST["username"] ;
            $table = "account";
            $field = 'token';
            $value = $_POST['username'];
       
-  $result3 = $result2 ->isUse($table, $field, $value);
+           $result3 = $result2 ->isUse($table, $field, $value);
             if($result3){
-           //   $_SESSION['sellerID'] = $_POST["sellerID"] ;
+             $_SESSION['sellerID'] = $_POST["sellerID"] ;
               header("location: dashbordSeller.php");
  
                         }
@@ -58,7 +58,7 @@ $value = $_POST['username'];
    
 
 ?>   
- <?php    require('elements/header.php')           ?> 
+ <?php    require_once('elements/header.php')           ?> 
  <br><br><br><br>
        <div class="center">      
  <?php  if($error):  ?>

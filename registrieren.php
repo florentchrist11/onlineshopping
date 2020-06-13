@@ -2,12 +2,12 @@
      
 
 
-require('src/CheckData.php');
-require('DAOuser.php');
+require_once('src/CheckData.php');
+require_once('DAOuser.php');
 
 $password = null ;
 
-$error = null ;
+ $error = null ;
 $success = null ;
 $result1[] = null ;
 $result2 = null ;
@@ -44,9 +44,9 @@ if($data->is_Valider()){
  require_once('mysqliteconnection.php');
  require_once('CreateTableUser.php');
 
-$table = "account";
-$field = 'username';
-$value = $_POST['username'];
+ $table = "account";
+ $field = 'username';
+ $value = $_POST['username'];
   
   $result2 = new DAOuser();
  

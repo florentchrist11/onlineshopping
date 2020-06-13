@@ -1,12 +1,15 @@
 
-<?php   require 'elements/header.php'  ; 
+<?php   require_once 'elements/header.php'  ; 
+require('DAOuser.php');
 
  $error = null ;  
  $sussess = null ;  
  $result2 = null ;
  $result1 = null ;
+ $check = null ;
+ $result = null ;
 
-  if(isset($_POST['email'], $_POST['passwort'])){
+  if(isset($_POST['username'], $_POST['passwort'])){
          
     require_once('mysqliteconnection.php');
 
@@ -24,26 +27,30 @@
  
   $result1 = $result2 ->isUse($table, $field, $value);
 
-        if( isset($result1) && ($_POST['passwort']==$_POST['confirmation'])){
-        $password = password_hash($_POST["passwort"], PASSWORD_BCRYPT);  
+  
+
+   if( isset($result1) && ($_POST['passwort']==$_POST['confirmation'])){
+   $password = password_hash($_POST["passwort"], PASSWORD_BCRYPT);  
+
+  $table = "account";
+  $data = array(
+       "pwd" =>   $password
+     
+  );
+  $clause = array(
+     "username" => $_POST["username"]
+  );
+  $operator = array();
+ 
+  $check  = $result2->updateTableEntry($table, $data, $clause, $operator);
+     
+
+     if( $check ){
+
+      header("location: login.php");
       
-/*---------------------------------------------------------------
- * Example :
- *---------------------------------------------------------------
- * $table = "account";
- * $data = array(
- *      "last_name" => "KAMGA",
- *      "first_name" => "Stéphane"
- * );
- * $clause = array(
- *      "id" => 2
- * );
- * $operator = array();
- *---------------------------------------------------------------
- * $result = updateTableEntry($table, $data, $clause, $operator);
- *---------------------------------------------------------------
- */
-       header("location: login.php");
+     }
+ 
    
        }else{
        $error = true ;
@@ -63,8 +70,8 @@
  <?php   endif  ?>
 <form action="" class="mb-4" method="post">
            <h1>  reset password </h1>
-          <label for ="email"> Email adresse:  </label><br>
-          <input  style="width:65%"  type="email" class="form-control" name="email" placeholder="Enter your E-Mail"> 
+          <label for ="text"> username:  </label><br>
+          <input  style="width:65%"  type="text" class="form-control" name="username" placeholder="username"> 
           <label for="password"> Your Password: </label> 
            <input  style="width:65%"  type="password" class="form-control" name="passwort" placeholder="Your Password ">
            <label for="password"> Your Password: </label> 

@@ -30,7 +30,7 @@ require_once(dirname(__FILE__) . "/PDOType.php");
  
         $stmt = new PDO("mysql:host=$this->host;dbname=$this->name", $this->user, $this->passwort);
      
-        $stmt->setAttribute( PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ );
+        $stmt->setAttribute( PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC );
 
      $this->stmt =   $stmt ;
   }

@@ -1,9 +1,10 @@
 <?
 
-session_start();
+
 
 require('elements/header.php');
-session_unset();
+session_start();
+$_SESSION = $array();
 session_destroy();
 
 header("location:index.php");
