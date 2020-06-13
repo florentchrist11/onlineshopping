@@ -530,8 +530,12 @@ label {
 .flex-container>div {
     background-color: #f1f1f1;
     margin: 10px;
-    padding: 20px;
-    font-size: 30px;
+    padding: 90px;
+    font-size: 100px;
 }
 
-
+.fa-star,
+.fa-star-half{
+    color:yellowgreen;
+    padding: 3% 0;
+}

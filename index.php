@@ -37,7 +37,7 @@ $stmt = $mysql->prepare('SELECT * FROM Produkt ');
            
  </form><br><br>
 
-   <?php   if($result) :            ?>   
+   <?php  /* if($result) :            ?>   
  <?php  foreach ($result as $k  => $value):  ?>
    
    <div class="well-sm col-md-offset-3">
@@ -51,9 +51,9 @@ $stmt = $mysql->prepare('SELECT * FROM Produkt ');
                  <div class="card-body">
                   <h5 class="card-title"><strong><?= $value['username'] ?></strong></h5>
                   <h6>
-                  <i class='far fa-star' style='font-size:30px;color:yellow' ></i>
-                  <i class='far fa-star' style='font-size:30px;color:yellow'></i>
-                  <i class='far fa-star' style='font-size:30px;color:yellow'></i>
+                  <i class='far fa-star' style='font-size:30px;color:greenyellow' ></i>
+                  <i class='far fa-star' style='font-size:30px;color:greenyellow'></i>
+                  <i class='far fa-star' style='font-size:30px;color:greenyellow'></i>
                   </h6> 
                   <p class="card-text">
                   <?= $value['Idescription'] ?>
@@ -71,8 +71,43 @@ $stmt = $mysql->prepare('SELECT * FROM Produkt ');
        </div><br><br
  
   <?php  endforeach    ?>
-  <?php    endif             ?>
   
+  <?php    endif   */          ?>
+  
+    <div class="well-sm col-md-offset-3">
+  <div class="card mb-3" >
+  <form action="" method="POST">
+  <img src="uploads/web.PNG" alt="Girl in a jacket" width="700"   height="300">
+  <div class="card-body">
+    <h5 class="card-title">  <strong>Product Title:</strong></h5>
+    <h5 class="card-title"> <strong> Price:</strong></h5>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <h5 class="card-title">  <strong>Contact:</strong></h5>
+    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    <button type="submit" class="btn btn-warning my-3" name="add" > Add to Card  </button>
+  </div>
+</div>
+   
+</div>
+
+
+<div class="well-sm col-md-offset-3">
+  <div class="card mb-3" >
+  <form action="" method="POST">
+  <img src="uploads/web.PNG" alt="Girl in a jacket" width="700"   height="300">
+  <div class="card-body">
+    <h5 class="card-title">  <strong>Product Title:</strong></h5>
+    <h5 class="card-title"> <strong> Price:</strong></h5>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <h5 class="card-title">  <strong>Contact:</strong></h5>
+   
+    <button type="submit" class="btn btn-warning my-3" name="add" > Add to Card  </button>
+  </div>
+</div>
+</div>  
+
+
+
 
   <?php    require('elements/footer.php')        ?>
 
