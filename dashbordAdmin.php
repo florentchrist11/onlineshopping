@@ -1,61 +1,78 @@
 <?php  
-include('mysqliteconnection.php');
-require('elements/header.php')     
+require_once 'elements/header.php';
+ require_once('DAOuser.php');    
+ require_once('mysqliteconnection.php');
+ require_once('CreateTableUser.php');   
 
 
 ?>
 <body>
 <div class="rand">
-     <div id ="div">
-         <h5> Number of aktuel User </h5><i class="fa fa-user" style="font-size:20px"></i>  </div>
+    <div id ="div1">
+          <h3> List of user  </h3>
+    </div> 
+ <?php 
+
+$getUser = new DAOuser();
+ $table = "account";
+$result = $getUser -> getAllProduct($table);
+
+ ?>
+ 
+ <?php
+     if(!empty($result)){ ?>
+
+         <table id ="user"> 
+           <thead>
+            <tr>
+              <th > Username </th>
+              <th colspan="5"> E-mails </th>
+              <th > Aktion </th>
+            </tr>
+            </thead>
+            <tbody>
+<?php            
+         foreach ($result as $account){  ?>
+             <tr> 
+               <td > <?= $account['username'] ?> </td>
+                <td colspan="5"> <?= $account['email'] ?> </td>
+                  
+                <td> <button id="block"> Block </button>
+                     <button id="frei"> Frei </button>
+                </td>
+                
+             </tr> 
+         <?php 
+         $table = "account";
+         $table2="produkt"
+        $field = 'username';
+  
+  $result2 = new DAOuser();
+ 
+  $result1 = $result2 ->countRow($table, $field);
+  $result= } ?>
+         </tbody>
+         </table>
+         <?php }   ?>
+         <script>
+         
+          </script>
+ <div id ="div">
+         <h5> Number of aktuel User </h5> <div id="number"><?= $result1['count(*)'] ?> <i class="fa fa-user" id="test"> </i> </div> </div>
      <div id ="div">  
-        <h5> New User </h5><i class="fa fa-user" style="font-size:23px; color: red"></i>
+        <h5> New User </h5> <div id="number"> <i class="fa fa-user" id="test2"></i>
+     </div>
      </div>
      <div id ="div">
-        <h5> aktuel number of produkt</h5><i class='fas fa-shopping-bag' style='font-size:20px'></i></div>
-     
-      <div id ="div">
-        <h5> New produkt</h5><i class='fas fa-shopping-bag' style='font-size:20px; color: red'></i>
+        <h5>  Number of aktuel produkt</h5> <div id="number"><i class='fa fa-shopping-bag' id="test"></i>
     </div>
-    <div id ="div1">
-          <h3> List of user  </h3> </div>
-   <?php 
-
-       $host = "localhost";
-       $name = "shop";
-       $user = "root";
-       $passwort = "";
-       try{
-           $mysql = new PDO("mysql:host=$host;dbname=$name", $user, $passwort);
-           $mysql->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-           $mysql->setAttribute( PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ );
-           
-
-  
-       $stmt = $mysql->prepare('SELECT * FROM account'); 
-      
-     
-     if(!empty($stmt)){
-         echo'<table id="user"> 
-         <thead>
-         <tr> 
-         <th>Username</th>
-         <th>E-mails</th>
-         <th>Aktion</th>
-         </tr>
-         </thead>
-         </table>';
-     }else{
-         
-     }
-    } catch (PDOException $e){
-        echo "SQL Error: ".$e->getMessage();
-    }
-
-     ?>
-
+    </div>
+     <div id ="div">
+        <h5> New produkt</h5> <div id="number"><i class='fa fa-shopping-bag' id="test2"></i>
+    </div>
+    </div>
     
- </div>
+</div>
 </body>
-
-<?php   require('elements/footer.php')          ?>
+    
+<?php   require('elements/footer.php')  ?> 

@@ -30,7 +30,7 @@ $result1 = $result2 -> getAllProduct($table);
    <div class="card mb-3" >
    <form action="" method="POST">
    <h5 class="card-title">  <strong>Product Title: <strong ><?= $value['username'] ?></strong> </strong></h5>
-   <img src="uploads/web.PNG" alt="Girl in a jacket" width="700"   height="300">
+   <img src="<?= $value['Myimage'] ?>" alt="Girl in a jacket" width="700"   height="300">
    <div class="card-body">
     <h5 class="card-title"> <strong> Price: <strong class="price"><?= $value['price'] ?></strong> $ </strong></h5>
     <p class="card-text"> <strong ><?= $value['Idescription'] ?></strong> </p>
