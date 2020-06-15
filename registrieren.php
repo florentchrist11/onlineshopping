@@ -64,7 +64,7 @@ if($data->is_Valider()){
           $table = "account";
           $data = array(
                "username" => $_POST['username']  ,
-               "email"    => $_POST['username']  ,
+               "email"    => $_POST['email']  ,
                "street"   => $_POST['street'],
                "postcode" => $_POST['postcode'],
                 "city"    => $_POST['city'], 

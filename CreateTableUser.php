@@ -15,7 +15,7 @@ $sqlTable = "CREATE TABLE IF NOT EXISTS  $table  (
 
    id INT  AUTO_INCREMENT,
    username VARCHAR(20)  ,
-   email VARCHAR(20)  ,
+   email VARCHAR(70)  ,
    street VARCHAR(50),
    postcode INT,
    city VARCHAR(50),
