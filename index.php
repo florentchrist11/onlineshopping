@@ -5,7 +5,7 @@
   require_once 'elements/header.php';
   require_once('DAOuser.php');    
   require_once('mysqliteconnection.php');
-  require_once('CreateTableUser.php');
+  require_once('CreateTableProduct.php');
 
 
 $result2 = new DAOuser();

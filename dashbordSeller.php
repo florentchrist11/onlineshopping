@@ -1,5 +1,5 @@
 <?php 
-require('elements/header.php')  ;
+
 
 
 require('src/CheckProduct.php');
@@ -36,7 +36,8 @@ require_once("InsertProduct.php")
         
    <?php endif ?>
 
-
+<?php    require('elements/header.php')  ;       ?>
+<br><br><br><br>
 <div class="rand"> 
                      <?php if($error):  ?>
                      <div class="alert alert-danger" role="alert">
