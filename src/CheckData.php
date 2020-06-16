@@ -49,7 +49,8 @@ public function getError():array
 {
 $error['email'] = "(!)E-Mail invalid" ;
  }
- if(empty( $this->confirmation) || $this->password !=  $this->confirmation || isset($error['password']) ){
+ if(empty( $this->confirmation) || $this->password !=  $this->confirmation || 
+ isset($error['password']) ){
 $error['confirmation'] = "(!) you password muss be equal and valid";
 }
  if(  $this->postCode <= 0){

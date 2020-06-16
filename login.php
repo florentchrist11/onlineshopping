@@ -44,6 +44,8 @@
              $_SESSION['sellerID'] = $_POST["sellerID"] ;
               header("location: dashbordSeller.php");
  
+                        }else {
+                              header("location: index.php");
                         }
         
                    }
@@ -51,8 +53,8 @@
 
              else{
 
-            header("location: login.php");   
-          
+                  $error  = TRUE ;
+
           
                 }
           }

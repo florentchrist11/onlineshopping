@@ -27,14 +27,43 @@ require_once(dirname(__FILE__) . "/IDAOuser.php");
     private function getPDO(){
   
     if($this->db ==null){
+   
+  try {
+    /**************************************
+    * Create databases and                *
+    * open connections                    *
+    **************************************/
  
-        $stmt = new PDO("mysql:host=$this->host;dbname=$this->name", $this->user, $this->passwort);
-     
-        $stmt->setAttribute( PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC );
-
-     $this->stmt =   $stmt ;
+    // Create (connect to) SQLite database in file
+    $db = new PDO('sqlite:messaging.sqlite3');
+    // Set errormode to exceptions
+    $db->setAttribute(PDO::ATTR_ERRMODE, 
+                            PDO::ERRMODE_EXCEPTION);
+ 
+    // Create new database in memory
+    $db = new PDO('sqlite::memory:');
+    // Set errormode to exceptions
+    $db->setAttribute(PDO::ATTR_ERRMODE, 
+                              PDO::ERRMODE_EXCEPTION);
+ 
+ 
+    /**************************************
+    * Create tables                       *
+    **************************************/
+ 
   }
-   return    $stmt  ;
+  catch(PDOException $e) {
+    // Print PDOException message
+    echo $e->getMessage();
+  }
+
+
+
+
+     $this->stmt =   $db ;
+  }
+
+   return    $this->stmt  ;
 
   }
 
