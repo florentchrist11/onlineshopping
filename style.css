@@ -138,6 +138,12 @@ ul#menu {
     .menu-content {
         transform: translateX(100%);
     }
+    .centerReg {
+        margin: auto;
+        width: 100%;
+        border: 19px solid #73AD21;
+         margin-top: 35px;
+    }
 }
 
 
@@ -456,10 +462,11 @@ ul#menu {
     background-color: rgb(214, 226, 209);
     display: inline-block;
     margin: 23px;
+   
 }
 
 #div1 {
-    width: 1000px;
+    width: 1030px;
     height: 50px;
     background-color: rgb(214, 226, 209);
 }
@@ -468,7 +475,9 @@ h1 {
     text-shadow: 0 0 black;
     color: #000000;
 }
-
+h5 {
+    text-align: center;
+}
 h3 {
     text-shadow: 0 0 black;
     text-align: center;
@@ -521,4 +530,25 @@ label {
 .fa-star-half {
     color: yellowgreen;
     padding: 3% 0;
+}
+#block {
+    margin: 15px;
+    color: red;
+    width: 80px;
+}
+#frei {
+    margin: 15px;
+    color: rgb(3, 99, 19);
+    width: 80px;
+}
+#test{
+    font-size:20px;
+    
+}
+#test2{
+    font-size:23px;
+     color: red;
+}
+#number{
+    margin-left: 80px;
 }

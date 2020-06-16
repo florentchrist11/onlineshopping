@@ -3,7 +3,7 @@
 $title = "Register";
 
 require_once('src/CheckData.php');
-require_once('DAOuser.php');
+require_once('Moddel/DAOuser.php');
 
 $password = null ;
 
@@ -43,8 +43,8 @@ if($data->is_Valider()){
     
     <?php   
         
- require_once('mysqliteconnection.php');
- require_once('CreateTableUser.php');
+ require_once('Modell/mysqliteconnection.php');
+ require_once('Modell/CreateTableUser.php');
 
  $table = "account";
  $field = 'username';

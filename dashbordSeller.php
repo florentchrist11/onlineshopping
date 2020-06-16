@@ -44,11 +44,6 @@ require_once("InsertProduct.php")
                          Invalide
                      </div>
                      <?php endif ?>
-           <div class="navbar">
-           <a class="glyphicon glyphicon-user"  href="Profil.php"> Profil</a> 
-           <a class="fa fa-bell" style="font-size:24px"> Delete </a>
-           <a class="fa fa-gift" style="font-size:24px"> Update</a>
-        </div>
         <div class="card border-danger">
             <div class="card-header bg-danger text-white">
                 <strong><i class="fa fa-plus"></i> Add New Product</strong>

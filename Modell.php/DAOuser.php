@@ -177,6 +177,20 @@ require_once(dirname(__FILE__) . "/IDAOuser.php");
         return $count ? true : false;
     }
 
+    function countRow($table, $field)
+    {
+       
+        $db = $this->getPDO();
+
+        $q = $db->prepare("SELECT count(*) FROM $table WHERE $field IS NOT NULl");
+        $q->execute();
+
+        $count = $q->fetch(PDO::FETCH_ASSOC);
+
+        $q->closeCursor();
+
+        return $count ;
+    }
     function updateTableEntry($table, $data = [], $clause = [], $operator = [])
     {
         $db = $this->getPDO();

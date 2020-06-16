@@ -22,12 +22,12 @@ $sqlTable = "CREATE TABLE IF NOT EXISTS  $table  (
    token VARCHAR(50),
    sellerID VARCHAR(50) UNIQUE,
    pwd VARCHAR(50) UNIQUE,
-   CONSTRAINT id PRIMARY KEY (id)
+   CONSTRAINT id PRIMARY KEY (id),
    )";
      $mysql->query($sqlTable);
    
 if ($mysql->query( $sqlTable) === TRUE) {
-   echo "Table   created successfully";
+   echo "Table  created successfully";
  } else {
    
  }
