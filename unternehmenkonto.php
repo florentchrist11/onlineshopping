@@ -1,7 +1,7 @@
 <?php 
 
 $title = "Account";
-require('DAOuser.php');
+require('Modell/DAOuser.php');
 
 $error = null ;
 $success = null ;
@@ -11,8 +11,8 @@ $check1 = false ;
 
 if(isset($_POST['username'] , $_POST['sellerID'], $_POST['password'])){
          
- require_once('mysqliteconnection.php');
- require_once('CreateTableUser.php');
+ require_once('Modell/mysqliteconnection.php');
+ require_once('Modell/CreateTableUser.php');
  
    
 $table = "account";

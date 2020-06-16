@@ -1,6 +1,6 @@
 
 <?php     
-require('DAOuser.php');
+require('Modell/DAOuser.php');
 
  $error = null ;  
  $sussess = null ;  
@@ -11,13 +11,13 @@ require('DAOuser.php');
 
   if(isset($_POST['username'], $_POST['passwort'])){
          
-    require_once('mysqliteconnection.php');
+    require_once('Modell/mysqliteconnection.php');
 
    
   
             
-        require_once('mysqliteconnection.php');
-        require_once('CreateTableUser.php');
+        require_once('Modell/mysqliteconnection.php');
+        require_once('Modell/CreateTableUser.php');
          
       $table = "account";
       $field = 'username';

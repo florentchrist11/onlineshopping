@@ -3,7 +3,7 @@
 $title = "Register";
 
 require_once('src/CheckData.php');
-require_once('Moddel/DAOuser.php');
+require_once('Modell/DAOuser.php');
 
 $password = null ;
 

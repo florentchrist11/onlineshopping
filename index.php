@@ -3,9 +3,9 @@
     $result = null ;
     $result1 = null ;
   require_once 'elements/header.php';
-  require_once('DAOuser.php');    
-  require_once('mysqliteconnection.php');
-  require_once('CreateTableProduct.php');
+  require_once('Modell/DAOuser.php');    
+  require_once('Modell/mysqliteconnection.php');
+  require_once('Modell/CreateTableProduct.php');
 
 
 $result2 = new DAOuser();

@@ -28,36 +28,7 @@ require_once(dirname(__FILE__) . "/IDAOuser.php");
   
     if($this->db ==null){
    
-  try {
-    /**************************************
-    * Create databases and                *
-    * open connections                    *
-    **************************************/
- 
-    // Create (connect to) SQLite database in file
-    $db = new PDO('sqlite:messaging.sqlite3');
-    // Set errormode to exceptions
-    $db->setAttribute(PDO::ATTR_ERRMODE, 
-                            PDO::ERRMODE_EXCEPTION);
- 
-    // Create new database in memory
-    $db = new PDO('sqlite::memory:');
-    // Set errormode to exceptions
-    $db->setAttribute(PDO::ATTR_ERRMODE, 
-                              PDO::ERRMODE_EXCEPTION);
- 
- 
-    /**************************************
-    * Create tables                       *
-    **************************************/
- 
-  }
-  catch(PDOException $e) {
-    // Print PDOException message
-    echo $e->getMessage();
-  }
-
-
+        $db = new PDO('mysql:host=localhost;dbname=test',  $this->user,     $this->passwort);
 
 
      $this->stmt =   $db ;

@@ -3,7 +3,7 @@
   <?php 
 
   $title = "Login";
-   require('DAOuser.php');
+   require('Modell/DAOuser.php');
 
     $error = null ;
     $check = false ;
@@ -17,8 +17,8 @@
   
    if(isset($_POST['username'], $_POST['passwort'], $_POST['sellerID'])){
          
-    require_once('mysqliteconnection.php');
-    require_once('CreateTableUser.php');
+    require_once('Modell/mysqliteconnection.php');
+    require_once('Modell/CreateTableUser.php');
    
    
    
