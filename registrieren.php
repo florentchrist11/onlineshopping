@@ -14,7 +14,9 @@ $result2 = null ;
 $check1 = false ;
 $test = false ;
 
-if(isset($_POST['username'],$_POST['email'],$_POST['street'], $_POST['postcode'] , $_POST['city'], $_POST['password'] 
+if(isset($_POST['username'],$_POST['email'],
+$_POST['street'], $_POST['postcode'] ,
+ $_POST['city'], $_POST['password'] 
 , $_POST['confirmation'])){
 
    
@@ -49,9 +51,15 @@ if($data->is_Valider()){
  $value = $_POST['username'];
   
   $result2 = new DAOuser();
+  
+
  
+ 
+ 
+
   $result1 = $result2 ->isUse($table, $field, $value);
-      
+     
+
       if($result1){
          $error = true ;
 
@@ -71,7 +79,7 @@ if($data->is_Valider()){
                 "pwd"    =>  password_hash($_POST["password"], PASSWORD_BCRYPT)
               
           );
-          
+        
           $result2-> insertTableEntry($table, $data );
          
           header("location: login.php");

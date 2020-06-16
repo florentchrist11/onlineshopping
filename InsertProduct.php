@@ -1,6 +1,6 @@
 <?php  
 
-
+require_once('DAOuser.php');
 
 if(isset($_FILES['Myimage']) AND $_FILES['Myimage']['error'] == 0){
     $test = $_FILES['Myimage'];
@@ -56,32 +56,22 @@ if(isset($_FILES['Myimage']) AND $_FILES['Myimage']['error'] == 0){
     
  require('mysqliteconnection.php');
  
- $host = "localhost";
- $name = "shop";
- $user = "root";
- $passwort = "";
- $table = "Produkt";
+ $table = "product";
  try{
-     $mysql = new PDO("mysql:host=$host;dbname=$name", $user, $passwort);
-     $mysql->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-     $mysql->setAttribute( PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ );
- $sqlTable = "CREATE TABLE IF NOT EXISTS  $table  (
- 
-    id INT  AUTO_INCREMENT,
-    username VARCHAR(20),
-    price VARCHAR(20),
-    qty VARCHAR(50),
-    Myimage VARCHAR(50),
-    Idescription VARCHAR(50),
-    CONSTRAINT id PRIMARY KEY (id)
-    )";
-      $mysql->exec($sqlTable);
-           
-            $stmt = $mysql->prepare("INSERT INTO Produkt
-            SET username = ? , price = ? , qty = ?, Myimage = ?,
-            Idescription = ? ");
-            $stmt->execute([ $_POST["username"],$_POST["price"],$_POST["qty"],
-            $dts ,  $_POST["Idescription"]]);
+        require("CreateTableProduct.php");
+        
+  $result2 = new DAOuser();
+        $table = "Product";
+        $data = array(
+  "username" =>  $_POST["username"],
+  "price"    =>  $_POST["price"],
+  "qty"      =>  $_POST["qty"],
+  "Myimage"  =>  $dts ,
+  "Idescription" =>  $_POST["Idescription"]
+        );
+   
+        $result2-> insertTableEntry($table, $data );
+         
             echo "Susscces";
   
  } catch (PDOException $e){
