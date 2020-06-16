@@ -195,7 +195,7 @@ ul#menu {
     position: absolute;
     top: 0%;
     right: 10%;
-    font-size: 20%;
+    font-size: 120%;
 }
 
 
@@ -405,23 +405,6 @@ ul#menu {
     margin: 12px 0;
 }
 
-.center {
-    /* Florent Fokou   */
-    margin: auto;
-    width: 60%;
-    border: 19px solid #73AD21;
-    padding: 50px 50px 50px 50px;
-    margin-top: 85px;
-}
-
-.centerReg {
-    margin: auto;
-    width: 60%;
-    border: 19px solid #73AD21;
-    padding: 50px 50px 50px 50px;
-    margin-top: 35px;
-}
-
 .rand {
     /* Florent Fokou   */
     margin: auto;
@@ -535,7 +518,7 @@ label {
 }
 
 .fa-star,
-.fa-star-half{
-    color:yellowgreen;
+.fa-star-half {
+    color: yellowgreen;
     padding: 3% 0;
 }

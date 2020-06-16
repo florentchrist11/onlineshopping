@@ -60,20 +60,22 @@
 ?>   
  <?php    require_once('elements/header.php')           ?> 
  <br><br><br><br>
-       <div class="center">      
+       <div class="centerReg">      
  <?php  if($error):  ?>
       
  <div class="alert alert-danger"> Invalid </div>
     
 <?php  endif ?>
 <form action="" class="mb-4 " method="POST">
+      <center>
            <h1> Login </h1>
+           <hr>
            <label for="username">  username: </label>  
-                  <input  style="width:65%" type="text" class="form-control" name="username" placeholder=" username">
+                  <input  style="width:45%" type="text" class="form-control" name="username" placeholder=" username">
                   <label>  SellerID: </label><br>
-                  <input style="width:65%" type="text" class="form-control" name="sellerID" placeholder="only for seller ">
+                  <input style="width:45%" type="text" class="form-control" name="sellerID" placeholder="only for seller ">
                   <label for="password"> Your Password: </label> 
-                  <input  style="width:65%" id ="password" type="password" class="form-control" name="passwort" placeholder=" Password ">   
+                  <input  style="width:45%" id ="password" type="password" class="form-control" name="passwort" placeholder=" Password ">   
                   <br> <button>submit</button>
                   <a href="changepassword.php">password forgotten?</a> 
                  
