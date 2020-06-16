@@ -4,7 +4,7 @@ require_once(dirname(__FILE__) . "/PDOType.php");
 
 
 
- class DAOuser  {
+ class DAOuser implements IDAOuser {
 
     
    private $host ;

@@ -26,7 +26,7 @@ $sqlTable = "CREATE TABLE IF NOT EXISTS  $table  (
      $mysql->query($sqlTable);
    
 if ($mysql->query( $sqlTable) === TRUE) {
-   echo "Table   created successfully";
+  
  } else {
    
  }
