@@ -1,5 +1,5 @@
 <?php
-
+    $title = "Home";
     $result = null ;
     $result1 = null ;
   require_once 'elements/header.php';
@@ -9,7 +9,7 @@
 
 
 $result2 = new DAOuser();
- $table = "produkt";
+ $table = "product";
 $result1 = $result2 -> getAllProduct($table);
 
 ?>
@@ -30,12 +30,15 @@ $result1 = $result2 -> getAllProduct($table);
    <div class="card mb-3" >
    <form action="" method="POST">
    <h5 class="card-title">  <strong>Product Title: <strong ><?= $value['username'] ?></strong> </strong></h5>
+<<<<<<< HEAD
    <img src="<?= $value['Myimage'] ?>" alt="Girl in a jacket" width="700"   height="300">
+=======
+   <img src="<?= $value['Myimage']  ?>" alt="Girl in a jacket" width="650"   height="200">
+>>>>>>> bcd4269d53abbff96fc59b5e095dfd597a6b84aa
    <div class="card-body">
     <h5 class="card-title"> <strong> Price: <strong class="price"><?= $value['price'] ?></strong> $ </strong></h5>
     <p class="card-text"> <strong ><?= $value['Idescription'] ?></strong> </p>
-    <h5 class="card-title">  <strong>Contact?????</strong></h5>
-    <button type="submit" style="width:70%" class="btn btn-warning my-3" name="add" > Add to Card  </button>
+    <button type="submit" style="width:30%" class="btn btn-warning my-3" name="add" > Add to Card  </button>
     <input type="hidden" name="product_id" value="<?= $value['id'] ?>" >
     </div>
    </form>
@@ -51,14 +54,5 @@ $result1 = $result2 -> getAllProduct($table);
 
 
   <?php    require('elements/footer.php')        ?>
-
-
-
-
-
-
-
-
-  
 
 

@@ -21,14 +21,15 @@ include ('elements/header.php')  ;
 ?>
    
 <br><br><br>
+<center>
   <form action="login_admin.php"  class="mb-4" method="POST">
           <div class="center"> 
              <h1> Login Admin </h1>
             
              <label for ="username"> Username:  </label> <br>
-                  <input type="text" id="username" class="form-control" name="username" placeholder=" Your E-Mail">
-                  <label for ="password"> Password:  </label> <br> 
-                  <input type="password" id ="password" class="form-control" name="password" placeholder="Your Password "><br>
+                  <input style="width:45%" type="text" id="username" class="form-control" name="username" placeholder=" Your E-Mail">
+                  <label style="width:45%" for ="password"> Password:  </label> <br> 
+                  <input style="width:45%" type="password" id ="password" class="form-control" name="password" placeholder="Your Password "><br>
              <input type="submit" name="create" value="Sign in"> 
           </div>
    </form>

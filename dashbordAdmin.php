@@ -44,13 +44,13 @@ $result = $getUser -> getAllProduct($table);
              </tr> 
          <?php 
          $table = "account";
-         $table2="produkt"
+         $table2="produkt";
         $field = 'username';
   
   $result2 = new DAOuser();
  
   $result1 = $result2 ->countRow($table, $field);
-  $result= } ?>
+  } ?>
          </tbody>
          </table>
          <?php }   ?>

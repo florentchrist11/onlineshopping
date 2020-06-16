@@ -1,5 +1,5 @@
+
 <?php
-   
 
 $servername = "localhost";
 $username = "root";
@@ -18,9 +18,5 @@ if ($conn_1->query($sql) === TRUE) {
 } else {
     echo "Error creating database: " . $conn_1->error;
   }
-
-
-
-
 
 ?>

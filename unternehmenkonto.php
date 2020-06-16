@@ -1,4 +1,6 @@
 <?php 
+
+$title = "Account";
 require('DAOuser.php');
 
 $error = null ;
@@ -47,16 +49,16 @@ $value = $_POST['username'];
    <?php require_once 'elements/header.php'   ?>
         
 <br><br><br><br>
-
+<center>
   <form action="" class="mb-4" method="POST">
        <div class="centerReg"> 
        <h1> Create Your Selleraccount</h1>
            <label>  Username:  </label><br> 
-           <input type="username" class="form-control" name="username" placeholder="username">
+           <input style="width:45%" type="username" class="form-control" name="username" placeholder="username">
            <label>  SellerID: </label><br>
-           <input type="text" class="form-control" name="sellerID" placeholder="Enter your ID ">
+           <input style="width:45%" type="text" class="form-control" name="sellerID" placeholder="Enter your ID ">
            <label>  Password: </label><br>
-           <input type="password" class="form-control" name="password" placeholder="Enter your Password ">
+           <input style="width:45%" type="password" class="form-control" name="password" placeholder="Enter your Password ">
            <input type="submit" name="create" value="Sign in"> 
            <a href="changepassword.php">password forgotten?</a>
            
