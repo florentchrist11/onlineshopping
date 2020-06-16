@@ -6,20 +6,11 @@ require_once(dirname(__FILE__) . "/IDAOuser.php");
 
  class DAOuser implements IDAOuser {
 
-    
-   private $host ;
-   private  $name ;
-   private  $user ;
-   private $passwort ;
    private  $db ;
  
   
    public function __construct(){
    
-    $this->host = "localhost";
-    $this->name = "shodddp";
-    $this->user = "root";
-    $this->passwort = "";
    
    
    }
@@ -28,13 +19,21 @@ require_once(dirname(__FILE__) . "/IDAOuser.php");
   
     if($this->db ==null){
    
-        $db = new PDO('mysql:host=localhost;dbname=test',  $this->user,     $this->passwort);
 
+$file_db = new PDO('sqlite:bd_shops.sqlite3');                                                                
+$base = 'bd_shops.sqlite3';
+
+try {
+  $db = new SQLite3($base);
+} catch (SQLite3 $e) {
+//  die("La création ou l'ouverture de la base [$base] a échouée ".
+     //  "pour la raison suivante: ".$e->getMessage());
+}
 
      $this->stmt =   $db ;
   }
 
-   return    $this->stmt  ;
+   return    $this->stmt ;
 
   }
 

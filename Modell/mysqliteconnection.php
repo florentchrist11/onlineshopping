@@ -24,7 +24,7 @@ $file_db = new PDO('sqlite:bd_shops.sqlite3');
   $base = 'bd_shops.sqlite3';
 
   try {
-    $bd = new SQLite3($base);
+    $db = new SQLite3($base);
 } catch (SQLite3 $e) {
   //  die("La création ou l'ouverture de la base [$base] a échouée ".
        //  "pour la raison suivante: ".$e->getMessage());

@@ -7,8 +7,17 @@ $user = "root";
 $passwort = "";
 $table = "Product";
 
-  //  $mysql = new PDO("mysqli:host=$host;dbname=$name", $user, $passwort);
-  $mysql = new mysqli($host,  $user , $passwort ,$name  );
+ 
+
+$file_db = new PDO('sqlite:bd_shops.sqlite3');                                                                
+$base = 'bd_shops.sqlite3';
+
+try {
+  $db = new SQLite3($base);
+} catch (SQLite3 $e) {
+//  die("La création ou l'ouverture de la base [$base] a échouée ".
+     //  "pour la raison suivante: ".$e->getMessage());
+}
  // $mysql->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
   //  $mysql->setAttribute( PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ );
     
@@ -23,9 +32,9 @@ $sqlTable = "CREATE TABLE IF NOT EXISTS  $table  (
     CONSTRAINT id PRIMARY KEY (id)
     
    )";
-     $mysql->query($sqlTable);
+     $db->query($sqlTable);
    
-if ($mysql->query( $sqlTable) === TRUE) {
+if ($db->query( $sqlTable) === TRUE) {
   
  } else {
    
