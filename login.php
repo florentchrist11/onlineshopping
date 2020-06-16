@@ -28,7 +28,7 @@
  
   $result1 = $result2 ->isUse($table, $field, $value);
 
-    
+       
            if( $result1 ){
             
             session_start();
@@ -49,7 +49,7 @@
 
              else{
 
-            header("location: index.php");   
+            header("location: login.php");   
           
           
                 }
@@ -70,11 +70,11 @@
       <center>
            <h1> Login </h1>
            <hr>
-           <label for="username">  username: </label>  
+           <label for="username">  username </label>  
                   <input  style="width:45%" type="text" class="form-control" name="username" placeholder=" username">
-                  <label>  SellerID: </label><br>
+                  <label>  SellerID </label><br>
                   <input style="width:45%" type="text" class="form-control" name="sellerID" placeholder="only for seller ">
-                  <label for="password"> Your Password: </label> 
+                  <label for="password">  Password </label> 
                   <input  style="width:45%" id ="password" type="password" class="form-control" name="passwort" placeholder=" Password ">   
                   <br> <button>submit</button>
                   <a href="changepassword.php">password forgotten?</a> 

@@ -1,6 +1,6 @@
 <?php 
 require_once(dirname(__FILE__) . "/PDOType.php");
- 
+require_once(dirname(__FILE__) . "/IDAOuser.php");
 
 
 
@@ -51,10 +51,11 @@ require_once(dirname(__FILE__) . "/PDOType.php");
     function insertTableEntry($table, $data = [])
     {
          $db = $this->getPDO();
-
+       
         /*
          * CONSTRUCTION OF DATASETS
          */
+        $db->beginTransaction();
         $fields = "";
         $values = "";
         $n = count($data);
@@ -73,6 +74,7 @@ require_once(dirname(__FILE__) . "/PDOType.php");
             }
             ++$i;
         }
+       
         $req = "INSERT INTO $table ( $fields ) VALUES ( $values );";
 
         $q = $db->prepare($req);
@@ -82,8 +84,10 @@ require_once(dirname(__FILE__) . "/PDOType.php");
             $q->bindValue(":$key", $value, getPDOtype($value));
         }
         $result = $q->execute();
-        $q->closeCursor();
+        $db->commit();
 
+        $q->closeCursor();
+  
         return $result;
     }
 
@@ -94,6 +98,7 @@ require_once(dirname(__FILE__) . "/PDOType.php");
         /*
          * CONSTRUCTION OF CONDITION
          */
+        $db->beginTransaction();
         $conditions = "";
         $n = count($operator);
         $i = 0;
@@ -109,7 +114,7 @@ require_once(dirname(__FILE__) . "/PDOType.php");
             }
             ++$i;
         }
-
+         
         $q = $db->prepare("DELETE FROM $table WHERE $conditions");
 
         foreach ($clause as $key => $value)
@@ -118,7 +123,7 @@ require_once(dirname(__FILE__) . "/PDOType.php");
         }
 
         $result = $q->execute();
-
+        $db->commit();
         $q->closeCursor();
 
         return ($result ? true : false);
@@ -150,6 +155,7 @@ require_once(dirname(__FILE__) . "/PDOType.php");
         /*
          * CONSTRUCTION OF DATASETS
          */
+        $db->beginTransaction();
         $datasets = "";
         $n = count($data);
         $i = 0;
@@ -198,7 +204,7 @@ require_once(dirname(__FILE__) . "/PDOType.php");
             $q->bindValue(":$key", $value, getPDOtype($value));
         }
         $result = $q->execute();
-
+        $db->commit();
         $q->closeCursor();
 
         return  ($result ? true : false);

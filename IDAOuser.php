@@ -13,7 +13,7 @@ interface IDAOuser{
     
     function updateTableEntry($table, $data = [], $clause = [], $operator = []);
    
-    function getPDO();
+    
 }
 
 
