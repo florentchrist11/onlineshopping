@@ -1,6 +1,6 @@
 <?php      
      
-
+$title = "Register";
 
 require_once('src/CheckData.php');
 require_once('DAOuser.php');

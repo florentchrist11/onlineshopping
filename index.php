@@ -1,5 +1,5 @@
 <?php
-
+    $title = "Home";
     $result = null ;
     $result1 = null ;
   require_once 'elements/header.php';

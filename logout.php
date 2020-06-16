@@ -1,6 +1,8 @@
  
  
-<?php      session_start()   ;
+<?php    
+    $title = "Logout";
+ session_start()   ;
       
       $_SESSION = array();
 

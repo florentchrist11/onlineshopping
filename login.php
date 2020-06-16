@@ -1,6 +1,8 @@
 
  
   <?php 
+
+  $title = "Login";
    require('DAOuser.php');
 
     $error = null ;
