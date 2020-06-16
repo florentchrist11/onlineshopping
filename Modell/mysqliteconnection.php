@@ -20,20 +20,14 @@ if ($conn_1->query($sql) === TRUE) {
 */
 
 
-$db = new PDO('sqlite:bd_shops.sqlite3');
-$db = 'phpfacile_mabase.sqlite';
+$file_db = new PDO('sqlite:bd_shops.sqlite3');                                                                
+  $base = 'bd_shops.sqlite3';
 
-// Connexion
-try {
-    $bd = new SQLiteDatabase($db);
-} catch (SQLiteException $e) {
-    die("La création ou l'ouverture de la base [$base] a échouée ".
-         "pour la raison suivante: ".$e->getMessage());
+  try {
+    $bd = new SQLite3($base);
+} catch (SQLite3 $e) {
+  //  die("La création ou l'ouverture de la base [$base] a échouée ".
+       //  "pour la raison suivante: ".$e->getMessage());
 }
-
-
-  
-
-
 
 ?>

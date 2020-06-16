@@ -17,7 +17,7 @@ require_once(dirname(__FILE__) . "/IDAOuser.php");
    public function __construct(){
    
     $this->host = "localhost";
-    $this->name = "shop";
+    $this->name = "shodddp";
     $this->user = "root";
     $this->passwort = "";
    
