@@ -1,5 +1,5 @@
 <?php
-
+/*
 $servername = "localhost";
 $username = "root";
 $password = "" ;
@@ -17,5 +17,23 @@ if ($conn_1->query($sql) === TRUE) {
 } else {
     echo "Error creating database: " . $conn_1->error;
   }
+*/
+
+
+$db = new PDO('sqlite:bd_shops.sqlite3');
+$db = 'phpfacile_mabase.sqlite';
+
+// Connexion
+try {
+    $bd = new SQLiteDatabase($db);
+} catch (SQLiteException $e) {
+    die("La création ou l'ouverture de la base [$base] a échouée ".
+         "pour la raison suivante: ".$e->getMessage());
+}
+
+
+  
+
+
 
 ?>
