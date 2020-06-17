@@ -5,16 +5,15 @@
   require_once 'elements/header.php';
   require_once('Modell/DAOuser.php');    
   require_once('Modell/mysqliteconnection.php');
+  require_once('Modell/CreateTableUser.php');
   require_once('Modell/CreateTableProduct.php');
-
+  
 
 $result2 = new DAOuser();
- $table = "product";
+$table = "product";
 $result1 = $result2 -> getAllProduct($table);
 
 ?>
-
-     
        <form action="" class=" col-md-offset-3">
        <label for="search"> Search product   </label><br>
        <input type ="text" id ="Search" placeholder="Search..">

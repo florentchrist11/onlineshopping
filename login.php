@@ -21,26 +21,30 @@
     require_once('Modell/CreateTableUser.php');
    
    
-   
-   $table = "account";
-   $field = 'username';
+   $fields = 'username';
    $value = $_POST['username'];
-  
+
   $result2 = new DAOuser();
  
-  $result1 = $result2 ->isUse($table, $field, $value);
+
+  $result3 = $result2 -> getTaskCountByProject( $fields , $value) ;
+    
+   
+   $fields = 'token';
+   $value = $_POST['username'];
+
+
+  $result1 = $result2 ->getTaskCountByProject( $fields , $value) ;
 
        
-           if( $result1 ){
+           if( $result3 ){
             
-            session_start();
+           session_start();
+
            $_SESSION['username'] = $_POST["username"] ;
-           $table = "account";
-           $field = 'token';
-           $value = $_POST['username'];
-      
-           $result3 = $result2 ->isUse($table, $field, $value);
-            if($result3){
+          
+          
+            if($result1){
              $_SESSION['sellerID'] = $_POST["sellerID"] ;
               header("location: dashbordSeller.php");
  

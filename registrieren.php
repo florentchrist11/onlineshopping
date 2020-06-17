@@ -1,5 +1,5 @@
 <?php      
-     
+    session_start();   
 $title = "Register";
 
 require_once('src/CheckData.php');
@@ -29,11 +29,8 @@ if($data->is_Valider()){
       
        
         }else{
-      
          $errors = $data->getError();
          $error = true ;
-
-       
         } 
        }
      
@@ -42,45 +39,32 @@ if($data->is_Valider()){
     <?php if($success):  ?>
     
     <?php   
-        
- require_once('Modell/mysqliteconnection.php');
- require_once('Modell/CreateTableUser.php');
 
  $table = "account";
- $field = 'username';
+ $field = "username";
  $value = $_POST['username'];
   
   $result2 = new DAOuser();
-  
 
- 
- 
- 
-
-  $result1 = $result2 ->isUse($table, $field, $value);
+  $result1 = $result2 ->isUse( $table, $field, $value );
      
 
       if($result1){
          $error = true ;
-
-         header("location: registrieren.php");
-
-         
-         
+         header("location: registrieren.php");   
       }else{
- 
           $table = "account";
           $data = array(
-               "username" => $_POST['username']  ,
-               "email"    => $_POST['username']  ,
-               "street"   => $_POST['street'],
-               "postcode" => $_POST['postcode'],
-                "city"    => $_POST['city'], 
-                "pwd"    =>  password_hash($_POST["password"], PASSWORD_BCRYPT)
+               "username"  => trim( htmlspecialchars($_POST['username'] ))  ,
+               "email"     => trim( htmlspecialchars($_POST['username'] )) ,
+               "street"    => trim( htmlspecialchars( $_POST['street'])),
+               "postcode"  => trim( htmlspecialchars($_POST['postcode'])) ,
+                "city"     => trim( htmlspecialchars($_POST['city'])) , 
+                "pwd"     => trim(  htmlspecialchars( password_hash($_POST["password"], PASSWORD_BCRYPT)))
               
           );
         
-          $result2-> insertTableEntry($table, $data );
+          $result2->insertTableEntry($table, $data );
          
           header("location: login.php");
           exit;

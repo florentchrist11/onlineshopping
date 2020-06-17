@@ -1,19 +1,13 @@
 <?php 
-
-
-
 require('src/CheckProduct.php');
 $errors[] = null ;
 $error = null ;
 $success = null ;
 
 if(isset($_POST['signup'])){
-
    
  $data = new CheckProduct($_POST['username'],$_POST['qty']
  ,$_POST['price'],$_POST['Idescription']);
-
-
       
 if($data->is_Valider()){
        $success = true ;
