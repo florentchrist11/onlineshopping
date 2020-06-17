@@ -64,11 +64,11 @@ if(isset($_FILES['Myimage']) AND $_FILES['Myimage']['error'] == 0){
   $result2 = new DAOuser();
         $table = "Product";
         $data = array(
-  "username" =>  $_POST["username"],
-  "price"    =>  $_POST["price"],
-  "qty"      =>  $_POST["qty"],
-  "Myimage"  =>  $dts ,
-  "Idescription" =>  $_POST["Idescription"]
+    "username" =>  htmlspecialchars( $_POST["username"]),
+    "price"    => htmlspecialchars( $_POST["price"]) ,
+    "qty"      => htmlspecialchars($_POST["qty"]) ,
+    "Myimage"  => htmlspecialchars( $dts) ,
+    "Idescription" =>htmlspecialchars( $_POST["Idescription"]) 
         );
    
         $result2-> insertTableEntry($table, $data );

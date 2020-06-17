@@ -6,44 +6,25 @@ require_once(dirname(__FILE__) . "/IDAOuser.php");
 
  class DAOuser implements IDAOuser {
 
-   private  $db ;
- 
-  
-   public function __construct(){
-   
-   
-   
-   }
-    
     private function getPDO(){
-  
-    if($this->db ==null){
-   
 
-$file_db = new PDO('sqlite:bd_shops.sqlite3');                                                                
-$base = 'bd_shops.sqlite3';
+            $stmt = new PDO('sqlite:bd_shops.sqlite3');
+            // Set errormode to exceptions
+            $stmt->setAttribute(
+                PDO::ATTR_ERRMODE,
+                PDO::ERRMODE_EXCEPTION
+            );
 
-try {
-  $db = new SQLite3($base);
-} catch (SQLite3 $e) {
-//  die("La création ou l'ouverture de la base [$base] a échouée ".
-     //  "pour la raison suivante: ".$e->getMessage());
-}
-
-     $this->stmt =   $db ;
-  }
-
-   return    $this->stmt ;
-
+            $this->stmt =  $stmt;
+        
+        return    $stmt;
   }
 
     public function getAllProduct($table) {
-        $statement = " SELECT * FROM $table" ;
+        $statement = "SELECT * FROM $table" ;
         $stmt = $this->getPDO()->query($statement);
         $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    return   $datas ;
-
+        return   $datas;
     }
 
     
@@ -128,16 +109,11 @@ try {
         return ($result ? true : false);
     }
 
-
-
-    
-
     function isUse($table, $field, $value)
     {
-       
         $db = $this->getPDO();
 
-        $q = $db->prepare("SELECT id FROM $table WHERE $field = ?");
+        $q = $db->prepare("SELECT $field FROM $table WHERE $field = ?");
         $q->execute([$value]);
 
         $count = $q->rowCount();
@@ -161,6 +137,18 @@ try {
 
         return $count ;
     }
+
+    public function getTaskCountByProject( $fields , $value) {
+        $db = $this->getPDO();
+
+        $stmt = $db->prepare("SELECT COUNT(*) 
+                                    FROM account
+                                   WHERE  $fields = :value;");
+        $stmt->bindParam(':value', $value);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }
+
     function updateTableEntry($table, $data = [], $clause = [], $operator = [])
     {
         $db = $this->getPDO();
