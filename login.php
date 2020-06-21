@@ -13,9 +13,7 @@
     $error = null ;
     $result2 = null ;
     $result3 = null ;
-  
     
-  
    if(isset($_POST['username'], $_POST['passwort'], $_POST['sellerID'])){
          
     require_once('Modell/mysqliteconnection.php');

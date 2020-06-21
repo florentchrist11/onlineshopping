@@ -56,12 +56,14 @@ $value = $_POST['username'];
                    <?=       $usernameError = "This username is already used";?>
                   <?php elseif(  $success ) :  ?> 
                    
+                 
+                   <div class="alert alert-success" role="alert">
                    <?= "The E-Mail hat been send to  ". $_POST['username']."Pleace confirme your E-Mail" ;?>
-                   <div class="alert alert-primary" role="alert">
   <a href="login.php" class="alert-link">to login </a>
   <?php   require 'elements/footer.php'  ?>
+  </div>  
    <?=    exit       ?>
-</div    
+  
                      
 
                      <?php endif ?>
