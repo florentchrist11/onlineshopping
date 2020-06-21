@@ -8,11 +8,12 @@ require_once('Modell/DAOuser.php');
 $password = null ;
 
  $error = null ;
-$success = null ;
+$success = false ;
 $result1[] = null ;
 $result2 = null ;
 $check1 = false ;
 $test = false ;
+$usernameError = null ;
 
 if(isset($_POST['username'],$_POST['email'],
 $_POST['street'], $_POST['postcode'] ,
@@ -41,17 +42,18 @@ if($data->is_Valider()){
     <?php   
 
  $table = "account";
- $field = "username";
+ $fields = "username";
  $value = $_POST['username'];
   
   $result2 = new DAOuser();
 
-  $result1 = $result2 ->isUse( $table, $field, $value );
-     
+ // $result1 = $result2 ->isUse( $table, $field, $value );
+  $result1 = $result2 ->getTaskCountByProject( $fields , $value) ;
 
       if($result1){
          $error = true ;
-         header("location: registrieren.php");   
+         $usernameError = "This username is already used";
+      //   header("location: registrieren.php");   
       }else{
           $table = "account";
           $data = array(
@@ -63,11 +65,11 @@ if($data->is_Valider()){
                 "pwd"     => trim(  htmlspecialchars( password_hash($_POST["password"], PASSWORD_BCRYPT)))
               
           );
-        
+          $success = true ;
           $result2->insertTableEntry($table, $data );
          
-          header("location: login.php");
-          exit;
+       //   header("location: login.php");
+       //   exit;
 
   }
  
@@ -86,12 +88,25 @@ if($data->is_Valider()){
    <?php  require('elements/header.php'); ?>
      
  <div class="centerReg"> 
+
                   <center>
-                  <?php if($error):  ?>
+                  <?php if($error && empty($errors)&&$_POST['email']):  ?>
                      <div class="alert alert-danger" role="alert">
-                     This Name is allready exit
-                     </div>
+                   <?=       $usernameError = "This username is already used";?>
+                  <?php elseif(  $success ) :  ?> 
+                    <div class="alert alert-success" role="alert">
+                    <a href="login.php" class="alert-link"></a> 
+                   <?= "The E-Mail hat been send to  ". $_POST['email']."Pleace confirme your E-Mail" ;?>
+                   <div class="alert alert-primary" role="alert">
+  <a href="login.php" class="alert-link">to login </a>
+  <?php  require('elements/footer.php')  ;   
+   exit ;
+  ?>
+</div    
+                     
+
                      <?php endif ?>
+                    
        <form action=""  method="POST" class="well coll-md-6" > 
   <legend text-align: center  > <h1>  Create account</h1>   </legend>  
   <div class="form-group" >      

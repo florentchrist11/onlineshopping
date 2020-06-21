@@ -1,5 +1,9 @@
 <?php  
 
+ $successInsert = false ;
+ $failure = false ;
+ $message = null ;
+
 require_once('DAOuser.php');
 
 if(isset($_FILES['Myimage']) AND $_FILES['Myimage']['error'] == 0){
@@ -17,14 +21,16 @@ if(isset($_FILES['Myimage']) AND $_FILES['Myimage']['error'] == 0){
      echo "File is an image - " . $check["mime"] . ".";
      $uploadOk = 1;
    } else {
-     echo "File is not an image.";
+   //  echo "File is not an image.";
      $uploadOk = 0;
    }
  }
  
  // Check if file already exists
  if (file_exists($target_file)) {
-   echo "Sorry, file already exists.";
+  // echo "Sorry, file already exists.";
+  $failure = true ;
+  $message = "Sorry, there was an error uploading your file change your file!";
    $uploadOk = 0;
  }
  
@@ -44,16 +50,15 @@ if(isset($_FILES['Myimage']) AND $_FILES['Myimage']['error'] == 0){
  
  // Check if $uploadOk is set to 0 by an error
  if ($uploadOk == 0) {
-   echo "Sorry, your file was not uploaded.";
+  // echo "Sorry, your file was not uploaded.";
  // if everything is ok, try to upload file
  } else {
    if (move_uploaded_file($_FILES["Myimage"]["tmp_name"], $target_file)) {
      $dts = "uploads/". basename( $_FILES["Myimage"]["name"])   ;
-     var_dump($dts );
- 
-     echo "The file ". basename( $_FILES["Myimage"]["name"]). " has been uploaded.";
-    
    
+    // echo "The file ". basename( $_FILES["Myimage"]["name"]). " has been uploaded.";
+    
+   // $message =  "The file ". basename( $_FILES["Myimage"]["name"]). " has been uploaded.";
     
  require('mysqliteconnection.php');
  
@@ -72,11 +77,16 @@ if(isset($_FILES['Myimage']) AND $_FILES['Myimage']['error'] == 0){
         );
    
         $result2-> insertTableEntry($table, $data );
-         
-            echo "Susscces";
+        $successInsert = true ;
+        $message = "Success";
+
+      
+
   
  } catch (PDOException $e){
-     echo "SQL Error: ".$e->getMessage();
+   //  echo "SQL Error: ".$e->getMessage();
+
+ 
  }
  
  
@@ -84,7 +94,7 @@ if(isset($_FILES['Myimage']) AND $_FILES['Myimage']['error'] == 0){
   
   
    } else {
-     echo "Sorry, there was an error uploading your file.";
+  
    }
  }
  

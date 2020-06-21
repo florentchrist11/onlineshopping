@@ -3,6 +3,7 @@ require('src/CheckProduct.php');
 $errors[] = null ;
 $error = null ;
 $success = null ;
+$test = false ;
 
 if(isset($_POST['signup'])){
    
@@ -23,9 +24,11 @@ if($data->is_Valider()){
        }
  ?>
        <?php if($success):  ?>
-
+               
         <?php
-require_once("Modell/InsertProduct.php")
+        $test = true ;
+require_once("Modell/InsertProduct.php");
+
 ?>
         
    <?php endif ?>
@@ -38,6 +41,17 @@ require_once("Modell/InsertProduct.php")
                          Invalide
                      </div>
                      <?php endif ?>
+
+                     <?php if(  $test && $failure):  ?>
+                     <div class="alert alert-danger" role="alert">
+                    <?=      $message      ?>
+                     </div>
+                     <?php  elseif($test && $successInsert) : ?>
+                        <div class="alert alert-success" role="alert">
+                    <?=      $message      ?>
+                     <?php endif ?>
+
+
         <div class="card border-danger">
             <div class="card-header bg-danger text-white">
                 <strong><i class="fa fa-plus"></i> Add New Product</strong>
@@ -81,3 +95,4 @@ require_once("Modell/InsertProduct.php")
             </div>
         </div>
 
+        <?php  require('elements/footer.php')        ?>

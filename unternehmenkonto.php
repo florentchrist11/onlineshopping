@@ -4,7 +4,7 @@ $title = "Account";
 require('Modell/DAOuser.php');
 
 $error = null ;
-$success = null ;
+$success = false ;
 $result1 = null ;
 $result2 = null ;
 $check1 = false ;
@@ -16,13 +16,12 @@ if(isset($_POST['username'] , $_POST['sellerID'], $_POST['password'])){
  
    
 $table = "account";
-$field = 'username';
+$fields = 'username';
 $value = $_POST['username'];
   
   $result2 = new DAOuser();
  
-  $result1 = $result2 ->isUse($table, $field, $value);
-
+  $result1 = $result2 ->getTaskCountByProject( $fields , $value) ;
     if($result1){
        $error = true ;
        
@@ -36,9 +35,10 @@ $value = $_POST['username'];
             
         );
         
+        $success = true ;
         $result2-> insertTableEntry($table, $data );
        
-        header("location: login.php");
+     //   header("location: login.php");
 
 }
 
@@ -49,12 +49,27 @@ $value = $_POST['username'];
    <?php require_once 'elements/header.php'   ?>
         
 <br><br><br><br>
+
 <center>
+<?php if($error && $_POST['sellerID']):  ?>
+                     <div class="alert alert-danger" role="alert">
+                   <?=       $usernameError = "This username is already used";?>
+                  <?php elseif(  $success ) :  ?> 
+                   
+                   <?= "The E-Mail hat been send to  ". $_POST['username']."Pleace confirme your E-Mail" ;?>
+                   <div class="alert alert-primary" role="alert">
+  <a href="login.php" class="alert-link">to login </a>
+  <?php   require 'elements/footer.php'  ?>
+   <?=    exit       ?>
+</div    
+                     
+
+                     <?php endif ?>
   <form action="" class="mb-4" method="POST">
        <div class="centerReg"> 
        <h1> Create Your Selleraccount</h1>
            <label>  Username:  </label><br> 
-           <input style="width:45%" type="username" class="form-control" name="username" placeholder="username">
+           <input style="width:45%" type="email" class="form-control" name="username" placeholder="email ">
            <label>  SellerID: </label><br>
            <input style="width:45%" type="text" class="form-control" name="sellerID" placeholder="Enter your ID ">
            <label>  Password: </label><br>
