@@ -30,10 +30,64 @@ if($data->is_Valider()){
 require_once("Modell/InsertProduct.php");
 
 ?>
-        
-   <?php endif ?>
+<?php endif ?>
 
-<?php    require('elements/header.php')  ;       ?>
+<?php   
+ require('elements/header.php')  ;
+require_once('DAOuser.php');    
+require_once('mysqliteconnection.php');
+require_once('CreateTableUser.php');         ?>
+<br><br><br><br>
+<div class="rand"> 
+
+<div id ="div1">
+          <h3> List of Produkt  </h3>
+</div> 
+ <?php 
+ $table = "product";
+$getUser = new DAOuser();
+$result = $getUser -> getAllProduct($table);
+ ?>
+<?php  if(!empty($result)){ ?>
+
+<table id ="user"> 
+  <thead>
+   <tr>
+     <th > Price </th>
+     <th colspan="5"> Quantity </th>
+     <th > Image </th>
+   </tr>
+   </thead>
+   <tbody>
+<?php            
+foreach ($result as $account){  ?>
+    <tr> 
+      <td > <?= $account['price'] ?> </td>
+       <td colspan="5"> <?= $account['qty'] ?> </td>
+         
+       <td> <button id="block"> Delete </button>
+       <?php 
+       $table = "product";
+       $clause = array(
+          "Myimage" => $account["Myimage"]
+       );
+       $operator = array();
+      
+       $check  = $getUser->deleteTableEntry($table, $clause, $operator);
+         ?>
+            <button id="frei"> Update </button>
+            <p> <?= $account['Myimage'] ?></p>
+       </td>
+       
+    </tr> 
+<?php 
+ 
+} ?>
+</tbody>
+</table>
+<?php }   ?>
+
+<?php     ?>
 <br><br><br><br>
 <div class="rand"> 
                      <?php if($error):  ?>
