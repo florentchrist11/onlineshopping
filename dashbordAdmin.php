@@ -6,6 +6,7 @@ require_once 'elements/header.php';
 
 
 ?>
+
 <body>
 <div class="rand">
     <div id ="div1">
@@ -36,14 +37,17 @@ $result = $getUser -> getAllProduct($table);
              <tr> 
                <td > <?= $account['username'] ?> </td>
                 <td colspan="5"> <?= $account['email'] ?> </td>
-                  
-                <td> <button id="block"> Block </button>
-                     <button id="frei"> Frei </button>
+              
+                <td> 
+                  <a href="dashbordAdmin.php?Value = <?= $account['username'] ?>"> <input type="submit" id = <?= $account['username'] ?> class="block" value="block"></a>
+                  <a href="dashbordAdmin.php?Value = <?= $account['username'] ?>"> <input type="submit" id = <?= $account['username'] ?> class="frei" value="frei"></a>
+            
                 </td>
                 
              </tr> 
+             <?php }   ?>
          <?php 
-         $table = "account";
+         $table ="account";
          $table2="produkt";
         $field = 'username';
   
@@ -53,7 +57,7 @@ $result = $getUser -> getAllProduct($table);
   } ?>
          </tbody>
          </table>
-         <?php }   ?>
+         
          <script>
          
           </script>
@@ -74,5 +78,26 @@ $result = $getUser -> getAllProduct($table);
     
 </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/Javascript"> 
+
+$(document).ready(function(){
+
+    $(".block").click(function(){
+        <?php
+$pdo = new DAOuser();
+ 
+$statement = $pdo->prepare("DELETE FROM users WHERE username = NULL");
+$statement->execute(); //Löscht Benutzer mit ID 1
+?>
+     
+    });
+
+    $(".frei").click(function(){
+        console.log( this.id);
+    });
+
+});
+</script>
     
 <?php   require('elements/footer.php')  ?> 

@@ -531,12 +531,12 @@ label {
     color: yellowgreen;
     padding: 3% 0;
 }
-#block {
+.block {
     margin: 15px;
     color: red;
     width: 80px;
 }
-#frei {
+.frei {
     margin: 15px;
     color: rgb(3, 99, 19);
     width: 80px;

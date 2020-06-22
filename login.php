@@ -13,6 +13,7 @@
     $error = null ;
     $result2 = null ;
     $result3 = null ;
+    $checkCustomer=false; 
     
    if(isset($_POST['username'], $_POST['passwort'], $_POST['sellerID'])){
          
@@ -23,6 +24,10 @@
    $fields = 'username';
    $value = $_POST['username'];
 
+   if($checkCustomer){ 
+      exit(" You have beeen blocked, please contact your Administrator !!!");
+ }
+
   $result2 = new DAOuser();
  
 
@@ -30,7 +35,7 @@
     
    
    $fields = 'token';
-   $value = $_POST['username'];
+   $value = $_POST['sellerID'];
 
 
   $result1 = $result2 ->getTaskCountByProject( $fields , $value) ;
@@ -45,8 +50,10 @@
           
             if($result1){
              $_SESSION['sellerID'] = $_POST["sellerID"] ;
+                 
+
               header("location: dashbordSeller.php");
- 
+                  
                         }else {
                               header("location: index.php");
                         }

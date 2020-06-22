@@ -1,4 +1,7 @@
 <?php 
+
+
+
 require('src/CheckProduct.php');
 $errors[] = null ;
 $error = null ;
@@ -6,9 +9,12 @@ $success = null ;
 $test = false ;
 
 if(isset($_POST['signup'])){
+
    
  $data = new CheckProduct($_POST['username'],$_POST['qty']
  ,$_POST['price'],$_POST['Idescription']);
+
+
       
 if($data->is_Valider()){
        $success = true ;
@@ -30,10 +36,10 @@ if($data->is_Valider()){
 require_once("Modell/InsertProduct.php");
 
 ?>
-<?php endif ?>
+        
+   <?php endif ?>
 
-<?php   
- require('elements/header.php')  ;
+<?php    require('elements/header.php')  ;
 require_once('DAOuser.php');    
 require_once('mysqliteconnection.php');
 require_once('CreateTableUser.php');         ?>
@@ -86,10 +92,9 @@ foreach ($result as $account){  ?>
 </tbody>
 </table>
 <?php }   ?>
+ 
 
-<?php     ?>
-<br><br><br><br>
-<div class="rand"> 
+
                      <?php if($error):  ?>
                      <div class="alert alert-danger" role="alert">
                          Invalide
@@ -107,9 +112,7 @@ foreach ($result as $account){  ?>
 
 
         <div class="card border-danger">
-            <div class="card-header bg-danger text-white">
-                <strong><i class="fa fa-plus"></i> Add New Product</strong>
-            </div>
+            
             <div class="card-body">
                 <form action="" method="POST" enctype="multipart/form-data" >
                         <div class="form-group col-md-6">
@@ -148,5 +151,3 @@ foreach ($result as $account){  ?>
                 </form>
             </div>
         </div>
-
-        <?php  require('elements/footer.php')        ?>
