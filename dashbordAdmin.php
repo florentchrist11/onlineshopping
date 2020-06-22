@@ -39,8 +39,8 @@ $result = $getUser -> getAllProduct($table);
                 <td colspan="5"> <?= $account['email'] ?> </td>
               
                 <td> 
-                  <a href="dashbordAdmin.php?Value = <?= $account['username'] ?>"> <input type="submit" id = <?= $account['username'] ?> class="block" value="block"></a>
-                  <a href="dashbordAdmin.php?Value = <?= $account['username'] ?>"> <input type="submit" id = <?= $account['username'] ?> class="frei" value="frei"></a>
+                  <a href="dashbordAdmin.php?value = <?= $account['username'] ?>"> <input type="submit" id = <?= $account['username'] ?> class="block" value="block"></a>
+                  <a href="dashbordAdmin.php?value = <?= $account['username'] ?>"> <input type="submit" id = <?= $account['username'] ?> class="frei" value="frei"></a>
             
                 </td>
                 
@@ -84,12 +84,7 @@ $result = $getUser -> getAllProduct($table);
 $(document).ready(function(){
 
     $(".block").click(function(){
-        <?php
-$pdo = new DAOuser();
- 
-$statement = $pdo->prepare("DELETE FROM users WHERE username = NULL");
-$statement->execute(); //Löscht Benutzer mit ID 1
-?>
+      console.log(this.id);
      
     });
 
