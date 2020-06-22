@@ -39,8 +39,8 @@ $result = $getUser -> getAllProduct($table);
                 <td colspan="5"> <?= $account['email'] ?> </td>
               
                 <td> 
-                  <a href="dashbordAdmin.php?value = <?= $account['username'] ?>"> <input type="submit" id = <?= $account['username'] ?> class="block" value="block"></a>
-                  <a href="dashbordAdmin.php?value = <?= $account['username'] ?>"> <input type="submit" id = <?= $account['username'] ?> class="frei" value="frei"></a>
+                 <button id = <?= $account['username'] ?> class="block" value="block">block</button>
+                  <button  id = <?= $account['username'] ?> class="frei" value="frei">frei</button>
             
                 </td>
                 
@@ -51,9 +51,8 @@ $result = $getUser -> getAllProduct($table);
          $table2="produkt";
         $field = 'username';
   
-  $result2 = new DAOuser();
  
-  $result1 = $result2 ->countRow($table, $field);
+  $result1 = $getUser ->countRow($table, $field);
   } ?>
          </tbody>
          </table>
@@ -84,7 +83,15 @@ $result = $getUser -> getAllProduct($table);
 $(document).ready(function(){
 
     $(".block").click(function(){
-      console.log(this.id);
+     <?php  
+    
+     $getuser = new DAOuser();
+     $field="sellerID";
+     $table="account";
+     $value=1;
+      $getuser->insertEntry($table, $field ,$value);
+
+      ?>
      
     });
 

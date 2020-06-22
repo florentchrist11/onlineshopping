@@ -62,7 +62,8 @@ if($data->is_Valider()){
                "street"    => trim( htmlspecialchars( $_POST['street'])),
                "postcode"  => trim( htmlspecialchars($_POST['postcode'])) ,
                 "city"     => trim( htmlspecialchars($_POST['city'])) , 
-                "pwd"     => trim(  htmlspecialchars( password_hash($_POST["password"], PASSWORD_BCRYPT)))
+                "pwd"     => trim(  htmlspecialchars( password_hash($_POST["password"], PASSWORD_BCRYPT))),
+                "sellerID" =>  "active"
               
           );
           $success = true ;

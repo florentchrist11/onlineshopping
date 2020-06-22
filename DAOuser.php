@@ -70,7 +70,17 @@ require_once(dirname(__FILE__) . "/IDAOuser.php");
   
         return $result;
     }
+    function insertEntry($table, $field ,$value=[])
+    {
 
+        $db = $this->getPDO();
+
+        $q = $db->prepare("INSERT INTO $table( $fields ) VALUES ( $values )");
+        $q->execute($value);
+
+        $q->closeCursor();
+        
+    }
     function deleteTableEntry($table, $clause = [], $operator = [])
     {
         $db = $this->getPDO();

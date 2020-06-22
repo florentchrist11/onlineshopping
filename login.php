@@ -13,7 +13,6 @@
     $error = null ;
     $result2 = null ;
     $result3 = null ;
-    $checkCustomer=false; 
     
    if(isset($_POST['username'], $_POST['passwort'], $_POST['sellerID'])){
          
@@ -23,25 +22,23 @@
    
    $fields = 'username';
    $value = $_POST['username'];
-
-   if($checkCustomer){ 
-      exit(" You have beeen blocked, please contact your Administrator !!!");
- }
-
+   $fields1='sellerID';
+   $value1="active";
   $result2 = new DAOuser();
  
-
+  $result = $result2 -> getTaskCountByProject( $fields1 , $value1) ;
+  
   $result3 = $result2 -> getTaskCountByProject( $fields , $value) ;
-    
+  echo $result;
+  die;  
    
    $fields = 'token';
    $value = $_POST['sellerID'];
 
 
   $result1 = $result2 ->getTaskCountByProject( $fields , $value) ;
-
-       
-           if( $result3 ){
+    if($result){
+        if( $result3 ){
             
            session_start();
 
@@ -49,26 +46,29 @@
           
           
             if($result1){
-             $_SESSION['sellerID'] = $_POST["sellerID"] ;
                  
+             $_SESSION['sellerID'] = $_POST["sellerID"] ;
+           
 
               header("location: dashbordSeller.php");
                   
-                        }else {
+            }else {
                               header("location: index.php");
-                        }
+            }
         
-                   }
-     
+            }else{
 
-             else{
-
-                  $error  = TRUE ;
-
-          
-                }
-          }
+                        $error  = TRUE ;
+             }
+      }         
+      else if($account['sellerID'] != "active"){
+          $message='<div class="alert alert-danger"> 
+             Your Account has been disabled, please contact your admin"';
+             
+      }
  
+      
+}
    
 
 ?>   
