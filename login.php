@@ -4,9 +4,10 @@
 
   $title = "Login";
    require('Modell/DAOuser.php');
+   
 
     $error = null ;
-    $check = false ;
+    $check = '' ;
     $result1 = null ;
     $test = false ;
     $check1 = false ;
@@ -22,23 +23,24 @@
    
    $fields = 'username';
    $value = $_POST['username'];
-   $fields1='sellerID';
-   $value1="active";
-  $result2 = new DAOuser();
- 
-  $result = $result2 -> getTaskCountByProject( $fields1 , $value1) ;
+   $table="account";
+   $result2 = new DAOuser();
+   
   
-  $result3 = $result2 -> getTaskCountByProject( $fields , $value) ;
-  echo $result;
-  die;  
+   $result = $result2 -> getStatus($table,$fields,$value);
+   $result3 = $result2 -> getTaskCountByProject( $fields , $value) ;
    
    $fields = 'token';
    $value = $_POST['sellerID'];
 
 
   $result1 = $result2 ->getTaskCountByProject( $fields , $value) ;
-    if($result){
-        if( $result3 ){
+           foreach ( $result as $row){ 
+               $check = $row['sellerID'];
+            }
+         
+        if($check=="active"){
+         if( $result3 ){
             
            session_start();
 
@@ -60,18 +62,16 @@
 
                         $error  = TRUE ;
              }
-      }         
-      else if($account['sellerID'] != "active"){
-          $message='<div class="alert alert-danger"> 
-             Your Account has been disabled, please contact your admin"';
-             
-      }
- 
-      
-}
-   
+       }
+       else if($check=="inactive" || $check==NULL){  ?>
 
-?>   
+ <script>  alert("your Account has been Blocked. Please contact the Administrator ");</script> 
+ 
+ <?php 
+       }
+   }
+   ?> 
+   
  <?php    require_once('elements/header.php')           ?> 
  <br><br><br><br>
        <div class="centerReg">      

@@ -20,6 +20,12 @@ require_once(dirname(__FILE__) . "/IDAOuser.php");
         return    $stmt;
   }
 
+
+
+
+
+
+
     public function getAllProduct($table) {
         $statement = "SELECT * FROM $table" ;
         $stmt = $this->getPDO()->query($statement);

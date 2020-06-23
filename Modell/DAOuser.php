@@ -20,12 +20,54 @@ require_once(dirname(__FILE__) . "/IDAOuser.php");
         return    $stmt;
   }
 
-    public function getAllProduct($table) {
+ public function getAllProduct($table) {
         $statement = "SELECT * FROM $table" ;
         $stmt = $this->getPDO()->query($statement);
         $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return   $datas;
+    } 
+    public function updateUser($table,$active,$username){
+        $db = $this->getPDO();
+    
+        $q = $db->prepare("UPDATE $table SET sellerID =".$active." WHERE username='".$username."'");
+       
+        $q->execute();
+    
+        $data = $q->fetch(PDO::FETCH_ASSOC);
+    
+        $q->closeCursor();
+    
+        return $data ;
+    
     }
+    
+    public function countUser($table,$password,$username)
+    {
+    
+        $db = $this->getPDO();
+        $q = $db->prepare("SELECT count(*) FROM $table WHERE username='".$username."' AND password='".$password."' AND sellerID ='active'");
+        $q->execute();
+    
+        $count = $q->fetch(PDO::FETCH_ASSOC);
+    
+        $q->closeCursor();
+    
+         return $count; 
+        
+    }
+
+    function getStatus($table, $field, $value)
+    {
+
+
+        $db = $this->getPDO();
+         $statement = $db->prepare("SELECT * FROM $table where $field=:value" );
+         $statement->bindParam(':value', $value);
+         $statement->execute();
+         
+        return $statement->fetchAll();
+
+     }
 
     
     function insertTableEntry($table, $data = [])

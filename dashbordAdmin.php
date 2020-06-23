@@ -33,14 +33,22 @@ $result = $getUser -> getAllProduct($table);
             </thead>
             <tbody>
 <?php            
-         foreach ($result as $account){  ?>
+         foreach ($result as $account){ 
+            $activeText = "";
+             if($account['sellerID']=="active"){
+                $activeText="active";
+             }else{
+                $activeText="inactive";
+             }
+             
+             ?>
              <tr> 
                <td > <?= $account['username'] ?> </td>
                 <td colspan="5"> <?= $account['email'] ?> </td>
               
                 <td> 
-                 <button id = <?= $account['username'] ?> class="block" value="block">block</button>
-                  <button  id = <?= $account['username'] ?> class="frei" value="frei">frei</button>
+                 <button id = <?= $account['username'] ?> class="frei" value="block"><?=  $activeText ?></button>
+                  
             
                 </td>
                 
@@ -76,30 +84,40 @@ $result = $getUser -> getAllProduct($table);
     </div>
     
 </div>
+<div id ="user_data"> </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script type="text/Javascript"> 
 
 $(document).ready(function(){
+  
+    $('.frei').click(function(){
+    var id = this.id;
+   
+    var username = this.id;
 
-    $(".block").click(function(){
-     <?php  
-    
-     $getuser = new DAOuser();
-     $field="sellerID";
-     $table="account";
-     $value=1;
-      $getuser->insertEntry($table, $field ,$value);
+    var activeText = $(this).text();
 
-      ?>
-     
+   
+    var active = 0;
+    if(activeText == "active"){
+      active = "active";
+    }else{
+      active = "inactive";
+    }
+
+    $.ajax({
+      url: 'ajaxfile.php',
+      type: 'post',
+      data: {username: username,active: active,request: 1},
+      success: function(response){
+        $("#"+id).html(response);
+      }
     });
+  });
 
-    $(".frei").click(function(){
-        console.log( this.id);
-    });
-
-});
 </script>
+
     
 <?php   require('elements/footer.php')  ?> 
