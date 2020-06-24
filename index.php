@@ -1,4 +1,10 @@
 <?php
+ 
+ session_start();
+
+
+  isset( $_SESSION['username'])? $title= "Wellcome":"Home";
+   
     $title = "Home";
     $result = null ;
     $result1 = null ;

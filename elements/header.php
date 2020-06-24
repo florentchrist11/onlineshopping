@@ -1,7 +1,6 @@
 <!--Justin Bathke-->
 <!DOCTYPE html>
 <html>
-
 <head>
  
     <title>    
@@ -84,11 +83,15 @@
         <div class="col-md-6 col-lg-5 hidden-sm hidden-xs">
             <ul class="nav navbar-nav" style="font-size: 125%;margin-left: 0%">
                 <li class="changeColor">
-                    <a href="index.php" style="color: white;"> <span class="glyphicon glyphicon-home"></span> Home </a>
+                    <a href="index.php" style="color: white;"> <span class="glyphicon glyphicon-home"></span><?php  
+                
+   if (isset($_SESSION['username'])){
+   echo"WELLCOME";}else {
+    ECHO"HOME";  
+   }
+      ?>  </a>
                 </li>
-                <li class="changeColor">
-                    <a href="basket.php" style="color: white;"> <i class="fa fa-shopping-basket"></i> Basket </a>
-                </li>
+               
                 <li class="changeColor" id="customer">
 
                     <a href="#" style="color: white;transition: 1s" class="dropdown-toggle" data-toggle="dropdown" role="button">
@@ -108,7 +111,7 @@
                 <li class="changeColor">
                     <a href="order.php" style="color: white;"> <i class="fa fa-shopping-bag"></i> Order </a>
                 </li>
-
+              
             </ul>
         </div>
 
