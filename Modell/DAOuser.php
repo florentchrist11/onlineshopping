@@ -253,8 +253,123 @@ require_once(dirname(__FILE__) . "/IDAOuser.php");
         return  ($result ? true : false);
     }
 
+    function getAllByFilter($table, $clause = [], $elt = "*", $order = "", $filter = false, $limit = "")
+    {
+        global $db;
 
-    
- }
+        /*
+         * CONSTRUCTION OF CONDITION
+         */
+        $conditions = "";
+        $n = count($clause);
+        $i = 0;
+        foreach ($clause as $key => $value)
+        {
+            if($i < ($n - 1))
+            {
+                $conditions .= " $key = :$key AND";
+            }
+            else
+            {
+                $conditions .= " $key = :$key ";
+            }
+            ++$i;
+        }
 
-    
+        if($conditions)
+            $conditions = "WHERE" . $conditions;
+
+        /*
+         * ORDER BY SOME FILTER
+         */
+        $orderBy = !empty($order) ? "ORDER BY " . $order : "";
+        $limit = (empty($limit))? $limit : " LIMIT ".$limit;
+
+        if($filter)
+        {
+            $req = "SELECT DISTINCT " . $elt . " FROM " . $table . " " . $conditions . $orderBy . $limit .  " ;";
+        }
+        else
+        {
+            $req = "SELECT " . $elt . " FROM " . $table . " " . $conditions . $orderBy . $limit .  " ;";
+        }
+
+        $q = $db->prepare("$req");
+
+        foreach ($clause as $key => $value)
+        {
+            $q->bindValue(":$key", $value, getPDOtype($value));
+        }
+
+        $result = $q->execute();
+        $data = $q->fetchAll(PDO::FETCH_OBJ);
+        $q->closeCursor();
+
+        return ($data ? ((count($data) > 1) ? $data : $data[0]) : false);
+   
+    }
+
+
+
+function getValueByFucntionSQL($table, $clause = [], $elt = "id", $function = "COUNT")
+{
+    global $db;
+
+    /*
+     * CONSTRUCTION OF CONDITION
+     */
+    $conditions = "";
+    if(!empty($clause))
+    {
+        $n = count($clause);
+        $i = 0;
+        $conditions = " WHERE ";
+
+        foreach ($clause as $key => $value)
+        {
+            if($i < ($n - 1))
+            {
+                $conditions .= " $key = :$key AND";
+            }
+            else
+            {
+                $conditions .= " $key = :$key ";
+            }
+            ++$i;
+        }
+    }
+
+    $req = "SELECT " . $function . "( " . $elt . " ) as element FROM " . $table . $conditions .";";
+
+    $q = $db->prepare("$req");
+
+    if(!empty($clause))
+    {
+        foreach ($clause as $key => $value)
+        {
+            $q->bindValue(":$key", $value, getPDOtype($value));
+        }
+    }
+
+    $result = $q->execute();
+    $data = $q->fetch(PDO::FETCH_OBJ);
+    $q->closeCursor();
+
+    return ($data ? $data->element : false);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+

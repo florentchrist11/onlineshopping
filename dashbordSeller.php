@@ -40,7 +40,7 @@ require_once("Modell/InsertProduct.php");
    <?php endif ?>
 
 <?php    require('elements/header.php')  ;
-require_once('DAOuser.php');    
+require_once('Modell/DAOuser.php');    
 require_once('mysqliteconnection.php');
 require_once('CreateTableUser.php');         ?>
 <br><br><br><br>
@@ -79,7 +79,7 @@ foreach ($result as $account){  ?>
        );
        $operator = array();
       
-       $check  = $getUser->deleteTableEntry($table, $clause, $operator);
+    //   $check  = $getUser->deleteTableEntry($table, $clause, $operator);
          ?>
             <button id="frei"> Update </button>
             <p> <?= $account['Myimage'] ?></p>

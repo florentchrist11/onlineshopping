@@ -13,13 +13,16 @@ $result2 = new DAOuser();
 $table = "product";
 $result1 = $result2 -> getAllProduct($table);
 
+
+
 ?>
-       <form action="" class=" col-md-offset-3">
+       <form action=""  class=" col-md-offset-3" method="GET">
        <label for="search"> Search product   </label><br>
        <input type ="text" id ="Search" placeholder="Search..">
        <button type="search" name="search">Suchen </button> 
            
  </form><br><br>
+
 
 <?php   if($result1) :            ?>   
  <?php  foreach ($result1 as $k  => $value):  ?>
