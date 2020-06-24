@@ -47,19 +47,15 @@ $result = $getUser -> getAllProduct($table);
                 <td colspan="5"> <?= $account['email'] ?> </td>
               
                 <td> 
-                 <button id = <?= $account['username'] ?> class="frei" value="block"><?=  $activeText ?></button>
-                  
-            
-                </td>
+                 <button id = <?= $account['username'] ?> class="frei"><?=  $activeText ?></button>
+                 </td>
                 
              </tr> 
              <?php }   ?>
-         <?php 
+  <?php 
          $table ="account";
          $table2="produkt";
         $field = 'username';
-  
- 
   $result1 = $getUser ->countRow($table, $field);
   } ?>
          </tbody>
@@ -94,19 +90,18 @@ $(document).ready(function(){
   
     $('.frei').click(function(){
     var id = this.id;
-   
     var username = this.id;
-
     var activeText = $(this).text();
 
    
-    var active = 0;
+    var active = '';
     if(activeText == "active"){
       active = "active";
+      $("#"+id).css("color", "red");
     }else{
       active = "inactive";
-    }
-
+      $("#"+id).css("color", "green");
+     }
     $.ajax({
       url: 'ajaxfile.php',
       type: 'post',
@@ -116,7 +111,7 @@ $(document).ready(function(){
       }
     });
   });
-
+});
 </script>
 
     

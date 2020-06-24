@@ -35,13 +35,12 @@
 
 
   $result1 = $result2 ->getTaskCountByProject( $fields , $value) ;
-           foreach ( $result as $row){ 
+      foreach ( $result as $row){ 
                $check = $row['sellerID'];
-            }
+       }
          
-        if($check=="active"){
-         if( $result3 ){
-            
+       if( $result3 ){
+            if($check=="active"){
            session_start();
 
            $_SESSION['username'] = $_POST["username"] ;
@@ -55,15 +54,11 @@
               header("location: dashbordSeller.php");
                   
             }else {
-                              header("location: index.php");
+              header("location: index.php");
             }
-        
-            }else{
-
-                        $error  = TRUE ;
-             }
-       }
-       else if($check=="inactive" || $check==NULL){  ?>
+         }
+       }else{$error = TRUE ;}
+       if($check == "inactive"){  ?>
 
  <script>  alert("your Account has been Blocked. Please contact the Administrator ");</script> 
  

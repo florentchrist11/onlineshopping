@@ -29,7 +29,7 @@ require_once(dirname(__FILE__) . "/IDAOuser.php");
     public function updateUser($table,$active,$username){
         $db = $this->getPDO();
     
-        $q = $db->prepare("UPDATE $table SET sellerID =".$active." WHERE username='".$username."'");
+        $q = $db->prepare("UPDATE $table SET sellerID ='".$active."' WHERE username='".$username."'");
        
         $q->execute();
     
@@ -38,6 +38,7 @@ require_once(dirname(__FILE__) . "/IDAOuser.php");
         $q->closeCursor();
     
         return $data ;
+
     
     }
     
