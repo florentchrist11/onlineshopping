@@ -1,8 +1,9 @@
 
 </body>
 <footer class="footer">
-  <p > 
+<a href="Legal_Privacy.php"> Legal Notice  |  Privacy Policy</a>
+  
       © 2020 Copyright:
- </p>
+ 
 </footer>
 </html>
