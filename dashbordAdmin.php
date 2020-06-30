@@ -10,7 +10,7 @@ require_once 'elements/header.php';
 <body>
 <div class="rand">
     <div id ="div1">
-          <h3> List of user  </h3>
+          <h3> List of all Seller </h3>
     </div> 
  <?php 
 
@@ -35,28 +35,32 @@ $result = $getUser -> getAllProduct($table);
 <?php            
          foreach ($result as $account){ 
             $activeText = "";
+          if($account['token']!= null){ 
              if($account['sellerID']=="active"){
                 $activeText="active";
              }else{
                 $activeText="inactive";
              }
-             
-             ?>
+             }else{
+                $activeText=null;  
+             } 
+             if($activeText!=null) { ?>
              <tr> 
-               <td > <?= $account['username'] ?> </td>
-                <td colspan="5"> <?= $account['email'] ?> </td>
-              
+               <td> <?= $account['username'] ?> </td>
+               <td colspan="5"> <?= $account['email'] ?> </td>
                 <td> 
-                 <button id = <?= $account['username'] ?> class="frei"><?=  $activeText ?></button>
+                 <button id = <?= $account['username'] ?> class="frei"><?=$activeText?></button>
                  </td>
-                
+<?php  } ?>               
              </tr> 
              <?php }   ?>
   <?php 
          $table ="account";
-         $table2="produkt";
-        $field = 'username';
+         $table2="product";
+         $field = 'token';
+         $field2 = 'Myimage';
   $result1 = $getUser ->countRow($table, $field);
+  $result2 = $getUser ->countRow($table2,$field2);
   } ?>
          </tbody>
          </table>
@@ -65,17 +69,17 @@ $result = $getUser -> getAllProduct($table);
          
           </script>
  <div id ="div">
-         <h5> Number of aktuel User </h5> <div id="number"><?= $result1['count(*)'] ?> <i class="fa fa-user" id="test"> </i> </div> </div>
+         <h5> current number of seller </h5> <div id="number"><?= $result1['count(*)'] ?>&nbsp<i class="fa fa-user" id="test"> </i> </div> </div>
      <div id ="div">  
-        <h5> New User </h5> <div id="number"> <i class="fa fa-user" id="test2"></i>
+        <h5> New seller </h5> <div id="number"> <i class="fa fa-user" id="test2"></i>
      </div>
      </div>
      <div id ="div">
-        <h5>  Number of aktuel produkt</h5> <div id="number"><i class='fa fa-shopping-bag' id="test"></i>
+        <h5> current number of product </h5> <div id="number"><?= $result2['count(*)'] ?>&nbsp<i class='fa fa-shopping-bag' id="test"></i>
     </div>
     </div>
      <div id ="div">
-        <h5> New produkt</h5> <div id="number"><i class='fa fa-shopping-bag' id="test2"></i>
+        <h5> New product</h5> <div id="number"><i class='fa fa-shopping-bag' id="test2"></i>
     </div>
     </div>
     
@@ -93,7 +97,7 @@ $(document).ready(function(){
     var username = this.id;
     var activeText = $(this).text();
 
-   
+   console.log(username);
     var active = '';
     if(activeText == "active"){
       active = "active";

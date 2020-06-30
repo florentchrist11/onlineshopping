@@ -36,11 +36,12 @@
 
   $result1 = $result2 ->getTaskCountByProject( $fields , $value) ;
       foreach ( $result as $row){ 
+        if($row['token'] != null){ 
                $check = $row['sellerID'];
        }
-         
+      } 
        if( $result3 ){
-            if($check=="active"){
+            if($check=="active" || $check== Null ){
            session_start();
 
            $_SESSION['username'] = $_POST["username"] ;

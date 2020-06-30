@@ -86,8 +86,8 @@
                     <a href="index.php" style="color: white;"> <span class="glyphicon glyphicon-home"></span><?php  
                 
    if (isset($_SESSION['username'])){
-   echo"  WELLCOME";}else {
-   ECHO"  HOME";  
+   echo"  Wellcome";}else {
+   ECHO"  Home";  
    }
       ?>  </a>
                 </li>

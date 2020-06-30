@@ -62,8 +62,7 @@ if($data->is_Valider()){
                "street"    => trim( htmlspecialchars( $_POST['street'])),
                "postcode"  => trim( htmlspecialchars($_POST['postcode'])) ,
                 "city"     => trim( htmlspecialchars($_POST['city'])) , 
-                "pwd"     => trim(  htmlspecialchars( password_hash($_POST["password"], PASSWORD_BCRYPT))),
-                "sellerID" =>  "active"
+                "pwd"     => trim(  htmlspecialchars( password_hash($_POST["password"], PASSWORD_BCRYPT)))
               
           );
           $success = true ;
@@ -178,7 +177,7 @@ if($data->is_Valider()){
            <?= $errors['confirmation'] ?>  </div>          
     <?php endif  ?>
               
- <button >submit</button>
+ <br><button >submit</button>
 </form>
  </div> 
                
