@@ -14,6 +14,7 @@
     $error = null ;
     $result2 = null ;
     $result3 = null ;
+    $verifyPasswort= false;
     
    if(isset($_POST['username'], $_POST['passwort'], $_POST['sellerID'])){
          
@@ -25,10 +26,12 @@
    $value = $_POST['username'];
    $table="account";
    $result2 = new DAOuser();
+  
    
   
    $result = $result2 -> getStatus($table,$fields,$value);
    $result3 = $result2 -> getTaskCountByProject( $fields , $value) ;
+   $pass = $result2 ->getPass($fields,$_POST['username'] );
    
    $fields = 'token';
    $value = $_POST['sellerID'];
@@ -39,26 +42,29 @@
         if($row['token'] != null){ 
                $check = $row['sellerID'];
        }
+      }
+      if(password_verify($_POST["passwort"],$pass["pwd"])){ 
+          $verifyPasswort=true;
       } 
        if( $result3 ){
-            if($check=="active" || $check== Null ){
+          if($check=="active" || $check == Null ){
            session_start();
 
            $_SESSION['username'] = $_POST["username"] ;
-          
-          
+            if( $verifyPasswort){ 
+                
             if($result1){
                  
              $_SESSION['sellerID'] = $_POST["sellerID"] ;
-           
-
+             
               header("location: dashbordSeller.php");
                   
             }else {
               header("location: index.php");
             }
-         }
-       }else{$error = TRUE ;}
+          }else{$error = true ; }
+        }
+       }else{$error = true ;}  
        if($check == "inactive"){  ?>
 
  <script>  alert("your Account has been Blocked. Please contact the Administrator ");</script> 
@@ -71,7 +77,7 @@
  <?php    require_once('elements/header.php')           ?> 
  <br><br><br><br>
        <div class="centerReg">      
- <?php  if($error):  ?>
+ <?php  if($error || $verifyPasswort ):  ?>
       
  <div class="alert alert-danger"> Invalid </div>
     

@@ -115,6 +115,7 @@ foreach ($result as $account){  ?>
             
             <div class="card-body">
                 <form action="" method="POST" enctype="multipart/form-data" >
+                
                         <div class="form-group col-md-6">
                             <label for="username" class="col-form-label">Name </label>
                             <input type="text" class="form-control" id="name" name="username" placeholder="Name" required>

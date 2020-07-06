@@ -27,7 +27,7 @@ $result = $getUser -> getAllProduct($table);
            <thead>
             <tr>
               <th > Username </th>
-              <th colspan="5"> E-mails </th>
+              <th colspan="5"> Seller_ID </th>
               <th > Aktion </th>
             </tr>
             </thead>
@@ -47,7 +47,7 @@ $result = $getUser -> getAllProduct($table);
              if($activeText!=null) { ?>
              <tr> 
                <td> <?= $account['username'] ?> </td>
-               <td colspan="5"> <?= $account['email'] ?> </td>
+               <td colspan="5"> <?= $account['token'] ?> </td>
                 <td> 
                  <button id = <?= $account['username'] ?> class="frei"><?=$activeText?></button>
                  </td>

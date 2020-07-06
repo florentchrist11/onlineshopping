@@ -70,12 +70,13 @@ require('Modell/DAOuser.php');
   <div class="alert alert-success"> Your Password had been changed </div>
  <?php   endif  ?>
 <form action="" class="mb-4" method="post">
-           <h1>  reset password </h1>
+         <center>
+          <h1>  reset password </h1>
           <label for ="text"> username:  </label><br>
           <input  style="width:65%"  type="text" class="form-control" name="username" placeholder="username"> 
-          <label for="password"> Your Password: </label> 
+          <label for="password"> Enter Your Password: </label> 
            <input  style="width:65%"  type="password" class="form-control" name="passwort" placeholder="Your Password ">
-           <label for="password"> Your Password: </label> 
+           <label for="password"> Confirm Your Password: </label> 
             <input  style="width:65%" id ="password" type="password" class="form-control" name="confirmation" placeholder="Your Password ">
              <br> <button >submit</button>
            <a href="login.php"> login?</a> 

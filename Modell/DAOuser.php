@@ -56,6 +56,15 @@ require_once(dirname(__FILE__) . "/IDAOuser.php");
          return $count; 
         
     }
+    public function getPass( $field, $username){
+        $db = $this->getPDO();
+        $q = $db->prepare("SELECT pwd FROM account WHERE $field = :value;");
+        $q->bindParam(':value', $username);
+        $q->execute();
+        $data = $q->fetch(PDO::FETCH_ASSOC);
+        $q->closeCursor();
+        return $data;
+    }
 
     function getStatus($table, $field, $value)
     {

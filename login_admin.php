@@ -10,7 +10,7 @@ if(isset($_POST['username'], $_POST['password'])){
      if(!($_POST['username']== "Admin" && $_POST['password']== 'Admin')){
       
       $error = 'False User';
-     header("Location: index.php"); 
+    // header("Location: index.php"); 
      }else{
       header("Location: dashbordAdmin.php"); 
 
@@ -21,6 +21,11 @@ include ('elements/header.php')  ;
 ?>
    
 <br><br><br>
+<?php if ($error):?>
+     <div class="alert alert-danger" role="alert">
+     <?= "This page is only for Admin"; require('elements/footer.php'); die;?>
+     
+<?php endif ?>
 <center>
   <form action="login_admin.php"  class="mb-4" method="POST">
           <div class="center"> 

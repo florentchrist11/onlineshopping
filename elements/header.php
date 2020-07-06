@@ -115,7 +115,12 @@
             </ul>
         </div>
 
-        <div class="col-md-3 col-lg-3 hidden-sm hidden-xs"></div>
+        <div class="col-md-10 col-lg-3 hidden-sm hidden-xs">
+                <form class="example" action="">
+                <input type="text" placeholder="Search.." name="search2">
+                <button type="submit"><i class="fa fa-search"></i></button>
+                </form> 
+        </div>
 
     </div>
 
