@@ -50,7 +50,6 @@
                 <ul>
 
                     <li><a href="index.php"><span class="glyphicon glyphicon-eye-open"></span>&nbsp; Home</a></li>
-                    <li><a href="basket.php"><i class="fa fa-shopping-basket"></i>&nbsp; Basket</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#"> &nbsp;<i class="fa fa-user"></i>&nbsp; Customer <i class="fa fa-caret-down"></i>
 
