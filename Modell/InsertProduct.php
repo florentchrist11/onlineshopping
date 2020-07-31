@@ -27,12 +27,12 @@ if(isset($_FILES['Myimage']) AND $_FILES['Myimage']['error'] == 0){
  }
  
  // Check if file already exists
- if (file_exists($target_file)) {
+/* if (file_exists($target_file)) {
   // echo "Sorry, file already exists.";
   $failure = true ;
-  $message = "Sorry, there was an error uploading your file change your file!";
+  $message = "Sorry, there was an error uploading your file change your file! file already upload";
    $uploadOk = 0;
- }
+ }  **/
  
  // Check file size
  if ($_FILES["Myimage"]["size"] > 500000) {

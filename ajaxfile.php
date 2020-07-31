@@ -25,8 +25,15 @@ if($request == 1){
 
   
   echo $val;
-  exit;
-}
+  
+}else{
+  $id = $_POST['id'];
 
+  $table="Product";
+  $field = 'username';
+  $result = $result2 -> deleteRowFromDb($table,$id,$field); 
+  echo $result ;
+  
+}
 
 ?>

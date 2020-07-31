@@ -53,42 +53,32 @@ require_once('CreateTableUser.php');         ?>
  $table = "product";
 $getUser = new DAOuser();
 $result = $getUser -> getAllProduct($table);
+
  ?>
 <?php  if(!empty($result)){ ?>
 
 <table id ="user"> 
   <thead>
    <tr>
-     <th > Price </th>
-     <th colspan="5"> Quantity </th>
-     <th > Image </th>
+     <th colspan="5"> Price </th>
+     <th colspan="5" > Quantity </th>
+     <th colspan="6"> Image </th>
    </tr>
    </thead>
    <tbody>
 <?php            
 foreach ($result as $account){  ?>
     <tr> 
-      <td > <?= $account['price'] ?> </td>
-       <td colspan="5"> <?= $account['qty'] ?> </td>
+      <td colspan="5" id = <?= $account['username'] ?> > <?= $account['price'] ?> </td>
+       <td colspan="5" id = <?= $account['username'] ?> > <?= $account['qty'] ?> </td>
          
-       <td> <button id="block"> Delete </button>
-       <?php 
-       $table = "product";
-       $clause = array(
-          "Myimage" => $account["Myimage"]
-       );
-       $operator = array();
-      
-    //   $check  = $getUser->deleteTableEntry($table, $clause, $operator);
-         ?>
-            <button id="frei"> Update </button>
-            <p> <?= $account['Myimage'] ?></p>
+       <td colspan="6"> 
+       <button class="block" id = <?= $account['username'] ?>> Delete </button> <?= $account['Myimage'] ?>
        </td>
        
     </tr> 
 <?php 
- 
-} ?>
+ } ?>
 </tbody>
 </table>
 <?php }   ?>
@@ -152,3 +142,28 @@ foreach ($result as $account){  ?>
                 </form>
             </div>
         </div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script type="text/Javascript"> 
+
+$(document).ready(function(){
+  
+    $('.block').click(function(){
+    var id = this.id;
+    var $element = $(this).parent().parent();
+    console.log(id);
+
+    $.ajax({
+      url: 'ajaxfile.php',
+      type: 'post',
+      data: {id: id,request: 2},
+      success: function(response){
+        $element.fadeOut().remove();
+      }
+    });
+
+    });
+    });
+</script>

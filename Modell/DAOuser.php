@@ -29,26 +29,21 @@ require_once(dirname(__FILE__) . "/IDAOuser.php");
     public function updateUser($table,$active,$username){
         $db = $this->getPDO();
     
-        $q = $db->prepare("UPDATE $table SET sellerID ='".$active."' WHERE username='".$username."'");
-       
+        $q = $db->prepare("UPDATE $table SET sellerID ='".$active."' WHERE $username=: value;");
+        $q->bindParam(':value', $username);
         $q->execute();
     
         $data = $q->fetch(PDO::FETCH_ASSOC);
-    
-        $q->closeCursor();
-    
         return $data ;
-
-    
-    }
+}
     
     public function countUser($table,$password,$username)
     {
     
         $db = $this->getPDO();
-        $q = $db->prepare("SELECT count(*) FROM $table WHERE username='".$username."' AND password='".$password."' AND sellerID ='active'");
+        $q = $db->prepare("SELECT count(*) FROM $table WHERE $username=: value; AND password='".$password."' AND sellerID ='active'");
         $q->execute();
-    
+        $q->bindParam(':value', $username);
         $count = $q->fetch(PDO::FETCH_ASSOC);
     
         $q->closeCursor();
@@ -62,7 +57,6 @@ require_once(dirname(__FILE__) . "/IDAOuser.php");
         $q->bindParam(':value', $username);
         $q->execute();
         $data = $q->fetch(PDO::FETCH_ASSOC);
-        $q->closeCursor();
         return $data;
     }
 
@@ -122,7 +116,20 @@ require_once(dirname(__FILE__) . "/IDAOuser.php");
   
         return $result;
     }
+    function deleteRowFromDb( $table,$id,$field){
+        $db = $this->getPDO();
+        $db->beginTransaction();
+        $q = $db->prepare ("DELETE FROM $table WHERE $field=:value; ");
+        $q->bindValue(':value',$id);
+        $q->execute();
+        $db->commit();
+        $q->closeCursor();
+        $statement = "SELECT * FROM $table" ;
+        $stmt = $this->getPDO()->query($statement);
+        $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return   $datas; 
 
+    }
     function deleteTableEntry($table, $clause = [], $operator = [])
     {
         $db = $this->getPDO();
@@ -160,7 +167,6 @@ require_once(dirname(__FILE__) . "/IDAOuser.php");
 
         return ($result ? true : false);
     }
-
     function isUse($table, $field, $value)
     {
         $db = $this->getPDO();
